@@ -22,7 +22,7 @@
         @method('PUT')
 
         {{-- 自己PR --}}
-        <div class="my-pr mx-3 mb-3">
+        <div class="my-pr mx-3 mb-5">
             <input type="hidden" value="{{ $user->pr }}" id="prOriginalState">
             <div class="my-pr-wrap rounded shadow">
                 <div class="flex-yx-center">
