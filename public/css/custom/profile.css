@@ -1,0 +1,28 @@
+.my-pr {
+    display: grid;
+    grid-template-columns: 1fr 20% 1fr;
+    gap: 1.25rem;
+    height: 15rem;
+    margin: 0 1rem 1rem;
+}
+
+.my-pr-wrap {
+    display: grid;
+    grid-template-columns: 15% 1fr;
+    border: 1px solid var(--gray);
+
+}
+
+.pr-text {
+    border-left: 1px solid var(--gray);
+}
+
+.flex-yx-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+textarea {
+    border: none;
+}

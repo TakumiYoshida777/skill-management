@@ -21,11 +21,11 @@ return new class extends Migration
             $table->date('birthdate');
             $table->string('email',255)->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('division',50);
-            $table->string('position',50);
+            $table->string('division',50)->nullable();
+            $table->string('position',50)->default('一般');
             $table->string('section',50)->nullable();
             $table->string('position_description',255)->nullable();
-            $table->integer('industry_experience_months');
+            $table->integer('industry_experience_months')->nullable();
             $table->string('password',255);
             $table->unsignedTinyInteger('project_manager_flag')->default(0);
             $table->unsignedTinyInteger('project_leader_flag')->default(0);
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('unit_test_flag')->default(0);
             $table->unsignedTinyInteger('integration_test_flag')->default(0);
             $table->unsignedTinyInteger('system_test_flag')->default(0);
-            $table->string('pr',255);
+            $table->string('pr');
             $table->unsignedTinyInteger('admin_flag')->default(0);
             $table->rememberToken();
             $table->timestamps();

@@ -69,6 +69,10 @@ body {
   background-color: #fff;
 }
 
+* {
+    margin: 0;
+  }
+
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important;
 }
@@ -79,15 +83,19 @@ hr {
   overflow: visible;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
+h1, h2, h3, h4, h5, h6,p {
+    overflow-wrap: break-word;
 }
 
-p {
-  margin-top: 0;
-  margin-bottom: 1rem;
+h1, h2, h3, h4, h5, h6,p,ul,ol,dl {
+margin: 0;
+padding: 0;
+
 }
+
+#root, #__next {
+    isolation: isolate;
+  }
 
 abbr[title],
 abbr[data-original-title] {
@@ -109,8 +117,7 @@ address {
 ol,
 ul,
 dl {
-  margin-top: 0;
-  margin-bottom: 1rem;
+  list-style: none;
 }
 
 ol ol,
@@ -198,9 +205,15 @@ figure {
   margin: 0 0 1rem;
 }
 
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+
 img {
   vertical-align: middle;
   border-style: none;
+
 }
 
 svg {
@@ -53009,4 +53022,10 @@ a.text-muted:hover {
 .dark-mode .border-dark {
   border-color: #4b545c !important;
 }
+
+
+
+
 /*# sourceMappingURL=adminlte.css.map */
+
+
