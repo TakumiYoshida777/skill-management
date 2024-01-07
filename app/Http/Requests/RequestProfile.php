@@ -26,6 +26,20 @@ class RequestProfile extends FormRequest
         return [
             //formのname属性で指定
             'pr' => 'string|max:300',
+            'birthdate' => 'date|required',
+            'division' => 'string|required|max:50',
+            'position' => 'string|required|max:50',
+            'section' => 'string|required|max:50',
+            'industry_experience_months' => 'string|required|max:2',
+            'project_manager_flag' => 'nullable',
+            'project_leader_flag' => 'nullable',
+            'requirements_definition_flag' => 'nullable',
+            'basic_design_flag' => 'nullable',
+            'detailed_design_flag' => 'nullable',
+            'development_flag' => 'nullable',
+            'unit_test_flag' => 'nullable',
+            'integration_test_flag' => 'nullable',
+            'system_test_flag' => 'nullable',
         ];
     }
 
@@ -33,6 +47,7 @@ class RequestProfile extends FormRequest
     {
         return [
             'pr' => '自己PR',
+            'industry_experience_months' => '経験年数',
         ];
     }
 }
