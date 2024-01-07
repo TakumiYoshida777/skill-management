@@ -22,4 +22,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('/profile',ProfileController::class)->middleware('auth');
+Route::resource('/profile',ProfileController::class)->only([
+    'index','update'
+])->middleware('auth');

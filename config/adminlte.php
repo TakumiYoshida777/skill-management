@@ -302,86 +302,68 @@ return [
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
+
+
         ['header' => 'account_settings'],
         [
+            'text' => 'top',
+            'url'  => 'top',
+            'icon' => 'fas fa-home',
+        ],
+        [
             'text' => 'profile',
-            'url'  => 'admin/settings',
+            'url'  => 'profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'technical_experience',
+            'url'  => 'technical_experience',
+            'icon' => 'fas fa-drafting-compass',
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text' => 'language_skills',
+            'url'  => 'language_skills',
+            'icon' => 'fas fa-language',
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'text' => 'qualifications_training',
+            'url'  => 'qualifications_training',
+            'icon' => 'fas fa-book-open',
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text' => 'work_experience',
+            'url'  => 'work_experience',
+            'icon' => 'fas fa-history',
+        ],
+        [
+            'text' => 'portfolio',
+            'url'  => 'portfolio',
+            'icon' => 'fas fa-star',
+        ],
+        [
+            'text' => 'inexperienced_skills',
+            'url'  => 'inexperienced_skills',
+            'icon' => 'fas fa-exclamation-triangle',
+        ],
+        [
+            'text' => 'admin_top',
+            'url'  => 'admin_top',
+            'icon' => 'fas fa-user-shield',
+        ],
+        [
+            'text' => 'admin_skill_sheet_management',
+            'url'  => 'admin_skill_sheet_management',
+            'icon' => 'fas fa-tasks',
+        ],
+        [
+            'text' => 'admin_add_predictive_data',
+            'url'  => 'admin_add_predictive_data',
+            'icon' => 'fas fa-list-alt',
+        ],
+        [
+            'text' => 'admin_grant_permissions',
+            'url'  => 'admin_grant_permissions',
+            'icon' => 'fas fa-users',
         ],
     ],
 

@@ -9,8 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+
     /**
-     * リソースの一覧を表示
+     * プロフィールの初期表示
+     *
+     * @return void
      */
     public function index()
     {
@@ -19,40 +22,13 @@ class ProfileController extends Controller
         return view('profile', compact('user'));
     }
 
-    /**
-     * 新しいリソースを作成するためのフォームを表示
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
-     * 新しく作成されたリソースを保存
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * 指定されたリソースを表示
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * 指定されたリソースの編集フォームを表示
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * ストレージ内の指定されたリソースを更新
+     * プロフィールの更新
+     *
+     * @param RequestProfile $request
+     * @param string $id
+     * @return void
      */
     public function update(RequestProfile $request, string $id)
     {
@@ -81,11 +57,5 @@ class ProfileController extends Controller
         return redirect('profile');
     }
 
-    /**
-     * 指定されたリソースを削除
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+
 }
