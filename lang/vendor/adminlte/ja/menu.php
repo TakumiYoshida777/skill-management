@@ -16,7 +16,7 @@ return [
     'information'                           => 'インフォメーション',
     'top'                                   => 'TOP',
     'profile'                               => 'プロフィール',
-    'technical_experience'                  => '技術経験',
+    'engineer_skills'                       => '技術経験',
     'language_skills'                       => '語学力',
     'qualifications_training'               => '資格/トレーニング',
     'work_experience'                       => '職務経歴',

@@ -302,8 +302,6 @@ return [
         ],
 
         // Sidebar items:
-
-
         ['header' => 'account_settings'],
         [
             'text' => 'top',
@@ -316,8 +314,8 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'technical_experience',
-            'url'  => 'technical_experience',
+            'text' => 'engineer_skills',
+            'url'  => 'skills',
             'icon' => 'fas fa-drafting-compass',
         ],
         [
