@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EngineerSkillController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -25,3 +26,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/profile',ProfileController::class)->only([
     'index','update'
 ])->middleware('auth');
+
+Route::resource('/skills',EngineerSkillController::class)->middleware('auth');

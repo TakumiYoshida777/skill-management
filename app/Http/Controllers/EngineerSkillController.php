@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EngineerSkillController extends Controller
 {
@@ -11,7 +12,8 @@ class EngineerSkillController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        return view('engineer_skill',compact('user'));
     }
 
     /**

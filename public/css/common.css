@@ -1,3 +1,4 @@
-body {
-    background-color: aqua;
+.mx-1rem-container {
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
