@@ -1,0 +1,17 @@
+.record {
+    display: grid;
+    grid-template-columns: 1fr 50% 1fr;
+    place-items: center;
+}
+
+.skill-input,
+.month-input {
+    border: none;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.month-input {
+    max-width: 3rem;
+}

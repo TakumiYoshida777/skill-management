@@ -29,7 +29,8 @@ class EngineerSkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
+        return redirect('engineer_skill');
     }
 
     /**
@@ -53,7 +54,8 @@ class EngineerSkillController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        dd($request->all());
+        return redirect('engineer_skill');
     }
 
     /**

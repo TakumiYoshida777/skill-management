@@ -3,7 +3,6 @@
 @section('title', 'SkillManagement')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom/profile.css') }}">
 @stop
 
@@ -17,6 +16,7 @@
             {{ $errors->first('pr') }}
         </div>
     @endif
+
     <form action="{{ url('/profile', $user->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -24,7 +24,7 @@
         {{-- 自己PR --}}
         <div class="my-pr mx-3 mb-5">
             <input type="hidden" value="{{ $user->pr }}" id="prOriginalState">
-            <div class="my-pr-wrap rounded shadow">
+            <div class="my-pr-wrap shadow">
                 <div class="flex-yx-center">
                     <div class="pr-head">
                         <div>
@@ -91,7 +91,7 @@
 
         {{-- 経験 --}}
         <div>
-            <p class="h5">経験有り工程</p>
+            <p class="h5">担当可能工程<span class="ml-2 small">※自身が担当したことのある工程を選択してください</span></p>
             <div class="grid-wrapper">
                 <div class=" row mx-3">
                     <div class="w-100">
