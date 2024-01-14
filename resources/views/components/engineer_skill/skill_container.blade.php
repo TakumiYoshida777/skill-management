@@ -120,7 +120,7 @@
                                     </datalist>
                                 </div>
                                 <div class="item">
-                                    <input type="number" name="month" class="month-input" value="1"
+                                    <input type="number" name="month" class="month-input" value="1" min="1"
                                         required>ヵ月
                                 </div>
                             </div>

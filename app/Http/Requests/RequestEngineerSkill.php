@@ -22,14 +22,27 @@ class RequestEngineerSkill extends FormRequest
     public function rules(): array
     {
         return [
-            'language' => ['unique:engineer_skill_languages,name,except']
+            'Language' => 'unique:engineer_skill_languages,name,except',
+            'Framework' => 'unique:engineer_skill_frameworks,name,except',
+            'Database' => 'unique:engineer_skill_databases,name,except',
+            'Middleware' => 'unique:engineer_skill_middleware,name,except',
+            'OS' => 'unique:engineer_skill_os,name,except',
+            'Server' => 'unique:engineer_skill_servers,name,except',
+            'VersionManagement' => 'unique:engineer_skill_version_management,name,except',
         ];
     }
 
     public function attributes()
     {
         return [
-            'language' => '言語',
+            'Language' => '言語',
+            'Framework' => 'フレームワーク',
+            'Database' => 'データベース',
+            'Middleware' => 'ミドルウェア',
+            'OS' => 'OS',
+            'Server' => 'サーバー',
+            'VersionManagement' => 'バージョン管理システム',
         ];
     }
 }
+
