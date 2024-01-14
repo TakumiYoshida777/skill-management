@@ -24,13 +24,13 @@ class RequestProfile extends FormRequest
     public function rules(): array
     {
         return [
-            //formのname属性で指定
-            'pr' => 'string|max:300',
+            //formの中のinputタグの name属性 で指定
+            'pr' => 'required|max:300',
             'birthdate' => 'date|required',
-            'division' => 'string|required|max:50',
-            'position' => 'string|required|max:50',
-            'section' => 'string|required|max:50',
-            'industry_experience_months' => 'string|required|max:2',
+            'division' => 'required|max:50',
+            'position' => 'required|max:50',
+            'section' => 'required|max:50',
+            'industry_experience_months' => 'required|max:2',
             'project_manager_flag' => 'nullable',
             'project_leader_flag' => 'nullable',
             'requirements_definition_flag' => 'nullable',

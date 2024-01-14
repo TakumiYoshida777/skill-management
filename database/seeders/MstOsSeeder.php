@@ -70,7 +70,7 @@ class MstOsSeeder extends Seeder
         for($i = 0; $i < count($oss); $i++) {
             $ary = [
                 "id" => $i +1,
-                "os" => $oss[$i]
+                "name" => $oss[$i]
             ];
             $seed_os_ary[] = $ary;
         }

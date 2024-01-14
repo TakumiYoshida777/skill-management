@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('mst_databases', function (Blueprint $table) {
             $table->id();
-            $table->string('database',100);
+            $table->string('name',100);
         });
     }
 

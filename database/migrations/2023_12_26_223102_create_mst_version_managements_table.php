@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('mst_version_managements', function (Blueprint $table) {
             $table->id();
-            $table->string('version_management',100);
+            $table->string('name',100);
         });
     }
 

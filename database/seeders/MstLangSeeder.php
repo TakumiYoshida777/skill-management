@@ -16,7 +16,7 @@ class MstLangSeeder extends Seeder
         $data = [
             "ABAP", "Ada", "ActionScript", "Ada", "Alice", "AliceML", "ALGOL", "AngelScript", "Apex (Salesforce)", "Assembly言語",
             "ATS", "Babbage", "Ballerina", "C", "C#", "C++", "Chapel", "Ceylon", "Clojure", "COBOL", "COBOL-IT",
-            "COOL", "COQ", "Cython", "D", "Dart", "Delphi", "Datalog", "Dylan", "Elixir", "Euphoria",
+            "COOL", "COQ","CSS", "Cython", "D", "Dart", "Delphi", "Datalog", "Dylan", "Elixir", "Euphoria",
             "Erlang", "F#", "Factor", "Fant0m", "Fortran", "Forth", "Go", "Groovy", "Haskell", "HTML",
             "Io", "J", "JScript", "Java", "Janus", "JavaScript", "Julia", "K", "Kotlin", "LabVIEW",
             "Lisp", "Lua", "MATLAB", "MAXScript", "MUMPS", "Objective Caml", "Objective-C", "Oz", "Pascal", "Perl",
@@ -31,7 +31,7 @@ class MstLangSeeder extends Seeder
         for($i = 0; $i < count($data); $i++) {
             $ary = [
                 "id" => $i + 1,
-                "lang" => $data[$i]
+                "name" => $data[$i]
             ];
             $seed_data_ary[] = $ary;
         }

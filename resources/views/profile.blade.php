@@ -11,9 +11,22 @@
 @stop
 
 @section('content')
-    @if ($errors->has('pr'))
+    {{-- @if ($errors->has('pr'))
         <div class="alert alert-danger">
             {{ $errors->first('pr') }}
+        </div>
+    @elseif ($errors->has('industry_experience_months'))
+        <div class="alert alert-danger">
+            {{ $errors->first('industry_experience_months') }}
+        </div>
+    @endif --}}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
 
@@ -37,55 +50,46 @@
                     </div>
                 </div>
                 <div class="pr-text">
-                    <textarea name="pr" id="prTextArea" cols="255" class="w-100 h-100 p-3 rounded">{{ $user->pr }}</textarea>
+                    <textarea name="pr" id="prTextArea" cols="255" class="w-100 h-100 p-3 rounded" required>{{ $user->pr }}</textarea>
                 </div>
             </div>
-                <div class="profile-table shadow h-100">
-                    <div class="table-row">
-                        <div class="table-cell table-title">生年月日</div>
-                        <div class="table-cell">
-                            <input type="date" name="birthdate" id=""
-                            class="w-100 h-100 border-0 px-1"
-                            value="{{ $user->birthdate }}"
-                            required>
-                        </div>
-                    </div>
-                    <div class="table-row">
-                        <div class="table-cell table-title">役職</div>
-                        <div class="table-cell">
-                            <input type="text" name="position" id=""
-                            class="w-100 h-100 border-0 px-1"
-                            value="{{ $user->position }}"
-                            required>
-                        </div>
-                    </div>
-                    <div class="table-row">
-                        <div class="table-cell table-title">部署</div>
-                        <div class="table-cell">
-                            <input type="text" name="division" id=""
-                            class="w-100 h-100 border-0 px-1"
-                            value="{{ $user->division }}"
-                            required>
-                        </div>
-                    </div>
-                    <div class="table-row">
-                        <div class="table-cell table-title">課</div>
-                        <div class="table-cell">
-                            <input type="text" name="section" id=""
-                            class="w-100 h-100 border-0 px-1"
-                            value="{{ $user->section }}"
-                            required>
-                        </div>
-                    </div>
-                    <div class="table-row">
-                        <div class="table-cell table-title">経験年数</div>
-                        <div class="table-cell">
-                            <input type="text" name="industry_experience_months" id=""
-                            class="w-100 h-100 border-0 px-1"
-                            value="{{ $user->industry_experience_months }}">
-                        </div>
+            <div class="profile-table shadow h-100">
+                <div class="table-row">
+                    <div class="table-cell table-title">生年月日</div>
+                    <div class="table-cell">
+                        <input type="date" name="birthdate" id="" class="w-100 h-100 border-0 px-1"
+                            value="{{ $user->birthdate }}" required>
                     </div>
                 </div>
+                <div class="table-row">
+                    <div class="table-cell table-title">役職</div>
+                    <div class="table-cell">
+                        <input type="text" name="position" id="" class="w-100 h-100 border-0 px-1"
+                            value="{{ $user->position }}" required>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell table-title">部署</div>
+                    <div class="table-cell">
+                        <input type="text" name="division" id="" class="w-100 h-100 border-0 px-1"
+                            value="{{ $user->division }}" required>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell table-title">課</div>
+                    <div class="table-cell">
+                        <input type="text" name="section" id="" class="w-100 h-100 border-0 px-1"
+                            value="{{ $user->section }}" required>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell table-title">経験年数</div>
+                    <div class="table-cell">
+                        <input type="text" name="industry_experience_months" id=""
+                            class="w-100 h-100 border-0 px-1" value="{{ $user->industry_experience_months }}">
+                    </div>
+                </div>
+            </div>
 
         </div>
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('mst_servers', function (Blueprint $table) {
             $table->id();
-            $table->string('server',100);
+            $table->string('name',100);
         });
     }
 

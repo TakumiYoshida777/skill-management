@@ -29,7 +29,7 @@ class MstVersionManagementSeeder extends Seeder
         for ($i = 0; $i < count($data); $i++) {
             $ary = [
                 "id" => $i + 1,
-                "version_management" => $data[$i]
+                "name" => $data[$i]
             ];
             $seed_data_ary[] = $ary;
         }

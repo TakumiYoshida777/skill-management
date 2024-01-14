@@ -30,7 +30,7 @@ class MstMiddlewareSeeder extends Seeder
         for($i = 0; $i < count($data); $i++) {
             $ary = [
                 "id" => $i + 1,
-                "middleware" => $data[$i]
+                "name" => $data[$i]
             ];
             $seed_data_ary[] = $ary;
         }

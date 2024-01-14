@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('mst_middlewares', function (Blueprint $table) {
             $table->id();
-            $table->string('middleware',100);
+            $table->string('name',100);
         });
     }
 

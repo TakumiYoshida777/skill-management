@@ -41,7 +41,7 @@ class MstDatabaseSeeder extends Seeder
         for($i = 0; $i < count($data); $i++) {
             $ary = [
                 "id" => $i + 1,
-                "database" => $data[$i]
+                "name" => $data[$i]
             ];
             $seed_data_ary[] = $ary;
         }

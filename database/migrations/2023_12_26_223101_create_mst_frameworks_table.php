@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('mst_frameworks', function (Blueprint $table) {
             $table->id();
-            $table->string('framework',100);
+            $table->string('name',100);
         });
     }
 
