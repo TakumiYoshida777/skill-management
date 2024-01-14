@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
             $table->string('name', 255);
             $table->unsignedInteger('experience_months')->length(4);
-            $table->boolean('auto_renew_flag');
+            $table->boolean('auto_renew_flag')->default(false);
             $table->timestamps();
         });
     }

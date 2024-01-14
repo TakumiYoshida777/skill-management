@@ -74,7 +74,7 @@ class MstOsSeeder extends Seeder
             ];
             $seed_os_ary[] = $ary;
         }
-        DB::table('mst_oss')->insert($seed_os_ary);
+        DB::table('mst_oses')->insert($seed_os_ary);
     }
 }
 

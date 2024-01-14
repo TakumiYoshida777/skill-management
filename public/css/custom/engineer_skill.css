@@ -1,13 +1,28 @@
+.skill-card-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
 .record {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
 }
 
-#addLangModal .record {
+.add-modal .record {
     display: grid;
-    grid-template-columns: 60% 1fr;
+    grid-template-columns: 65% 1fr;
     place-items: center;
+}
+
+.edit-modal .record {
+
+}
+
+.delete-modal .record {
+
 }
 
 .edit-record {
@@ -45,5 +60,15 @@
 }
 
 .inner-container  {
-    min-width: 250px;
+    min-width: 280px;
+}
+
+@media screen and (max-width: 768px) {
+    .skill-card-container {
+        flex-direction: column;
+    }
+
+    .inner-container {
+        margin: 0 auto;
+    }
 }
