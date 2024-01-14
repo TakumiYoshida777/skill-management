@@ -152,7 +152,7 @@ class EngineerSkillController extends Controller
                 case 'Server':
                     EngineerSkillServer::firstOrCreate([
                         'user_id' => $user_id,
-                        'name' => $request->OS,
+                        'name' => $request->Server,
                         'experience_months' => $request->month,
                     ]);
                     Log::info($target . '::' . 'success create!!');
@@ -165,7 +165,6 @@ class EngineerSkillController extends Controller
                     ]);
                     Log::info($target . '::' . 'success create!!');
                     break;
-
             }
 
             DB::commit();
