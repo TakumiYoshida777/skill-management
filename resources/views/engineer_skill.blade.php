@@ -12,15 +12,7 @@
 @stop
 
 @section('content')
-    @if ($errors->any())
-        <div class="alert alert-danger ">
-            <ul class="mb-0">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+<x-messages.flash_message />
     <div class="skill-card-container">
         @php
             $keyword = 'Language';

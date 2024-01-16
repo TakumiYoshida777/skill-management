@@ -173,7 +173,7 @@ class EngineerSkillController extends Controller
             DB::rollBack();
         }
 
-        return redirect('skills');
+        return redirect('skills')->with('status',$target.'の登録が完了しました！');
     }
 
     /**
