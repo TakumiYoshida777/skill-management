@@ -60,7 +60,7 @@
 }
 
 .inner-container  {
-    min-width: 280px;
+    min-width: 333px;
 }
 
 @media screen and (max-width: 768px) {

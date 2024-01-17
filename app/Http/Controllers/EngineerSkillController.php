@@ -32,44 +32,44 @@ class EngineerSkillController extends Controller
     {
         $user = Auth::user();
         // 言語のデータを取得
-        $engineerSkillLanguages = EngineerSkillLanguage::where('user_id', $user->id)
+        $engineerSkillLanguages = EngineerSkillLanguage::query()->where('user_id', $user->id)
             ->orderBy('name')
             ->get();
         $langs =  $this->getSkillNameList('mst_langs');
 
 
         //フレームワークのデータを取得
-        $engineerSkillFrameworks = EngineerSkillFramework::where('user_id', $user->id)
+        $engineerSkillFrameworks = EngineerSkillFramework::query()->where('user_id', $user->id)
             ->orderBy('name')
             ->get();
         $frameworks = $this->getSkillNameList('mst_frameworks');
 
         //データベースのデータを取得
-        $engineerSkillDatabases = EngineerSkillDatabase::where('user_id', $user->id)
+        $engineerSkillDatabases = EngineerSkillDatabase::query()->where('user_id', $user->id)
             ->orderBy('name')
             ->get();
         $databases = $this->getSkillNameList('mst_databases');
 
         //ミドルウェアのデータを取得
-        $engineerSkillMiddlewares = EngineerSkillMiddleware::where('user_id', $user->id)
+        $engineerSkillMiddlewares = EngineerSkillMiddleware::query()->where('user_id', $user->id)
             ->orderBy('name')
             ->get();
         $middlewares = $this->getSkillNameList('mst_middlewares');
 
         //OSのデータを取得
-        $engineerSkillOses = EngineerSkillOs::where('user_id', $user->id)
+        $engineerSkillOses = EngineerSkillOs::query()->where('user_id', $user->id)
             ->orderBy('name')
             ->get();
         $oses = $this->getSkillNameList('mst_oses');
 
         //サーバーのデータを取得
-        $engineerSkillServers = EngineerSkillServer::where('user_id', $user->id)
+        $engineerSkillServers = EngineerSkillServer::query()->where('user_id', $user->id)
             ->orderBy('name')
             ->get();
         $servers = $this->getSkillNameList('mst_servers');
 
         //バージョン管理システムのデータを取得
-        $engineerSkillVersionManagement = EngineerSkillVersionManagement::where('user_id', $user->id)
+        $engineerSkillVersionManagement = EngineerSkillVersionManagement::query()->where('user_id', $user->id)
             ->orderBy('name')
             ->get();
         $versionManagement = $this->getSkillNameList('mst_version_managements');
@@ -173,7 +173,7 @@ class EngineerSkillController extends Controller
             DB::rollBack();
         }
 
-        return redirect('skills')->with('status',$target.'の登録が完了しました！');
+        return redirect('skills')->with('status', $target . 'の登録が完了しました！');
     }
 
     /**
@@ -197,61 +197,94 @@ class EngineerSkillController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
+        $user = Auth::user();
         $target = $request->target;
+        $message_title = "";
         // dd($request->all());
         switch ($target) {
             case 'Language':
-                EngineerSkillLanguage::where('id', $id)->update([
+                $data = EngineerSkillLanguage::query()->where([
+                        ['user_id', $user->id],
+                        ['id', $id]
+                    ])->first();
+                $data->update([
                     'experience_months' => $request->experience_months
                 ]);
-
+                $message_title = $data->name;
                 Log::info($target . '::' . 'success create!!');
                 break;
 
             case 'Framework':
 
-                EngineerSkillFramework::where('id', $id)->update([
+                $data = EngineerSkillFramework::query()->where([
+                        ['user_id', $user->id],
+                        ['id', $id]
+                    ])->first();
+                $data->update([
                     'experience_months' => $request->experience_months
                 ]);
-
+                $message_title = $data->name;
                 Log::info($target . '::' . 'success create!!');
                 break;
 
             case 'Database':
-                EngineerSkillDatabase::where('id', $id)->update([
+                $data = EngineerSkillDatabase::query()->where([
+                        ['user_id', $user->id],
+                        ['id', $id]
+                    ])->first();
+                $data->update([
                     'experience_months' => $request->experience_months
                 ]);
+                $message_title = $data->name;
                 Log::info($target . '::' . 'success create!!');
                 break;
             case 'Middleware':
-                EngineerSkillMiddleware::where('id', $id)->update([
+                $data = EngineerSkillMiddleware::query()->where([
+                        ['user_id', $user->id],
+                        ['id', $id]
+                    ])->first();
+                $data->update([
                     'experience_months' => $request->experience_months
                 ]);
+                $message_title = $data->name;
                 Log::info($target . '::' . 'success create!!');
                 break;
             case 'OS':
-                EngineerSkillOs::where('id', $id)->update([
+                $data = EngineerSkillOs::query()->where([
+                        ['user_id', $user->id],
+                        ['id', $id]
+                    ])->first();
+                $data->update([
                     'experience_months' => $request->experience_months
                 ]);
+                $message_title = $data->name;
                 Log::info($target . '::' . 'success create!!');
                 break;
             case 'Server':
-                EngineerSkillServer::where('id', $id)->update([
+                $data = EngineerSkillServer::query()->where([
+                        ['user_id', $user->id],
+                        ['id', $id]
+                    ])->first();
+                $data->update([
                     'experience_months' => $request->experience_months
                 ]);
+                $message_title = $data->name;
                 Log::info($target . '::' . 'success create!!');
                 break;
             case 'VersionManagement':
-                EngineerSkillVersionManagement::where('id', $id)->update([
+                $data = EngineerSkillVersionManagement::query()->where([
+                        ['user_id', $user->id],
+                        ['id', $id]
+                    ])->first();
+                $data->update([
                     'experience_months' => $request->experience_months
                 ]);
+                $message_title = $data->name;
                 Log::info($target . '::' . 'success create!!');
                 break;
-
         }
 
-        return redirect('skills');
+        return redirect('skills')->with('status', $message_title . 'の更新が完了しました！');
     }
 
     /**
@@ -261,61 +294,80 @@ class EngineerSkillController extends Controller
     {
         $user = Auth::user();
         $target = $request->target;
+        $message_title = "";
 
         try {
             DB::beginTransaction();
             switch ($target) {
                 case 'Language':
-                    EngineerSkillLanguage::where([
+                    $data = EngineerSkillLanguage::query()->where([
                         ['user_id', $user->id],
                         ['id', $id]
-                    ])->delete();
+                    ])->first();
+                    $data->delete();
+
+                    $message_title = $data->name;
                     Log::info($target . '::' . 'success delete!!');
                     break;
                 case 'Framework':
-                    EngineerSkillFramework::where([
+                    $data = EngineerSkillFramework::query()->where([
                         ['user_id', $user->id],
                         ['id', $id]
-                    ])->delete();
+                    ])->first();
+                    $data->delete();
+
+                    $message_title = $data->name;
                     Log::info($target . '::' . 'success create!!');
                     break;
 
                 case 'Database':
-                    EngineerSkillDatabase::where([
+                    $data = EngineerSkillDatabase::query()->where([
                         ['user_id', $user->id],
                         ['id', $id]
-                    ])->delete();
+                    ])->first();
+                    $data->delete();
+
+                    $message_title = $data->name;
                     Log::info($target . '::' . 'success create!!');
                     break;
                 case 'Middleware':
-                    EngineerSkillMiddleware::where([
+                    $data = EngineerSkillMiddleware::query()->where([
                         ['user_id', $user->id],
                         ['id', $id]
-                    ])->delete();
+                    ])->first();
+                    $data->delete();
+
+                    $message_title = $data->name;
                     Log::info($target . '::' . 'success create!!');
                     break;
                 case 'OS':
-                    EngineerSkillOs::where([
+                    $data = EngineerSkillOs::query()->where([
                         ['user_id', $user->id],
                         ['id', $id]
-                    ])->delete();
+                    ])->first();
+                    $data->delete();
 
+                    $message_title = $data->name;
                     Log::info($target . '::' . 'success create!!');
                     break;
                 case 'Server':
-                    EngineerSkillServer::where([
+                    $data = EngineerSkillServer::query()->where([
                         ['user_id', $user->id],
                         ['id', $id]
-                    ])->delete();
+                    ])->first();
+                    $data->delete();
 
+                    $message_title = $data->name;
                     Log::info($target . '::' . 'success create!!');
                     break;
                 case 'VersionManagement':
-                    EngineerSkillVersionManagement::where([
+                    $data = EngineerSkillVersionManagement::query()->where([
                         ['user_id', $user->id],
                         ['id', $id]
-                    ])->delete();
+                    ])->first();
+                    $data->delete();
 
+                    $message_title = $data->name;
                     Log::info($target . '::' . 'success create!!');
                     break;
             }
@@ -325,6 +377,6 @@ class EngineerSkillController extends Controller
             Log::debug($e);
             DB::rollBack();
         }
-        return redirect('skills');
+        return redirect('skills')->with('status', $message_title . 'の削除が完了しました！');;
     }
 }

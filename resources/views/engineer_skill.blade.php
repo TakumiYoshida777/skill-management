@@ -43,7 +43,6 @@
         @endphp
         <x-engineer_skill.skill_container :engineerSkills="$engineerSkillVersionManagement" :listData="$versionManagement" :keyword="$keyword" :title="$keyword" />
     </div>
-
 @stop
 
 @section('js')

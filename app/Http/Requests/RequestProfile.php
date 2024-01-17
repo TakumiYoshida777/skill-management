@@ -29,7 +29,7 @@ class RequestProfile extends FormRequest
             'birthdate' => 'date|required',
             'division' => 'required|max:50',
             'position' => 'required|max:50',
-            'section' => 'required|max:50',
+            'section' => 'max:50',
             'industry_experience_months' => 'required|max:2',
             'project_manager_flag' => 'nullable',
             'project_leader_flag' => 'nullable',

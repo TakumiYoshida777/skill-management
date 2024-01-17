@@ -79,7 +79,7 @@
                     <div class="table-cell table-title">課</div>
                     <div class="table-cell">
                         <input type="text" name="section" id="" class="w-100 h-100 border-0 px-1"
-                            value="{{ $user->section }}" required>
+                            value="{{ $user->section }}">
                     </div>
                 </div>
                 <div class="table-row">
