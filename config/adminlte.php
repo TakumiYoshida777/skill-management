@@ -324,8 +324,8 @@ return [
             'icon' => 'fas fa-language',
         ],
         [
-            'text' => 'qualifications_training',
-            'url'  => 'qualifications_training',
+            'text' => 'qualification',
+            'url'  => 'qualification',
             'icon' => 'fas fa-book-open',
         ],
         [

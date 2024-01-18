@@ -4,6 +4,7 @@ use App\Http\Controllers\EngineerSkillController;
 use App\Http\Controllers\LanguageProficiency;
 use App\Http\Controllers\LanguageProficiencyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QualificationController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,3 +37,6 @@ Route::resource('/skills',EngineerSkillController::class)->middleware('auth');
 
 //外国語スキル
 Route::resource('/language_proficiency',LanguageProficiencyController::class)->middleware('auth');
+
+//資格/トレーニング
+Route::resource('/qualification',QualificationController::class)->middleware('auth');
