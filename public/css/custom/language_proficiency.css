@@ -1,0 +1,57 @@
+:root {
+    --border-gray: #dee2e6;
+}
+
+.grid-container {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+}
+
+.grid-head,
+.grid-record {
+    display: grid;
+    /* カラムの数 1fr を用意 カラムのそれぞれのサイズは自由に合わせてOK　px % 1fr rem など*/
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+}
+
+.grid-head {
+    font-weight: bold;
+    position: sticky;
+    border-top: 1px solid var(--border-gray) !important;
+    top: 0;
+    background-color: #f4f6f9;
+    border-bottom: 2px solid var(--border-gray) !important;
+}
+
+.grid-record {
+    border-bottom: 1px solid var(--border-gray) !important;
+}
+
+/* カラムのデザイン */
+.grid-hitem,
+.grid-ritem {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    text-align: center;
+
+    /*テキストの折り返しを許容*/
+    word-break: break-all;
+
+}
+
+.input-record {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    align-items: center;
+}
+
+/* modal内のinput */
+.input-title {
+    text-align: center;
+}

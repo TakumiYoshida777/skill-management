@@ -284,7 +284,7 @@ class EngineerSkillController extends Controller
                 break;
         }
 
-        return redirect('skills')->with('status', $message_title . 'の更新が完了しました！');
+        return redirect('skills')->with('status', $message_title . 'の内容を更新しました！');
     }
 
     /**

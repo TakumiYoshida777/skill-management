@@ -8,7 +8,7 @@
 @stop
 
 @section('content_header')
-    <h1>Skills</h1>
+    <h1>プログラミング言語</h1>
 @stop
 
 @section('content')

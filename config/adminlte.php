@@ -295,7 +295,6 @@ return [
             'type'         => 'navbar-search',
             'text'         => 'search',
             'topnav_right' => true,
-
         ],
         [
             'type'         => 'fullscreen-widget',
@@ -320,8 +319,8 @@ return [
             'icon' => 'fas fa-drafting-compass',
         ],
         [
-            'text' => 'language_skills',
-            'url'  => 'language_skills',
+            'text' => 'language_proficiency',
+            'url'  => 'language_proficiency',
             'icon' => 'fas fa-language',
         ],
         [

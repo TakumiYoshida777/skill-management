@@ -22,7 +22,7 @@
                     </div>
                     <!-- Modal -->
                     {{-- 編集用モーダル --}}
-                    <div class="modal edit-modal" id="edit{{ $keyword }}Modal{{ $data->id }}" tabindex="-1"
+                    <div class="modal fade edit-modal" id="edit{{ $keyword }}Modal{{ $data->id }}" tabindex="-1"
                         role="dialog" aria-labelledby="edit{{ $keyword }}Modal{{ $data->id }}Title"
                         aria-hidden="true">
 
@@ -86,7 +86,6 @@
                     </div>
                 </div>
             @endforeach
-            {{-- </form> --}}
         </div>
         <div class="btns w-100 mt-3">
             <div class="dummy"></div>
@@ -120,8 +119,7 @@
                                     </datalist>
                                 </div>
                                 <div class="item">
-                                    <input type="number" name="month" class="month-input" value="1" min="1"
-                                        required>ヵ月
+                                    <input type="number" name="month" class="month-input" value="1" min="1" required>ヵ月
                                 </div>
                             </div>
                         </div>

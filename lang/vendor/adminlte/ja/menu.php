@@ -17,7 +17,7 @@ return [
     'top'                                   => 'TOP',
     'profile'                               => 'プロフィール',
     'engineer_skills'                       => '技術経験',
-    'language_skills'                       => '語学力',
+    'language_proficiency'                   => '語学力',
     'qualifications_training'               => '資格/トレーニング',
     'work_experience'                       => '職務経歴',
     'portfolio'                             => 'ポートフォリオ',

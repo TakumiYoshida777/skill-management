@@ -10,3 +10,8 @@
 .d-block {
     display: block;
 }
+
+.delete-btn,
+.edit-btn {
+    cursor: pointer;
+}
