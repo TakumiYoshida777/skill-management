@@ -91,6 +91,14 @@ class LanguageProficiencyController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user_id = Auth::user()->id;
+        $data = LanguageProficiency::query()->where([
+            ['user_id', $user_id],
+            ['id', $id]
+        ])->first();
+        $name = $data->name;
+        $data->delete();
+        return redirect('language_proficiency')->with('status',$name .'の内容を削除しました！');
+
     }
 }

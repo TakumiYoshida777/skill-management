@@ -148,7 +148,7 @@
                     aria-labelledby="deleteModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form action="{{ url('/skills', $data->id) }}" method="POST">
+                            <form action="{{ url('/language_proficiency', $data->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
 
