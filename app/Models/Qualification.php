@@ -8,14 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Qualification extends Model
 {
-    use HasFactory, HasUlids;
+    use HasFactory;
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'id' => 'string'
-    ];
+    protected $fillable = ["user_id","name","issue_date","expiry_date","memo"];
 }

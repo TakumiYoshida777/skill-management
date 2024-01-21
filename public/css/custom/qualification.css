@@ -1,7 +1,7 @@
 
 .grid-head,
 .grid-record {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 20%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 20%;
 }
 
 .input-record {

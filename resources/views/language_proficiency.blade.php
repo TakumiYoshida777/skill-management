@@ -28,8 +28,11 @@
                 <form action="{{ url('/language_proficiency', $data->id) }}" method="POST" class="grid-record">
                     @csrf
                     @method('PUT')
+
+                    <input type="hidden" name="id" value="{{ $data->id }}">
+
                     <div class="grid-ritem">
-                        <i class="fas fa-edit edit-btn "data-toggle="modal" data-target="#editModal"></i>
+                        <i class="fas fa-edit edit-btn "data-toggle="modal" data-target="#edit{{ $data->name }}Modal"></i>
                     </div>
                     <div class="grid-ritem">{{ $data->name }}</div>
                     <div class="grid-ritem">{{ $data->learning_method }}</div>
@@ -41,14 +44,14 @@
 
 
                     {{-- 編集用モーダル --}}
-                    <div class="modal fade edit-modal" id="editModal" tabindex="-1" role="dialog"
-                        aria-labelledby="editModalTitle" aria-hidden="true">
+                    <div class="modal fade edit-modal" id="edit{{ $data->name }}Modal" tabindex="-1" role="dialog"
+                        aria-labelledby="edit{{ $data->name }}ModalTitle" aria-hidden="true">
 
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header d-flex align-items-center">
 
-                                    <i class="far fa-trash-alt delete-btn" data-toggle="modal" data-target="#deleteModal"
+                                    <i class="far fa-trash-alt delete-btn" data-toggle="modal" data-target="#delete{{ $data->name }}Modal"
                                         data-dismiss="modal"></i>
 
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -144,8 +147,8 @@
                     </div>
                 </form>
                 {{-- 外国語の削除 モーダル --}}
-                <div class="modal fade delete-modal" id="deleteModal" tabindex="-1" role="dialog"
-                    aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal fade delete-modal" id="delete{{ $data->name }}Modal" tabindex="-1" role="dialog"
+                    aria-labelledby="delete{{ $data->name }}ModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <form action="{{ url('/language_proficiency', $data->id) }}" method="POST">

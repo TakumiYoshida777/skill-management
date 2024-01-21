@@ -32,6 +32,11 @@ class RequestEngineerSkill extends FormRequest
         ];
     }
 
+    /**
+     * エラーの表示
+     *
+     * @return void
+     */
     public function attributes()
     {
         return [

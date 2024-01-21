@@ -12,15 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('qualifications', function (Blueprint $table) {
-            $table->uuid('id',36)->primary();
+            $table->id();
             $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
-            $table->string('qualifications_name', 255);
-            $table->text('description');
-            $table->string('issuing_authority', 255);
-            $table->date('issue_date');
-            $table->date('expiry_date');
-            $table->string('related_skills');
-            $table->text('other_details');
+            $table->string('name', 100)->unique();
+            $table->date('issue_date')->comment('資格の発行日');
+            $table->date('expiry_date')->comment('資格の有効期限');
+            $table->string('memo')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
