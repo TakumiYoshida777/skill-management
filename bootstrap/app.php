@@ -2,12 +2,12 @@
 
 /*
 |--------------------------------------------------------------------------
-| Create The Application
+| アプリケーションの作成
 |--------------------------------------------------------------------------
 |
-| The first thing we will do is create a new Laravel application instance
-| which serves as the "glue" for all the components of Laravel, and is
-| the IoC container for the system binding all of the various parts.
+| 最初に行うことは、Laravelアプリケーションの新しいインスタンスを作成することです。
+| これはLaravelのすべてのコンポーネントを結びつける「接着剤」として機能し、
+| システムの各部分をバインドするIoCコンテナでもあります。
 |
 */
 
@@ -17,12 +17,12 @@ $app = new Illuminate\Foundation\Application(
 
 /*
 |--------------------------------------------------------------------------
-| Bind Important Interfaces
+| 重要なインターフェースのバインド
 |--------------------------------------------------------------------------
 |
-| Next, we need to bind some important interfaces into the container so
-| we will be able to resolve them when needed. The kernels serve the
-| incoming requests to this application from both the web and CLI.
+| 次に、いくつかの重要なインターフェースをコンテナにバインドして、
+| 必要に応じてそれらを解決できるようにします。カーネルは、このアプリケーションに対する
+| ウェブとCLIの両方からの受信リクエストを処理します。
 |
 */
 
@@ -43,12 +43,12 @@ $app->singleton(
 
 /*
 |--------------------------------------------------------------------------
-| Return The Application
+| アプリケーションの返却
 |--------------------------------------------------------------------------
 |
-| This script returns the application instance. The instance is given to
-| the calling script so we can separate the building of the instances
-| from the actual running of the application and sending responses.
+| このスクリプトはアプリケーションのインスタンスを返します。インスタンスは、
+| 実際のアプリケーションの実行とレスポンスの送信を分離するために、
+| 呼び出しスクリプトに渡されます。
 |
 */
 

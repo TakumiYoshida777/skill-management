@@ -24,7 +24,6 @@ class RequestProfile extends FormRequest
     public function rules(): array
     {
         return [
-            //formの中のinputタグの name属性 で指定
             'pr' => 'required|max:300',
             'birthdate' => 'date|required',
             'division' => 'required|max:50',
@@ -47,7 +46,20 @@ class RequestProfile extends FormRequest
     {
         return [
             'pr' => '自己PR',
+            'birthdate' => '生年月日',
+            'division' => '部署',
+            'position' => '役職',
+            'section' => '課',
             'industry_experience_months' => '経験年数',
+            'project_manager_flag' => 'プロジェクトマネージャーフラグ',
+            'project_leader_flag' => 'プロジェクトリーダーフラグ',
+            'requirements_definition_flag' => '要件定義フラグ',
+            'basic_design_flag' => '基本設計フラグ',
+            'detailed_design_flag' => '詳細設計フラグ',
+            'development_flag' => '開発フラグ',
+            'unit_test_flag' => '単体テストフラグ',
+            'integration_test_flag' => '結合テストフラグ',
+            'system_test_flag' => 'システムテストフラグ',
         ];
     }
 }

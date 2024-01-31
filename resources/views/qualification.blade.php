@@ -14,7 +14,7 @@
     <x-messages.flash_message />
     <div class="grid-container">
         <div class="grid-head">
-            <div class="grid-hitem">編集</div>
+            <div class="grid-hitem">編集 / 削除</div>
             <div class="grid-hitem">資格</div>
             <div class="grid-hitem">取得日</div>
             <div class="grid-hitem">有効期限</div>

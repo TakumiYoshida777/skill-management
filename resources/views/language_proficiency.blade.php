@@ -14,7 +14,7 @@
     <x-messages.flash_message />
     <div class="grid-container">
         <div class="grid-head">
-            <div class="grid-hitem">編集・削除</div>
+            <div class="grid-hitem">編集 / 削除</div>
             <div class="grid-hitem">外国語種別</div>
             <div class="grid-hitem">学習方法</div>
             <div class="grid-hitem">通算年数</div>

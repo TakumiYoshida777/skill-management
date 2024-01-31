@@ -11,6 +11,24 @@
     display: block;
 }
 
+.pc {
+    display: block;
+}
+.sp {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .pc {
+        display: none;
+    }
+
+    .sp {
+        display: block;
+    }
+}
+
+
 .delete-btn,
 .edit-btn {
     cursor: pointer;
@@ -27,7 +45,8 @@
 }
 
 .grid-head,
-.grid-record {
+.grid-record,
+.grid-foot {
     display: grid;
     /* カラムの数 1fr を用意 カラムのそれぞれのサイズは自由に合わせてOK　px % 1fr rem など。また、この部分はページ毎に記述してもよい*/
     /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
@@ -47,6 +66,13 @@
     top: 0;
     background-color: #f4f6f9;
     border-bottom: 2px solid var(--border-gray) !important;
+}
+
+.grid-foot {
+    font-weight: bold;
+    border-top: 2px solid var(--border-gray) !important;
+
+    background-color: #f4f6f9;
 }
 
 .grid-record {
@@ -75,3 +101,13 @@
 .input-title {
     text-align: center;
 }
+
+/* SE */
+@media screen and (max-width: 375px) {
+    .grid-hitem,
+    .grid-ritem {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+

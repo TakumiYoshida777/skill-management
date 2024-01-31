@@ -329,8 +329,8 @@ return [
             'icon' => 'fas fa-book-open',
         ],
         [
-            'text' => 'work_experience',
-            'url'  => 'work_experience',
+            'text' => 'project',
+            'url'  => 'project',
             'icon' => 'fas fa-history',
         ],
         [

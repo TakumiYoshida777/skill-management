@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('mdr_projects_used_skills', function (Blueprint $table) {
             $table->foreignUuid('project_id', 36)->index()->constrained()->onDelete('cascade');
-            $table->string('mst_os', 100);
-            $table->string('mst_server', 100);
-            $table->string('mst_database', 100);
-            $table->string('mst_lang', 100);
-            $table->string('mst_framework', 100);
-            $table->string('mst_middleware', 100);
-            $table->string('mst_version_management', 100);
+            $table->string('os', 100);
+            $table->string('server', 100);
+            $table->string('database', 100);
+            $table->string('lang', 100);
+            $table->string('framework', 100);
+            $table->string('middleware', 100);
+            $table->string('version_management', 100);
         });
     }
 

@@ -1,0 +1,16 @@
+.grid-head,
+.grid-record {
+    grid-template-columns: 20% 1fr 1fr 1fr 10%;
+}
+
+.grid-container {
+    width: 75% !important;
+}
+
+@media screen and (max-width: 768px) {
+    .grid-container {
+        width: 100% !important;
+    }
+}
+
+

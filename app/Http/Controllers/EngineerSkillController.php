@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Log;
 class EngineerSkillController extends Controller
 {
 
-
     public function getSkillNameList(string $tableName)
     {
         $result = DB::table($tableName)->select('name')->orderBy('name')->get();
@@ -36,7 +35,6 @@ class EngineerSkillController extends Controller
             ->orderBy('name')
             ->get();
         $langs =  $this->getSkillNameList('mst_langs');
-
 
         //フレームワークのデータを取得
         $engineerSkillFrameworks = EngineerSkillFramework::query()->where('user_id', $user->id)
