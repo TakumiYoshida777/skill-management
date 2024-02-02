@@ -44,3 +44,4 @@ Route::resource('/qualification',QualificationController::class)->middleware('au
 
 //職務経歴一覧
 Route::resource('/project',ProjectController::class)->middleware('auth');
+

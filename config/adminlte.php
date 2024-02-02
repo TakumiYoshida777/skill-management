@@ -314,6 +314,11 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'project',
+            'url'  => 'project',
+            'icon' => 'fas fa-history',
+        ],
+        [
             'text' => 'engineer_skills',
             'url'  => 'skills',
             'icon' => 'fas fa-drafting-compass',
@@ -328,11 +333,7 @@ return [
             'url'  => 'qualification',
             'icon' => 'fas fa-book-open',
         ],
-        [
-            'text' => 'project',
-            'url'  => 'project',
-            'icon' => 'fas fa-history',
-        ],
+
         [
             'text' => 'portfolio',
             'url'  => 'portfolio',

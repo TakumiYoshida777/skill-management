@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RequestProfile;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-
     /**
      * プロフィールの初期表示
      *
@@ -18,10 +18,13 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $profile = Profile::query()
+        ->where("user_id",$user->id)
+        ->first();
         // dd($user);
-        return view('profile', compact('user'));
+        // dd($profile);
+        return view('profile', compact('user','profile'));
     }
-
 
     /**
      * プロフィールの更新
@@ -32,18 +35,17 @@ class ProfileController extends Controller
      */
     public function update(RequestProfile $request, string $id)
     {
-        $user = Auth::user();
-        // $data = $request->all();
-        $data = $request->validated();
+        $user_id = Auth::user()->id;
+        $data = $request->all();
+        // $data = $request->validated();
         // dd(isset($data['project_manager_flag']) ? true : false);
-
-        User::where('id', $id)->update([
+        Profile::where('user_id', $user_id)->update([
             'pr' => $data['pr'],
             'birthdate' => $data['birthdate'],
             'division' => $data['division'],
             'position' => $data['position'],
             'section' => $data['section'],
-            'industry_experience_months' => $data['industry_experience_months'],
+            'industry_experience' => $data['industry_experience'],
             'project_manager_flag' => isset($data['project_manager_flag']) ? true : false,
             'project_leader_flag' => isset($data['project_leader_flag']) ? true : false,
             'requirements_definition_flag' => isset($data['requirements_definition_flag']) ? true : false,
@@ -54,6 +56,6 @@ class ProfileController extends Controller
             'integration_test_flag' => isset($data['integration_test_flag']) ? true : false,
             'system_test_flag' => isset($data['system_test_flag']) ? true : false,
         ]);
-        return redirect('profile');
+        return redirect('profile')->with('status','プロフィールの更新に成功しました。');
     }
 }

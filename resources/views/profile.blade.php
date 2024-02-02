@@ -11,36 +11,19 @@
 @stop
 
 @section('content')
-    {{-- @if ($errors->has('pr'))
-        <div class="alert alert-danger">
-            {{ $errors->first('pr') }}
-        </div>
-    @elseif ($errors->has('industry_experience_months'))
-        <div class="alert alert-danger">
-            {{ $errors->first('industry_experience_months') }}
-        </div>
-    @endif --}}
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul class="mb-0">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+<x-messages.flash_message />
 
-    <form action="{{ url('/profile', $user->id) }}" method="POST">
+    <form action="{{ url('/profile', $profile->id) }}" method="POST">
         @csrf
         @method('PUT')
 
         {{-- 自己PR --}}
         <div class="my-pr mx-3 mb-5">
-            <input type="hidden" value="{{ $user->pr }}" id="prOriginalState">
-            <div class="my-pr-wrap shadow">
+            <input type="hidden" value="{{ $profile->pr }}" id="prOriginalState">
+            <div class="my-pr-wrap card">
                 <div class="flex-yx-center">
                     <div class="pr-head">
-                        <div>
+                        <div class="pr-title">
                             自己PR
                         </div>
                         <div class="flex-yx-center">
@@ -49,44 +32,44 @@
                         </div>
                     </div>
                 </div>
-                <div class="pr-text">
-                    <textarea name="pr" id="prTextArea" cols="255" class="w-100 h-100 p-3 rounded" required>{{ $user->pr }}</textarea>
+                <div>
+                    <textarea name="pr" id="prTextArea" cols="255" class="w-100 h-100 p-3 rounded" required>{{ $profile->pr }}</textarea>
                 </div>
             </div>
-            <div class="profile-table shadow h-100">
+            <div class="h-100">
                 <div class="table-row">
                     <div class="table-cell table-title">生年月日</div>
                     <div class="table-cell">
-                        <input type="date" name="birthdate" id="" class="w-100 h-100 border-0 px-1"
-                            value="{{ $user->birthdate }}" required>
+                        <input type="date" name="birthdate" class="form-control"
+                            value="{{ old('birthdate',$profile->birthdate) }}" required>
                     </div>
                 </div>
                 <div class="table-row">
                     <div class="table-cell table-title">役職</div>
                     <div class="table-cell">
-                        <input type="text" name="position" id="" class="w-100 h-100 border-0 px-1"
-                            value="{{ $user->position }}" required>
+                        <input type="text" name="position" class="form-control"
+                            value="{{ $profile->position }}" required>
                     </div>
                 </div>
                 <div class="table-row">
                     <div class="table-cell table-title">部署</div>
                     <div class="table-cell">
-                        <input type="text" name="division" id="" class="w-100 h-100 border-0 px-1"
-                            value="{{ $user->division }}" required>
+                        <input type="text" name="division" class="form-control"
+                            value="{{ $profile->division }}" required>
                     </div>
                 </div>
                 <div class="table-row">
                     <div class="table-cell table-title">課</div>
                     <div class="table-cell">
-                        <input type="text" name="section" id="" class="w-100 h-100 border-0 px-1"
-                            value="{{ $user->section }}">
+                        <input type="text" name="section" class="form-control"
+                            value="{{ $profile->section }}">
                     </div>
                 </div>
                 <div class="table-row">
                     <div class="table-cell table-title">経験年数</div>
                     <div class="table-cell">
-                        <input type="text" name="industry_experience_months" id=""
-                            class="w-100 h-100 border-0 px-1" value="{{ $user->industry_experience_months }}">
+                        <input type="number" step="0.1" name="industry_experience"
+                            class="form-control" value="{{ $profile->industry_experience }}" required>
                     </div>
                 </div>
             </div>
@@ -106,7 +89,7 @@
                                     要件定義
                                     <label class="switch ">
                                         <input name="requirements_definition_flag" type="checkbox" class="primary"
-                                            @if ($user->requirements_definition_flag) checked @endif>
+                                            @if ($profile->requirements_definition_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
@@ -114,7 +97,7 @@
                                     基本設計
                                     <label class="switch ">
                                         <input name="basic_design_flag" type="checkbox" class="primary"
-                                            @if ($user->basic_design_flag) checked @endif>
+                                            @if ($profile->basic_design_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
@@ -122,7 +105,7 @@
                                     詳細設計
                                     <label class="switch ">
                                         <input name="detailed_design_flag" type="checkbox" class="primary"
-                                            @if ($user->detailed_design_flag) checked @endif>
+                                            @if ($profile->detailed_design_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
@@ -130,7 +113,7 @@
                                     DB設計
                                     <label class="switch ">
                                         <input name="db_design_flag" type="checkbox" class="primary"
-                                            @if ($user->db_design_flag) checked @endif>
+                                            @if ($profile->db_design_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
@@ -147,7 +130,7 @@
                                     Pマネージャー
                                     <label class="switch ">
                                         <input name="project_manager_flag" type="checkbox" class="primary"
-                                            @if ($user->project_manager_flag) checked @endif>
+                                            @if ($profile->project_manager_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
@@ -155,7 +138,7 @@
                                     Pリーダー
                                     <label class="switch ">
                                         <input name="project_leader_flag" type="checkbox" class="primary"
-                                            @if ($user->project_leader_flag) checked @endif>
+                                            @if ($profile->project_leader_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
@@ -163,7 +146,7 @@
                                     開発
                                     <label class="switch ">
                                         <input name="development_flag" type="checkbox" class="primary"
-                                            @if ($user->development_flag) checked @endif>
+                                            @if ($profile->development_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
@@ -171,7 +154,7 @@
                                     システム移行
                                     <label class="switch ">
                                         <input name="system_migration_flag" type="checkbox" class="primary"
-                                            @if ($user->system_migration_flag) checked @endif>
+                                            @if ($profile->system_migration_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
@@ -179,7 +162,7 @@
                                     運用・保守
                                     <label class="switch ">
                                         <input name="operation_maintenance_flag" type="checkbox" class="primary"
-                                            @if ($user->operation_maintenance_flag) checked @endif>
+                                            @if ($profile->operation_maintenance_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
@@ -196,7 +179,7 @@
                                     単体テスト
                                     <label class="switch ">
                                         <input name="unit_test_flag" type="checkbox" class="primary"
-                                            @if ($user->unit_test_flag) checked @endif>
+                                            @if ($profile->unit_test_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
@@ -204,7 +187,7 @@
                                     結合テスト
                                     <label class="switch ">
                                         <input name="integration_test_flag" type="checkbox" class="primary"
-                                            @if ($user->integration_test_flag) checked @endif>
+                                            @if ($profile->integration_test_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
@@ -212,7 +195,7 @@
                                     総合テスト
                                     <label class="switch ">
                                         <input name="system_test_flag" type="checkbox" class="primary"
-                                            @if ($user->system_test_flag) checked @endif>
+                                            @if ($profile->system_test_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
