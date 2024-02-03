@@ -391,6 +391,45 @@
                     </div>
                     <i class="fas fa-plus grid-foot plus-btn" onclick="addRecord(event)"></i>
                 </div>
+                {{-- 使用仮想環境 --}}
+                <div id="virtual_environment" class="grid-container card w-100">
+                    <div class="grid-head">
+                        <div class="grid-hitem">仮想環境</div>
+                    </div>
+                    <div class="grid-body px-2 ">
+                        <div class="grid-record d-none">
+                            <div class="grid-ritem" onclick="removeRecord(event)"><i class="fas fa-minus minus-btn"></i>
+                            </div>
+                            <div class="grid-ritem">
+                                {{-- <input type="text" name="used_virtual_environment[0]" list="used_virtual_environment"
+                                    class="skill-input form-control" placeholder="サーバーを入力"> --}}
+                                <datalist id="used_virtual_environment">
+                                    @foreach ($virtual_environments as $data)
+                                        <option value="{{ $data->name }}">
+                                    @endforeach
+                                </datalist>
+                            </div>
+                        </div>
+                        @foreach ($used_virtual_environments as $index => $used_data)
+                            <div class="grid-record" data-recordid="{{ $index }}">
+                                <div class="grid-ritem" onclick="removeRecord(event)"><i
+                                        class="fas fa-minus minus-btn"></i>
+                                </div>
+                                <div class="grid-ritem">
+                                    <input type="text" name="used_virtual_environment[{{ $index }}]" list="used_virtual_environment"
+                                        class="skill-input form-control" placeholder="言語を入力"
+                                        value="{{ $used_data->name }}">
+                                    <datalist id="used_virtual_environment">
+                                        @foreach ($langs as $data)
+                                            <option value="{{ $data->name }}">
+                                        @endforeach
+                                    </datalist>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <i class="fas fa-plus grid-foot plus-btn" onclick="addRecord(event)"></i>
+                </div>
 
                 {{-- 使用バージョン管理 --}}
                 <div id="version_management" class="grid-container card w-100">

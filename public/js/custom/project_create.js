@@ -44,20 +44,15 @@ const addRecord = (e) => {
             placeholderStr = 'サーバー';
             break
         case "virtual_environment":
-            datasName = 'virtualEnvironments';
+            datasName = 'virtual_environments';
             placeholderStr = '仮想環境';
             break
         case "version_management":
-            datasName = 'versionManagement';
+            datasName = 'version_management';
             placeholderStr = 'バージョン管理';
             break
     }
-    // TODO::問題発生　内容以下
-    // 言語を追加して更新すると最初のレコードが消える
-    // 問題発生までの流れ
-    // カスタム属性でIDを連番で付与
-    // ひとつ前のレコードのカスタム属性のIDを、name="used_${parentId}[${lastRecordId}]"に使用　今まではレコードコウントを使用していた
-    // 新しい要素を作成して追加する
+
     const previousSibling = e.target.previousElementSibling;
     // console.log(previousSibling,"previousSibling");
     // let recordsCount = [...previousSibling.children].length-1;

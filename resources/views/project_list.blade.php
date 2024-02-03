@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="{{ asset('css/custom/project.css') }}">
 @stop
 
+@section('plugins.Datatables', true)
+
 @section('content_header')
     <h1>職務経歴</h1>
 @stop
@@ -32,8 +34,8 @@
                     <div class="grid-ritem">{{ $data->end_date ?? '現在担当中' }}</div>
                     <div class="grid-ritem">{{ $data->name }}</div>
                     <div class="grid-ritem">
-                        <i class="far fa-trash-alt delete-btn" data-toggle="modal" data-target="#delete{{ $data->name }}Modal"
-                            data-dismiss="modal"></i>
+                        <i class="far fa-trash-alt delete-btn" data-toggle="modal"
+                            data-target="#delete{{ $data->name }}Modal" data-dismiss="modal"></i>
                     </div>
                 </div>
                 {{-- Project削除モーダル --}}
@@ -71,9 +73,68 @@
         </div>
     </div>
 
+    <table id="project-list" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th></th>
+                <th>プロジェクト名</th>
+                <th>開始</th>
+                <th>終了</th>
+                <th>削除</th>
+            </tr>
+        </thead>
+        {{-- <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Extn.</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </tfoot> --}}
+    </table>
+
 
 @stop
 
 @section('js')
     <script type="module" src="{{ asset('js/custom/engineer_skill.js') }}" defer></script>
+    <script>
+        "use strict";
+        $('#project-list').dataTable({
+            "ajax": {
+                "url": "data.json",
+                "data": {
+                    "user_id": 451
+                }
+            },
+            "columnDefs": [{
+                    "width": "10%",
+                    "targets": 0,
+                },
+                {
+                    "width": "10%",
+                    "targets": 1,
+                },
+                {
+                    "width": "30%",
+                    "targets": 2,
+                },
+                {
+                    "width": "20%",
+                    "targets": 3,
+                },
+                {
+                    "width": "20%",
+                    "targets": 4,
+                },
+                {
+                    "width": "10%",
+                    "targets": 5,
+                },
+            ]
+        });
+    </script>
 @stop

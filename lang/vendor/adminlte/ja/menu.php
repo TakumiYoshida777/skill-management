@@ -19,7 +19,7 @@ return [
     'engineer_skills'                       => '技術経験',
     'language_proficiency'                  => '語学力',
     'qualification'                         => '資格/トレーニング',
-    'project'                               => '職務経歴',
+    'project'                               => '職務経歴一覧',
     'project/create'                        => '新規プロジェクト登録',
     'portfolio'                             => 'ポートフォリオ',
     'inexperienced_skills'                  => '実務未経験スキル',

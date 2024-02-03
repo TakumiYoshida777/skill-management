@@ -11,6 +11,7 @@ use App\Models\ProjectUsedMiddleware;
 use App\Models\ProjectUsedOs;
 use App\Models\ProjectUsedServer;
 use App\Models\ProjectUsedVersionManagement;
+use App\Models\ProjectUsedVirtualEnvironment;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,7 +53,10 @@ class ProjectController extends Controller
         $middlewares = $this->getSkillNameList('mst_middlewares');
         $oses = $this->getSkillNameList('mst_oses');
         $servers = $this->getSkillNameList('mst_servers');
-        $versionManagement = $this->getSkillNameList('mst_version_managements');
+        $virtual_environments = $this->getSkillNameList('mst_virtual_environments');
+        $version_management = $this->getSkillNameList('mst_version_managements');
+
+        // dd($virtual_environments);
 
         $variablesToCompact = [
             'langs',
@@ -61,7 +65,8 @@ class ProjectController extends Controller
             'middlewares',
             'oses',
             'servers',
-            'versionManagement'
+            'virtual_environments',
+            'version_management'
         ];
         return view('project_create', compact($variablesToCompact));
     }
@@ -156,6 +161,15 @@ class ProjectController extends Controller
                         ]);
                 }
             }
+            if (isset($request->servers)) {
+                foreach ($request->servers as $data) {
+                    ProjectUsedVersionManagement::query()
+                        ->create([
+                            "project_id" => $project->id,
+                            "name" => $data
+                        ]);
+                }
+            }
             if (isset($request->version_management)) {
 
                 foreach ($request->version_management as $data) {
@@ -201,6 +215,7 @@ class ProjectController extends Controller
         $middlewares = $this->getSkillNameList('mst_middlewares');
         $oses = $this->getSkillNameList('mst_oses');
         $servers = $this->getSkillNameList('mst_servers');
+        $virtual_environments = $this->getSkillNameList('mst_virtual_environments');
         $versionManagement = $this->getSkillNameList('mst_version_managements');
 
         /**
@@ -255,7 +270,13 @@ class ProjectController extends Controller
             ->where("project_id", $id)
             ->get();
         /**
-         * 使用データベース
+         * 使用仮想環境
+         */
+        $used_virtual_environments = ProjectUsedVirtualEnvironment::query()
+            ->where("project_id", $id)
+            ->get();
+        /**
+         * バージョン管理システム
          */
         $used_version_management = ProjectUsedVersionManagement::query()
             ->where("project_id", $id)
@@ -269,6 +290,7 @@ class ProjectController extends Controller
             'middlewares',
             'oses',
             'servers',
+            'virtual_environments',
             'versionManagement',
             'used_languages',
             'used_frameworks',
@@ -276,6 +298,7 @@ class ProjectController extends Controller
             'used_middlewares',
             'used_oses',
             'used_servers',
+            'used_virtual_environments',
             'used_version_management',
         ];
 
@@ -461,7 +484,31 @@ class ProjectController extends Controller
                     ->delete();
             }
 
-            //サーバーの更新
+            //仮想環境の更新
+            if (isset($request->used_virtual_environment)) {
+                //入力されたサーバーを全て取得
+                $used_virtual_environments = $request->used_virtual_environment;
+                //既存データの初期化
+                ProjectUsedVirtualEnvironment::query()
+                    ->where("project_id", $id)
+                    ->delete(); // 既存のデータを削除
+
+                //入力された値で全て更新
+                foreach ($used_virtual_environments as $data) {
+                    ProjectUsedVirtualEnvironment::query()
+                        ->updateOrCreate([
+                            "project_id" => $id,
+                            "name" => $data
+                        ]); // 新しいデータを作成
+                }
+            } else {
+                //値が何もなければ全て削除
+                ProjectUsedVirtualEnvironment::query()
+                    ->where("project_id", $id)
+                    ->delete();
+            }
+
+            //バージョン管理システムの更新
             if (isset($request->used_version_management)) {
                 //入力されたサーバーを全て取得
                 $used_version_managements = $request->used_version_management;
@@ -499,11 +546,11 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-       $data = Project::query()
-        ->where("id", $id)
-        ->first();
+        $data = Project::query()
+            ->where("id", $id)
+            ->first();
 
-        $data->delete(); 
-        return redirect('project')->with('status', "プロジェクト".$data->name."を削除しました。");
+        $data->delete();
+        return redirect('project')->with('status', "プロジェクト" . $data->name . "を削除しました。");
     }
 }

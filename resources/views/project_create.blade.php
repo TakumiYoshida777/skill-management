@@ -263,7 +263,7 @@
                             <div class="grid-ritem">
                                 {{-- <input type="text" name="used_server[0]" list="used_server"
                                     class="skill-input form-control" placeholder="サーバーを入力"> --}}
-                                <datalist id="used_servers">
+                                <datalist id="used_server">
                                     @foreach ($servers as $data)
                                         <option value="{{ $data->name }}">
                                     @endforeach
@@ -285,11 +285,11 @@
                             <div class="grid-ritem">
                                 {{-- <input type="text" name="used_virtual_environment[0]" list="used_virtual_environment"
                                                     class="skill-input form-control" placeholder="仮想環境を入力"> --}}
-                                <datalist id="used_virtual_environments">
+                                <datalist id="used_virtual_environment">
                                     {{-- TODO:マスタテーブルを作ってリストを作成 --}}
-                                    {{-- @foreach ($virtual_environments as $data)
+                                    @foreach ($virtual_environments as $data)
                                         <option value="{{ $data->name }}">
-                                    @endforeach --}}
+                                    @endforeach
                                 </datalist>
                             </div>
                         </div>
@@ -309,7 +309,7 @@
                                 {{-- <input type="text" name="used_version_management[0]" list="used_version_management"
                                     class="skill-input form-control" placeholder="バージョン管理を入力"> --}}
                                 <datalist id="used_version_management">
-                                    @foreach ($versionManagement as $data)
+                                    @foreach ($version_management as $data)
                                         <option value="{{ $data->name }}">
                                     @endforeach
                                 </datalist>

@@ -8,7 +8,9 @@
 @stop
 
 @section('content_header')
-    <h1>プログラミング言語</h1>
+    <h1>エンジニアスキル</h1>
+    <span class="text-red">※実務経験のあるスキルのみ登録してください。</span>
+    <span>実務未経験の場合は<a href="">実務未経験スキル</a>より登録してください</span>
 @stop
 
 @section('content')
