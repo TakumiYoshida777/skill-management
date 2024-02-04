@@ -37,9 +37,12 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $user_id = Auth::user()->id;
+        $projects = Project::query()
+        ->where('user_id',$user_id )
+        ->get();
 
-        return view('project_list', compact('projects'));
+        return view('project_list', compact('projects','user_id'));
     }
 
     /**
@@ -532,11 +535,11 @@ class ProjectController extends Controller
                     ->delete();
             }
 
-            return redirect('project/' . $id . '/edit')->with('status', "プロジェクト内容の更新に成功しました。");
+            return redirect('project')->with('status', "プロジェクト内容の更新に成功しました。");
         } catch (Exception $e) {
             Log::debug($e);
             DB::rollback();
-            return redirect('project/' . $id . '/edit')->withErrors("登録に失敗しました。※運営にお問い合わせください。")
+            return redirect('project')->withErrors("登録に失敗しました。※運営にお問い合わせください。")
                 ->withInput();
         }
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// Route::post('/project-list',[ApiProjectController::class,'get_project_list']);
+Route::get('/project-list',[ApiProjectController::class,'get_project_list']);
+Route::post('/project-list',[ApiProjectController::class,'get_project_list']);

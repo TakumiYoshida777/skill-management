@@ -8,16 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    use HasFactory, HasUuids;
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'id' => 'string',
-    ];
+    use HasFactory;
 
     protected $fillable = [
         'user_id',

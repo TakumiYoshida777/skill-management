@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('project_used_databases', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('project_id')->constrained()->onDelete('cascade');;
+            $table->foreignId('project_id')->constrained()->onDelete('cascade');;
             $table->string('name');
             $table->timestamps();
         });
