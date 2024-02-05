@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             MstVersionManagementSeeder::class,
             ProfileSeeder::class,
             MstVirtualEnvironmentSeeder::class,
+            ProjectSeeder::class,
         ]);
     }
 }
