@@ -89,16 +89,7 @@
                     <th>削除</th>
                 </tr>
             </thead>
-            {{-- <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Extn.</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </tfoot> --}}
+
         </table>
 
     </div>
@@ -131,7 +122,6 @@
             });
 
             const table = $('#project-list').DataTable({
-                processing: true,
                 serverSide: true,
                 scrollY: "67vh",
                 scrollCollapse: true,
@@ -224,7 +214,7 @@
                     },
                 ],
                 order: [
-                    [1, 'asc']
+                    [5, 'desc']
                 ]
             });
             // Add event listener for opening and closing details

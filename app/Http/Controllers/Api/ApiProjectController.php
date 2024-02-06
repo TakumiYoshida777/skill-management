@@ -39,7 +39,11 @@ class ApiProjectController extends Controller
             $orderColumnIndex = $res['order'][0]['column'];
             $orderColumnName = $res['columns'][$orderColumnIndex]['data'];
             $orderDir = $res['order'][0]['dir'];
-            $query->orderBy($orderColumnName, $orderDir);
+            if($res["order"][0]["dir"] == "desc"){//end_dateが降順だったらend_dateがNULLのレコードを先頭に
+                $query->orderByRaw("CASE WHEN end_date IS NULL THEN 0 ELSE 1 END, $orderColumnName $orderDir");
+            }else {//end_dateが昇順だったらend_dateがNULLのレコードを一番後ろに
+                $query->orderByRaw("CASE WHEN end_date IS NULL THEN 1 ELSE 0 END, $orderColumnName $orderDir");
+            }
 
             // ページネーション
             $projects = $query
