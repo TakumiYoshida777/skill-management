@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LanguageProficiency extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     /**
      * 使用できる外国語を所有しているユーザーを取得

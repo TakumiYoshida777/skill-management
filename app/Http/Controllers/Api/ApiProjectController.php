@@ -12,6 +12,12 @@ use Yajra\DataTables\Facades\Datatables;
 
 class ApiProjectController extends Controller
 {
+    /**
+     * プロジェクト一覧を取得するAPI
+     *
+     * @param Request $request
+     * @return void
+     */
     public function get_project_list(Request $request)
     {
         try {
@@ -20,12 +26,13 @@ class ApiProjectController extends Controller
             $keyword = $res['search']['value'];
 
             $query = Project::where("user_id", $user_id)
-                ->select('id', 'name','description' ,'start_date', 'end_date','position','created_at' );
+                ->select('id', 'name', 'description', 'start_date', 'end_date', 'position', 'created_at');
 
             // フィルタリング
             if (!empty($keyword)) {
                 $query->where(function ($query) use ($keyword) {
                     $query->where('name', 'LIKE', '%' . $keyword . '%')
+                        ->orWhere('position', 'LIKE', '%' . $keyword . '%')
                         ->orWhere('start_date', 'LIKE', '%' . $keyword . '%')
                         ->orWhere('end_date', 'LIKE', '%' . $keyword . '%');
                     // Add more columns as needed
@@ -39,9 +46,9 @@ class ApiProjectController extends Controller
             $orderColumnIndex = $res['order'][0]['column'];
             $orderColumnName = $res['columns'][$orderColumnIndex]['data'];
             $orderDir = $res['order'][0]['dir'];
-            if($res["order"][0]["dir"] == "desc"){//end_dateが降順だったらend_dateがNULLのレコードを先頭に
+            if ($res["order"][0]["dir"] == "desc") { //end_dateが降順だったらend_dateがNULLのレコードを先頭に
                 $query->orderByRaw("CASE WHEN end_date IS NULL THEN 0 ELSE 1 END, $orderColumnName $orderDir");
-            }else {//end_dateが昇順だったらend_dateがNULLのレコードを一番後ろに
+            } else { //end_dateが昇順だったらend_dateがNULLのレコードを一番後ろに
                 $query->orderByRaw("CASE WHEN end_date IS NULL THEN 1 ELSE 0 END, $orderColumnName $orderDir");
             }
 

@@ -22,7 +22,6 @@ return new class extends Migration
             $table->unsignedTinyInteger('conversation_status')->comment('会話->unique()(0:初級 1:中級 2:上級)');
             $table->string('memo', 255)->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

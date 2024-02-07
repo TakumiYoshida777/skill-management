@@ -18,9 +18,11 @@ class LanguageProficiencyController extends Controller
      */
     public function index()
     {
+        $user_id = Auth::user()->id;
+
         $language_proficiencies = LanguageProficiency::all();
 
-        return view('language_proficiency', compact("language_proficiencies"));
+        return view('language_proficiency', compact("language_proficiencies","user_id"));
     }
 
     /**

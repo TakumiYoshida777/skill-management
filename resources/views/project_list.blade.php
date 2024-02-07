@@ -50,14 +50,9 @@
             </div>
         @endforeach
     </div>
-    <div class="d-flex justify-content-center py-2">
-        <a href="{{ url('project/create') }}" type="button" class="btn btn-primary">
-            新規プロジェクトの追加
-        </a>
-    </div>
+
     </div>
     <div class="table-container">
-
         <table id="project-list" class="display table table-striped responsive nowrap" style="width:100%">
             <thead>
                 <tr>
@@ -71,9 +66,12 @@
                     <th>削除</th>
                 </tr>
             </thead>
-
         </table>
-
+        <div class="d-flex justify-content-center py-2">
+            <a href="{{ url('project/create') }}" type="button" class="btn btn-success">
+                追加
+            </a>
+        </div>
     </div>
 
 @stop
@@ -88,15 +86,6 @@
     <script>
         "use strict";
 
-        // function format(d) {
-        //     // `d` is the original data object for the row
-        //     return (
-        //         '<dl>' +
-        //         '<dt>詳細</dt>' +
-        //         '<dd>' + d.description + '</dd>' +
-        //         '</dl>'
-        //     );
-        // }
         $(document).ready(function() {
             const userId = $("#user-id").val();
 
@@ -111,9 +100,12 @@
                     url: "{{ asset('lang/ja/pagination.php') }}" // 言語ファイルの相対パスを指定
                 },
                 serverSide: true,
-                scrollY: "60vh",
+                scrollY: "65vh",
                 scrollCollapse: true,
                 responsive: true,
+                info: false,
+                lengthChange:false,
+
                 "dom": '<"row"<"col-sm-6"l><"col-sm-6"f>>' +
                     '<"row"<"col-sm-6"i><"col-sm-6"p>>' +
                     '<"row"<"col-sm-12"tr>>',
@@ -133,17 +125,6 @@
                         defaultContent: '',
                         width: "5%"
                     },
-                    // {
-                    //     className: 'dt-control',
-                    //     orderable: false,
-                    //     data: null,
-                    //     defaultContent: '',
-                    //     width: "5%"
-                    // },
-                    // {
-                    //     data: "id",
-                    //     width: "5%"
-                    // },
                     {
                         orderable: false,
                         data: "id",
@@ -218,19 +199,6 @@
                     [5, 'desc']
                 ]
             });
-            // Add event listener for opening and closing details
-            // table.on('click', 'td.dt-control', function(e) {
-            //     let tr = e.target.closest('tr');
-            //     let row = table.row(tr);
-
-            //     if (row.child.isShown()) {
-            //         // This row is already open - close it
-            //         row.child.hide();
-            //     } else {
-            //         // Open this row
-            //         row.child(format(row.data())).show();
-            //     }
-            // });
         });
     </script>
 
