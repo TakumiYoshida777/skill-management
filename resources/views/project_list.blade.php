@@ -79,7 +79,6 @@
 @section('js')
 
     <script type="module" src="{{ asset('js/custom/engineer_skill.js') }}" defer></script>
-    {{-- <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" defer></script> --}}
 
     <script src="https://cdn.datatables.net/v/bs4/dt-1.13.8/r-2.5.0/datatables.min.js"></script>
 

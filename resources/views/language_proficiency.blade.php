@@ -151,8 +151,6 @@
     </div>
 @endforeach
 
-    </div>
-
     <table id="language-proficiency-list" class="display table table-striped responsive nowrap" style="width:100%">
         <thead>
             <tr>
@@ -257,14 +255,11 @@
             </form>
         </div>
     </div>
-
-
 @stop
 
 @section('js')
     <script type="module" src="{{ asset('js/custom/engineer_skill.js') }}" defer></script>
     <script src="https://cdn.datatables.net/v/bs4/dt-1.13.8/r-2.5.0/datatables.min.js"></script>
-
     <script>
         "use strict";
 
@@ -387,9 +382,9 @@
                     //     }
                     // },
                 ],
-                // order: [
-                //     [5, 'desc']
-                // ]
+                order: [
+                    [4, 'desc']
+                ]
             });
         });
     </script>

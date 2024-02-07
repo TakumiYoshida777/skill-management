@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ApiLanguageProficiencyController;
 use App\Http\Controllers\Api\ApiProjectController;
+use App\Http\Controllers\Api\ApiQualificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route::get('/project-list',[ApiProjectController::class,'get_project_list']);
 Route::post('/project-list',[ApiProjectController::class,'get_project_list']);
 Route::post('/language-proficiency-list',[ApiLanguageProficiencyController::class,'get_language_proficiency_list']);
+Route::post('/qualification-list',[ApiQualificationController::class,'get_qualification_list']);

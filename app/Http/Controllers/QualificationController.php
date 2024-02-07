@@ -17,8 +17,9 @@ class QualificationController extends Controller
      */
     public function index()
     {
+        $user_id = Auth::user()->id;
         $qualification = Qualification::all();
-        return view('qualification',compact("qualification"));
+        return view('qualification',compact("qualification","user_id"));
     }
 
     /**
