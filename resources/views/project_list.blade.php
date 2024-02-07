@@ -4,7 +4,10 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/custom/project.css') }}">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"> --}}
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.13.8/r-2.5.0/datatables.min.css" rel="stylesheet">
+
+
 @stop
 
 @section('plugins.Datatables', true)
@@ -17,28 +20,8 @@
     <x-messages.flash_message />
     <input id="user-id" type="hidden" value="{{ $user_id }}">
     <div class="grid-container">
-        {{-- <div class="grid-head">
-            <div class="grid-hitem"></div>
-            <div class="grid-hitem">開始</div>
-            <div class="grid-hitem">終了</div>
-            <div class="grid-hitem">プロジェクト名</div>
-            <div class="grid-hitem">削除</div>
-        </div>
-        <div class="grid-body "> --}}
+
         @foreach ($projects as $data)
-            {{-- <div class="grid-record">
-                    <div class="grid-ritem">
-                        <a href="{{ url('project/' . $data->id . '/edit') }}" type="button" class="btn btn-warning">詳細 /
-                            編集</a>
-                    </div>
-                    <div class="grid-ritem">{{ $data->start_date }} </div>
-                    <div class="grid-ritem">{{ $data->end_date ?? '現在担当中' }}</div>
-                    <div class="grid-ritem">{{ $data->name }}</div>
-                    <div class="grid-ritem">
-                        <i class="far fa-trash-alt delete-btn" data-toggle="modal"
-                            data-target="#delete{{ $data->name }}Modal" data-dismiss="modal"></i>
-                    </div>
-                </div> --}}
             {{-- Project削除モーダル --}}
             <div class="modal fade delete-modal" id="delete{{ $data->id }}Modal" tabindex="-1" role="dialog"
                 aria-labelledby="delete{{ $data->id }}ModalLabel" aria-hidden="true">
@@ -75,11 +58,10 @@
     </div>
     <div class="table-container">
 
-        <table id="project-list" class="display table table-striped" style="width:100%">
+        <table id="project-list" class="display table table-striped responsive nowrap" style="width:100%">
             <thead>
                 <tr>
                     <th></th>
-                    {{-- <th>ID</th> --}}
                     <th>詳細/編集</th>
                     <th>プロジェクト名</th>
                     <th>役割</th>
@@ -99,19 +81,22 @@
 @section('js')
 
     <script type="module" src="{{ asset('js/custom/engineer_skill.js') }}" defer></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" defer></script>
+    {{-- <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" defer></script> --}}
+
+    <script src="https://cdn.datatables.net/v/bs4/dt-1.13.8/r-2.5.0/datatables.min.js"></script>
+
     <script>
         "use strict";
 
-        function format(d) {
-            // `d` is the original data object for the row
-            return (
-                '<dl>' +
-                '<dt>詳細</dt>' +
-                '<dd>' + d.description + '</dd>' +
-                '</dl>'
-            );
-        }
+        // function format(d) {
+        //     // `d` is the original data object for the row
+        //     return (
+        //         '<dl>' +
+        //         '<dt>詳細</dt>' +
+        //         '<dd>' + d.description + '</dd>' +
+        //         '</dl>'
+        //     );
+        // }
         $(document).ready(function() {
             const userId = $("#user-id").val();
 
@@ -122,10 +107,16 @@
             });
 
             const table = $('#project-list').DataTable({
+                language: {
+                    url: "{{ asset('lang/ja/pagination.php') }}" // 言語ファイルの相対パスを指定
+                },
                 serverSide: true,
-                scrollY: "67vh",
+                scrollY: "60vh",
                 scrollCollapse: true,
-
+                responsive: true,
+                "dom": '<"row"<"col-sm-6"l><"col-sm-6"f>>' +
+                    '<"row"<"col-sm-6"i><"col-sm-6"p>>' +
+                    '<"row"<"col-sm-12"tr>>',
                 ajax: {
                     type: 'POST',
                     url: "{{ url('api/project-list') }}",
@@ -136,12 +127,19 @@
                     dataSrc: "data",
                 },
                 columns: [{
-                        className: 'dt-control',
+                        className: 'dtr-control',
                         orderable: false,
                         data: null,
                         defaultContent: '',
                         width: "5%"
                     },
+                    // {
+                    //     className: 'dt-control',
+                    //     orderable: false,
+                    //     data: null,
+                    //     defaultContent: '',
+                    //     width: "5%"
+                    // },
                     // {
                     //     data: "id",
                     //     width: "5%"
@@ -152,7 +150,10 @@
                         width: "10%",
                         render: function(data, type, row) {
                             if (type === 'display') {
-                                return `<a href="{{ url('project/') }}/${data}/edit" type="button" class="btn btn-warning">詳細 / 編集</a>`;
+                                return `
+                                <a href="{{ url('project/') }}/${data}/edit" type="button" class="btn btn-warning pc">詳細 / 編集</a>
+                                <a href="{{ url('project/') }}/${data}/edit" type="button" class="sp"><i class="fas fa-edit"></i></a>
+                                `;
                             }
                             return data;
                         },
@@ -218,18 +219,18 @@
                 ]
             });
             // Add event listener for opening and closing details
-            table.on('click', 'td.dt-control', function(e) {
-                let tr = e.target.closest('tr');
-                let row = table.row(tr);
+            // table.on('click', 'td.dt-control', function(e) {
+            //     let tr = e.target.closest('tr');
+            //     let row = table.row(tr);
 
-                if (row.child.isShown()) {
-                    // This row is already open - close it
-                    row.child.hide();
-                } else {
-                    // Open this row
-                    row.child(format(row.data())).show();
-                }
-            });
+            //     if (row.child.isShown()) {
+            //         // This row is already open - close it
+            //         row.child.hide();
+            //     } else {
+            //         // Open this row
+            //         row.child(format(row.data())).show();
+            //     }
+            // });
         });
     </script>
 

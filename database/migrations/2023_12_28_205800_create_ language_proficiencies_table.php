@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('language_proficiencies', function (Blueprint $table) {
-            $table->uuid('id',36)->primary();
+            $table->id();
             $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
             $table->string('name')->unique()->comment('対象の言語');
             $table->text('learning_method')->nullable();
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('conversation_status')->comment('会話->unique()(0:初級 1:中級 2:上級)');
             $table->string('memo', 255)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

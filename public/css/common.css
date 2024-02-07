@@ -12,7 +12,7 @@
 }
 
 .pc {
-    display: block;
+    display: inline-block;
 }
 .sp {
     display: none;
@@ -54,8 +54,6 @@
     align-items: center;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-
-
 }
 
 
@@ -102,6 +100,13 @@
     text-align: center;
 }
 
+
+@media screen and (max-width: 768px) {
+    .modal {
+        font-size: 0.7rem;
+    }
+}
+
 /* SE */
 @media screen and (max-width: 375px) {
     .grid-hitem,
@@ -110,4 +115,5 @@
         padding-right: 0.5rem;
     }
 }
+
 

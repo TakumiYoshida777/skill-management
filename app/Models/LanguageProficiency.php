@@ -5,19 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LanguageProficiency extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, SoftDeletes;
 
     /**
-     * The attributes that should be cast.
+     * 使用できる外国語を所有しているユーザーを取得
      *
-     * @var array<string, string>
+     * @return BelongsTo
      */
-    protected $casts = [
-        'id' => 'string'
-    ];
+    public function user():BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * 複数代入可能な属性
