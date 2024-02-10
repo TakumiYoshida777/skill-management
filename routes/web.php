@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\AdminRegisterController;
 use App\Http\Controllers\EngineerSkillController;
 use App\Http\Controllers\LanguageProficiency;
 use App\Http\Controllers\LanguageProficiencyController;
@@ -45,3 +47,10 @@ Route::resource('/qualification',QualificationController::class)->middleware('au
 //職務経歴一覧
 Route::resource('/project',ProjectController::class)->middleware('auth');
 
+
+Route::view('/admin/login', 'admin/login');
+Route::post('/admin/login', [AdminLoginController::class, 'login']);
+Route::post('admin/logout', [AdminLoginController::class,'logout']);
+Route::view('/admin/register', 'admin/register');
+Route::post('/admin/register', [AdminRegisterController::class, 'register']);
+Route::view('/admin/home', 'admin/home')->middleware('auth:admin');

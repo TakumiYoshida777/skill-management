@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('system_owners', function (Blueprint $table) {
+        Schema::create('owners', function (Blueprint $table) {
             $table->uuid('id',36)->primary()->comment('ID');
             $table->string('first_name',50)->default('')->comment('名');
             $table->string('first_name_kana',50)->default('')->comment('名_カナ');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('system_owners');
+        Schema::dropIfExists('owners');
     }
 };
