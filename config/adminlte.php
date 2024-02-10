@@ -345,8 +345,8 @@ return [
             'icon' => 'fas fa-exclamation-triangle',
         ],
         [
-            'text' => 'admin_top',
-            'url'  => 'admin_top',
+            'text' => 'admin_dashboard',
+            'url'  => 'admin_dashboard',
             'icon' => 'fas fa-user-shield',
         ],
         [

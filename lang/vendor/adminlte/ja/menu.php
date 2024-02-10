@@ -24,7 +24,7 @@ return [
     'portfolio'                             => 'ポートフォリオ',
     'inexperienced_skills'                  => '実務未経験スキル',
     'admin'                                 => '管理者用',
-    'admin_top'                             => '管理者TOP',
+    'admin_dashboard'                       => '管理者TOP',
     'admin_skill_sheet_management'          => 'スキルシート管理',
     'admin_add_predictive_data'             => '予測データ追加',
     'admin_grant_permissions'               => '権限付与',

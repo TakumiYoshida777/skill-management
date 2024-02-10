@@ -99,7 +99,7 @@
                     url: "{{ asset('lang/ja/pagination.php') }}" // 言語ファイルの相対パスを指定
                 },
                 serverSide: true,
-                scrollY: "65vh",
+                scrollY: "47vh",
                 scrollCollapse: true,
                 responsive: true,
                 info: false,

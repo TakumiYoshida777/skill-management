@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             ProfileSeeder::class,
             MstVirtualEnvironmentSeeder::class,
             ProjectSeeder::class,
+            AdminSeeder::class,
         ]);
     }
 }
