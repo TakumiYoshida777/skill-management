@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 @stop
 
-@php( $login_url = View::getSection('login_url') ?? config('adminlte.admin_login_url', 'login') )
+@php( $login_url = View::getSection('login_url') ?? config('adminlte.owner_login_url', 'login') )
 @php( $register_url = View::getSection('register_url') ?? config('adminlte.register_url', 'register') )
 @php( $password_reset_url = View::getSection('password_reset_url') ?? config('adminlte.password_reset_url', 'password/reset') )
 
@@ -18,8 +18,8 @@
     @php( $password_reset_url = $password_reset_url ? url($password_reset_url) : '' )
 @endif
 
-@section('auth_header','管理者用:'. __('adminlte::adminlte.login_message'))
-
+@section('auth_header', 'システム管理者用:'.__('adminlte::adminlte.login_message'))
+@dump($login_url )
 @section('auth_body')
     <form action="{{ $login_url }}" method="post">
         @csrf

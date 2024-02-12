@@ -27,5 +27,5 @@ return [
     'admin_dashboard'                       => '管理者TOP',
     'admin_skill_sheet_management'          => 'スキルシート管理',
     'admin_add_predictive_data'             => '予測データ追加',
-    'admin_grant_permissions'               => '権限付与',
+    'owner_grant_permissions'               => '権限付与',
 ];

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminRegisterController;
 use App\Http\Controllers\EngineerSkillController;
 use App\Http\Controllers\LanguageProficiency;
 use App\Http\Controllers\LanguageProficiencyController;
+use App\Http\Controllers\Owner\OwnerLoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\QualificationController;
@@ -54,3 +55,10 @@ Route::post('admin/logout', [AdminLoginController::class,'logout']);
 Route::view('/admin/register', 'admin/register');
 Route::post('/admin/register', [AdminRegisterController::class, 'register']);
 Route::view('/admin/home', 'admin/home')->middleware('auth:admin');
+
+Route::view('/owner/login', 'owner/login');
+Route::post('/owner/login', [OwnerLoginController::class, 'login']);
+Route::post('owner/logout', [OwnerLoginController::class,'logout']);
+Route::view('/owner/register', 'owner/register');
+// Route::post('/owner/register', [App\Http\Controllers\admin\RegisterController::class, 'register']);
+Route::view('/owner/home', 'owner/home')->middleware('auth:owner');

@@ -17,6 +17,7 @@
     @php( $register_url = $register_url ? url($register_url) : '' )
     @php( $password_reset_url = $password_reset_url ? url($password_reset_url) : '' )
 @endif
+@dump($login_url )
 
 @section('auth_header', __('adminlte::adminlte.login_message'))
 
