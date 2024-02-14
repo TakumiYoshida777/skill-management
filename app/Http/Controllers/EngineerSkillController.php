@@ -10,6 +10,7 @@ use App\Models\EngineerSkillMiddleware;
 use App\Models\EngineerSkillOs;
 use App\Models\EngineerSkillServer;
 use App\Models\EngineerSkillVersionManagement;
+use App\Models\EngineerSkillVirtualEnvironment;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -66,6 +67,12 @@ class EngineerSkillController extends Controller
             ->get();
         $servers = $this->getSkillNameList('mst_servers');
 
+        //仮想環境のデータを取得
+        $engineerSkillVirtualEnvironments = EngineerSkillVirtualEnvironment::query()->where('user_id', $user->id)
+            ->orderBy('name')
+            ->get();
+        $virtualEnvironments = $this->getSkillNameList('mst_virtual_environments');
+
         //バージョン管理システムのデータを取得
         $engineerSkillVersionManagement = EngineerSkillVersionManagement::query()->where('user_id', $user->id)
             ->orderBy('name')
@@ -80,6 +87,7 @@ class EngineerSkillController extends Controller
             'engineerSkillMiddlewares', 'middlewares',
             'engineerSkillOses', 'oses',
             'engineerSkillServers', 'servers',
+            'engineerSkillVirtualEnvironments', 'virtualEnvironments',
             'engineerSkillVersionManagement', 'versionManagement',
         ];
         return view('engineer_skill', compact($variablesToCompact));
@@ -111,7 +119,6 @@ class EngineerSkillController extends Controller
                         'name' => $request->Language,
                         'experience_months' => $request->month,
                     ]);
-                    Log::info($target . '::' . 'success create!!');
                     break;
 
                 case 'Framework':
@@ -120,7 +127,6 @@ class EngineerSkillController extends Controller
                         'name' => $request->Framework,
                         'experience_months' => $request->month,
                     ]);
-                    Log::info($target . '::' . 'success create!!');
                     break;
 
                 case 'Database':
@@ -129,7 +135,6 @@ class EngineerSkillController extends Controller
                         'name' => $request->Database,
                         'experience_months' => $request->month,
                     ]);
-                    Log::info($target . '::' . 'success create!!');
                     break;
                 case 'Middleware':
                     EngineerSkillMiddleware::firstOrCreate([
@@ -137,7 +142,6 @@ class EngineerSkillController extends Controller
                         'name' => $request->Middleware,
                         'experience_months' => $request->month,
                     ]);
-                    Log::info($target . '::' . 'success create!!');
                     break;
                 case 'OS':
                     EngineerSkillOs::firstOrCreate([
@@ -145,7 +149,6 @@ class EngineerSkillController extends Controller
                         'name' => $request->OS,
                         'experience_months' => $request->month,
                     ]);
-                    Log::info($target . '::' . 'success create!!');
                     break;
                 case 'Server':
                     EngineerSkillServer::firstOrCreate([
@@ -153,7 +156,13 @@ class EngineerSkillController extends Controller
                         'name' => $request->Server,
                         'experience_months' => $request->month,
                     ]);
-                    Log::info($target . '::' . 'success create!!');
+                    break;
+                case 'VirtualEnvironment':
+                    EngineerSkillVirtualEnvironment::firstOrCreate([
+                        'user_id' => $user_id,
+                        'name' => $request->VirtualEnvironment,
+                        'experience_months' => $request->month,
+                    ]);
                     break;
                 case 'VersionManagement':
                     EngineerSkillVersionManagement::firstOrCreate([
@@ -161,16 +170,15 @@ class EngineerSkillController extends Controller
                         'name' => $request->VersionManagement,
                         'experience_months' => $request->month,
                     ]);
-                    Log::info($target . '::' . 'success create!!');
                     break;
             }
-
             DB::commit();
+            Log::info($target . '::' . 'success create!!');
             return redirect('skills')->with('status', $target . 'の登録が完了しました！');
         } catch(Exception $e) {
             Log::debug($e);
             DB::rollBack();
-            return redirect('qualification')->withErrors("登録に失敗しました。※運営にお問い合わせください。")
+            return redirect('skills')->withErrors("登録に失敗しました。※運営にお問い合わせください。")
             ->withInput();;
         }
     }

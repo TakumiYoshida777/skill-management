@@ -67,13 +67,23 @@ class User extends Authenticatable
     }
 
     /**
-     * ユーザーの使用できるバージョン管理システムを取得
+     * ユーザーの使用できるサーバーを取得
      *
      * @return HasMany
      */
     public function server(): HasMany
     {
         return $this->hasMany(EngineerSkillServer::class);
+    }
+
+    /**
+     * ユーザーの使用できる仮想環境を取得
+     *
+     * @return HasMany
+     */
+    public function virtual_environment(): HasMany
+    {
+        return $this->hasMany(EngineerSkillVirtualEnvironment::class);
     }
 
     /**

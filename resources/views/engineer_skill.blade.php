@@ -41,6 +41,10 @@
         @endphp
         <x-engineer_skill.skill_container :engineerSkills="$engineerSkillServers" :listData="$servers" :keyword="$keyword" :title="$keyword" />
         @php
+            $keyword = 'VirtualEnvironment';
+        @endphp
+        <x-engineer_skill.skill_container :engineerSkills="$engineerSkillVirtualEnvironments" :listData="$virtualEnvironments" :keyword="$keyword" :title="$keyword" />
+        @php
             $keyword = 'VersionManagement';
         @endphp
         <x-engineer_skill.skill_container :engineerSkills="$engineerSkillVersionManagement" :listData="$versionManagement" :keyword="$keyword" :title="$keyword" />
@@ -48,6 +52,5 @@
 @stop
 
 @section('js')
-    {{-- <script> console.log('Hi!'); </script> --}}
-    <script type="module" src="{{ asset('js/custom/engineer_skill.js') }}" defer></script>
+    {{-- <script type="module" src="{{ asset('js/custom/engineer_skill.js') }}" defer></script> --}}
 @stop
