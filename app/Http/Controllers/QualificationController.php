@@ -19,7 +19,7 @@ class QualificationController extends Controller
     {
         $user_id = Auth::user()->id;
         $qualification = Qualification::all();
-        return view('qualification',compact("qualification","user_id"));
+        return view('qualification', compact("qualification", "user_id"));
     }
 
     /**
@@ -35,7 +35,7 @@ class QualificationController extends Controller
      */
     public function store(RequestQualification $request)
     {
-        try{
+        try {
             DB::beginTransaction();
             $user_id = Auth::user()->id;
             Qualification::create([
@@ -46,13 +46,12 @@ class QualificationController extends Controller
                 'memo' => $request->memo
             ]);
             DB::commit();
-        return redirect('qualification')->with('success',$request->name.'の登録が完了しました。');
-
-        }catch(Exception $e) {
+            return redirect('qualification')->with('success', $request->name . 'の登録が完了しました。');
+        } catch (Exception $e) {
             Log::debug($e);
             DB::rollBack();
             return redirect('qualification')->withErrors("登録に失敗しました。※運営にお問い合わせください。")
-            ->withInput();
+                ->withInput();
         }
     }
 
@@ -79,6 +78,7 @@ class QualificationController extends Controller
     {
         $user_id = Auth::user()->id;
         try {
+            DB::beginTransaction();
             Qualification::query()
                 ->where([
                     ['user_id', $user_id],
@@ -91,6 +91,7 @@ class QualificationController extends Controller
                     'expiry_date' => $request->expiry_date,
                     'memo' => $request->memo
                 ]);
+            DB::commit();
             return redirect('qualification')->with('status', $request->name . 'の内容を更新しました！');
         } catch (Exception $e) {
             Log::debug($e);
@@ -108,12 +109,14 @@ class QualificationController extends Controller
         $user_id = Auth::user()->id;
 
         try {
+            DB::beginTransaction();
             $data = Qualification::query()->where([
                 ['user_id', $user_id],
                 ['id', $id]
             ])->first();
             $name = $data->name;
             $data->delete();
+            DB::commit();
             return redirect('qualification')->with('status', $name . 'の内容を削除しました！');
         } catch (Exception $e) {
             Log::debug($e);
@@ -121,6 +124,5 @@ class QualificationController extends Controller
             return redirect('qualification')->withErrors("削除に失敗しました。※運営にお問い合わせください。")
                 ->withInput();;
         }
-
     }
 }

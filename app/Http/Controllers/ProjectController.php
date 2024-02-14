@@ -39,10 +39,10 @@ class ProjectController extends Controller
     {
         $user_id = Auth::user()->id;
         $projects = Project::query()
-        ->where('user_id',$user_id )
-        ->get();
+            ->where('user_id', $user_id)
+            ->get();
 
-        return view('project_list', compact('projects','user_id'));
+        return view('project_list', compact('projects', 'user_id'));
     }
 
     /**
@@ -317,6 +317,7 @@ class ProjectController extends Controller
         // dd($request->used_language);
         $req = $request->all();
         try {
+            DB::beginTransaction();
             Project::where('id', $id)->update([
                 "user_id" =>  $user_id,
                 "name" =>  $request->name,
@@ -534,7 +535,7 @@ class ProjectController extends Controller
                     ->where("project_id", $id)
                     ->delete();
             }
-
+            DB::commit();
             return redirect('project')->with('status', "プロジェクト内容の更新に成功しました。");
         } catch (Exception $e) {
             Log::debug($e);
@@ -549,11 +550,20 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Project::query()
-            ->where("id", $id)
-            ->first();
+        try {
+            DB::beginTransaction();
+            $data = Project::query()
+                ->where("id", $id)
+                ->first();
 
-        $data->delete();
-        return redirect('project')->with('status', "プロジェクト" . $data->name . "を削除しました。");
+            $data->delete();
+            DB::commit();
+            return redirect('project')->with('status', "プロジェクト" . $data->name . "を削除しました。");
+        } catch (Exception $e) {
+            Log::debug($e);
+            DB::rollback();
+            return redirect('project')->withErrors("登録に失敗しました。※運営にお問い合わせください。")
+                ->withInput();
+        }
     }
 }

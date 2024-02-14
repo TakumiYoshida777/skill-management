@@ -40,6 +40,7 @@ class LanguageProficiencyController extends Controller
     {
         $user_id = Auth::user()->id;
         try {
+            DB::beginTransaction();
             LanguageProficiency::create([
                 'user_id' => $user_id,
                 'name' => $request->name,
@@ -50,6 +51,7 @@ class LanguageProficiencyController extends Controller
                 'conversation_status' => $request->conversation_status,
                 'memo' => $request->memo,
             ]);
+            DB::commit();
             return redirect('language_proficiency')->with('status', '外国語スキルの登録が完了しました！');
         } catch (Exception $e) {
             Log::debug($e);

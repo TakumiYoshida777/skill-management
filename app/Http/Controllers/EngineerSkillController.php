@@ -209,7 +209,6 @@ class EngineerSkillController extends Controller
         $message_title = "";
         // dd($request->all());
         try {
-
             DB::beginTransaction();
             switch ($target) {
                 case 'Language':
