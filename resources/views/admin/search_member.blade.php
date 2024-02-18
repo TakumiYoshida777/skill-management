@@ -24,7 +24,7 @@
             <div class="project-title col-md-6">
                 <input type="text" name="project_name" id="project_name" class="form-control" placeholder="プロジェクト名">
             </div>
-            <div class="project-title col-md-3 d-flex row">
+            <div class="col-md-3 d-flex row">
                 <label for="industry_experience" class="col-md-5">業界経験月数</label>
                 <input type="number" name="industry_experience" id="industry_experience" class="form-control col-md-3" min="0" value="0">
                 ヵ月以上
