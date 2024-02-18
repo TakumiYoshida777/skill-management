@@ -18,41 +18,7 @@ class AdminSearchResultController extends Controller
     public function result(Request $request)
     {
 
-        // $search_values = [
-        //     "name" => $request->name,
-        //     "start_date" => $request->start_date,
-        //     "end_date" => $request->end_date,
-        //     "position" => $request->position,
-        //     "requirement_definition_flag" => $request->requirement_definition_flag,
-        //     "basic_design_flag" => $request->basic_design_flag,
-        //     "detailed_design_flag" => $request->detailed_design_flag,
-        //     "db_design_flag" => $request->db_design_flag,
-        //     "programming_flag" => $request->programming_flag,
-        //     "unit_test_flag" => $request->unit_test_flag,
-        //     "integration_test_flag" => $request->integration_test_flag,
-        //     "system_test_flag" => $request->system_test_flag,
-        //     "operation_test_flag" => $request->operation_test_flag,
-        //     "system_migration_flag" => $request->system_migration_flag,
-        //     "operation_maintenance_flag" => $request->operation_maintenance_flag,
-        //     "used_language" => $request->used_language,
-        //     "used_framework" => $request->used_framework,
-        //     "used_database" => $request->used_database,
-        //     "used_middleware" => $request->used_middleware,
-        //     "used_os" => $request->used_os,
-        //     "used_server" => $request->used_server,
-        //     "used_virtual_environment" => $request->used_virtual_environment,
-        //     "used_version_management" => $request->used_version_management,
-        // ];
-        // dump($search_values);
-
         $search_values = $request->all();
-        dump($search_values);
-        // $search_values = $request["used_language"];
-
-
-        foreach ($search_values as $key => $value) {
-            dump($key, $value);
-        }
 
         $query = User::query()
             ->leftJoin('profiles', 'users.id', '=', 'profiles.user_id')
@@ -87,10 +53,7 @@ class AdminSearchResultController extends Controller
         $system_migration_flag = $search_values["system_migration_flag"] ?? null;
         $operation_maintenance_flag = $search_values["operation_maintenance_flag"] ?? null;
 
-
-
         // 検索キーワードの配列の全ての値を条件に加える
-
         //プロジェクト名
         if($search_values["project_name"]) {
             $query->where('projects.name','like','%'.$search_values["project_name"].'%');
@@ -383,10 +346,6 @@ class AdminSearchResultController extends Controller
             'profiles.position',
             'profiles.industry_experience',
         )->get();
-
-
-        dump($users);
-
 
         return view('admin.search_result', compact('users'));
     }
