@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminRegisterController;
+use App\Http\Controllers\Admin\AdminSearchMemberController;
+use App\Http\Controllers\Admin\AdminSearchResultController;
 use App\Http\Controllers\EngineerSkillController;
 use App\Http\Controllers\LanguageProficiency;
 use App\Http\Controllers\LanguageProficiencyController;
@@ -31,34 +33,44 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//プロフィール
+// プロフィール
 Route::resource('/profile',ProfileController::class)->only([
     'index','update'
 ])->middleware('auth');
 
-//技術体験
+// 技術体験
 Route::resource('/skills',EngineerSkillController::class)->middleware('auth');
 
-//外国語スキル
+// 外国語スキル
 Route::resource('/language_proficiency',LanguageProficiencyController::class)->middleware('auth');
 
-//資格/トレーニング
+// 資格/トレーニング
 Route::resource('/qualification',QualificationController::class)->middleware('auth');
 
-//職務経歴一覧
+// 職務経歴一覧
 Route::resource('/project',ProjectController::class)->middleware('auth');
 
 
-Route::view('/admin/login', 'admin/login');
-Route::post('/admin/login', [AdminLoginController::class, 'login']);
-Route::post('admin/logout', [AdminLoginController::class,'logout']);
-Route::view('/admin/register', 'admin/register');
-Route::post('/admin/register', [AdminRegisterController::class, 'register']);
-Route::view('/admin/home', 'admin/home')->middleware('auth:admin');
 
-Route::view('/owner/login', 'owner/login');
-Route::post('/owner/login', [OwnerLoginController::class, 'login']);
-Route::post('owner/logout', [OwnerLoginController::class,'logout']);
-Route::view('/owner/register', 'owner/register');
-// Route::post('/owner/register', [App\Http\Controllers\admin\RegisterController::class, 'register']);
-Route::view('/owner/home', 'owner/home')->middleware('auth:owner');
+Route::prefix('admin')->group(function () {
+    Route::view('/login', 'admin/login');
+    Route::post('/login', [AdminLoginController::class, 'login']);
+    Route::post('/logout', [AdminLoginController::class,'logout']);
+    Route::view('/register', 'admin/register');
+    Route::post('/register', [AdminRegisterController::class, 'register']);
+    Route::view('/home', 'admin/home')->middleware('auth:admin');
+    // /search_memberへのアクセスに認証を要求
+    Route::get('/search_member',[AdminSearchMemberController::class,'index'])->middleware('auth:admin');
+    Route::get('/search_result',[AdminSearchResultController::class,'result'])->name('search_result')->middleware('auth:admin');
+
+});
+
+// システムオーナー
+Route::prefix('owner')->group(function () {
+    Route::view('/login', 'owner/login');
+    Route::post('/login', [OwnerLoginController::class, 'login']);
+    Route::post('/logout', [OwnerLoginController::class,'logout']);
+    Route::view('/register', 'owner/register');
+    // Route::post('/register', [App\Http\Controllers\admin\RegisterController::class, 'register']);
+    Route::view('/home', 'owner/home')->middleware('auth:owner');
+});

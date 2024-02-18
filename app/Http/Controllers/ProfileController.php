@@ -54,13 +54,17 @@ class ProfileController extends Controller
                 'industry_experience' => $data['industry_experience'],
                 'project_manager_flag' => isset($data['project_manager_flag']) ? true : false,
                 'project_leader_flag' => isset($data['project_leader_flag']) ? true : false,
-                'requirements_definition_flag' => isset($data['requirements_definition_flag']) ? true : false,
+                'requirement_definition_flag' => isset($data['requirement_definition_flag']) ? true : false,
                 'basic_design_flag' => isset($data['basic_design_flag']) ? true : false,
                 'detailed_design_flag' => isset($data['detailed_design_flag']) ? true : false,
-                'development_flag' => isset($data['development_flag']) ? true : false,
+                'db_design_flag' => isset($data['db_design_flag']) ? true : false,
+                'programming_flag' => isset($data['programming_flag']) ? true : false,
                 'unit_test_flag' => isset($data['unit_test_flag']) ? true : false,
                 'integration_test_flag' => isset($data['integration_test_flag']) ? true : false,
                 'system_test_flag' => isset($data['system_test_flag']) ? true : false,
+                'operation_test_flag' => isset($data['operation_test_flag']) ? true : false,
+                'system_migration_flag' => isset($data['system_migration_flag']) ? true : false,
+                'operation_maintenance_flag' => isset($data['operation_maintenance_flag']) ? true : false,
             ]);
             DB::commit();
             Log::info("プロフィールの更新に成功しました。");

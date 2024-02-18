@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 class ApiLanguageProficiencyController extends Controller
 {
     /**
-     * 外国語スキル一覧を取得
+     * 外国語スキル一覧を取得するAPI
      *
      * @param Request $request
      * @return void

@@ -25,7 +25,7 @@ class MstServerSeeder extends Seeder
             "pfSense", "Cisco ASA", "Fortinet FortiGate",
             "Wowza Streaming Engine", "Adobe Media Server", "Microsoft Stream",
             "NTP (Network Time Protocol)サーバー",
-            "Amazon EC2", "AWS", "Microsoft Azure VM", "Google Cloud Compute Engine"
+            "Amazon EC2", "Microsoft Azure VM", "Google Cloud Compute Engine"
         ];
 
 

@@ -26,10 +26,10 @@ return new class extends Migration
             $table->boolean('detailed_design_flag')->default(false)->comment('詳細設計のステータス (false: 非担当, true: 担当)');
             $table->boolean('db_design_flag')->default(false)->comment('DB設計のステータス (false: 非担当, true: 担当)');
             $table->boolean('programming_flag')->default(false)->comment('プログラミングのステータス (false: 非担当, true: 担当)');
-            $table->boolean('unit_testing_flag')->default(false)->comment('単体テストのステータス (false: 非担当, true: 担当)');
-            $table->boolean('integration_testing_flag')->default(false)->comment('結合テストのステータス (false: 非担当, true: 担当)');
-            $table->boolean('system_testing_flag')->default(false)->comment('システムテストのステータス (false: 非担当, true: 担当)');
-            $table->boolean('operation_testing_flag')->default(false)->comment('運用テストのステータス (false: 非担当, true: 担当)');
+            $table->boolean('unit_test_flag')->default(false)->comment('単体テストのステータス (false: 非担当, true: 担当)');
+            $table->boolean('integration_test_flag')->default(false)->comment('結合テストのステータス (false: 非担当, true: 担当)');
+            $table->boolean('system_test_flag')->default(false)->comment('総合テストのステータス (false: 非担当, true: 担当)');
+            $table->boolean('operation_test_flag')->default(false)->comment('運用テストのステータス (false: 非担当, true: 担当)');
             $table->boolean('system_migration_flag')->default(false)->comment('システム移行のステータス (false: 非担当, true: 担当)');
             $table->boolean('operation_maintenance_flag')->default(false)->comment('運用・保守のステータス (false: 非担当, true: 担当)');
             $table->timestamps();

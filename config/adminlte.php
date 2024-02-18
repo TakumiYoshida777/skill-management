@@ -369,9 +369,9 @@ return [
             'icon' => 'fas fa-user-shield',
         ],
         [
-            'key'  =>  'admin_skill_sheet_management_admin_only',
-            'text' => 'admin_skill_sheet_management',
-            'url'  => 'admin_skill_sheet_management',
+            'key'  =>  'admin_search_member_admin_only',
+            'text' => 'admin_search_member',
+            'url'  => 'admin/search_member',
             'icon' => 'fas fa-tasks',
         ],
         [

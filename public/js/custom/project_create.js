@@ -54,14 +54,10 @@ const addRecord = (e) => {
     }
 
     const previousSibling = e.target.previousElementSibling;
-    // console.log(previousSibling,"previousSibling");
     // let recordsCount = [...previousSibling.children].length-1;
     const recordEls = [...previousSibling.children];
     const lastRecordId = recordEls.pop().dataset.recordid;
     const lastRecordIdAddOne = lastRecordId ? parseInt(lastRecordId) + 1 : 0;
-    console.log(lastRecordId, "lastRecordId");
-    let recordsCount = recordCounter(recordEls);
-    console.log(recordsCount, "recordsCount");
     const newElement = document.createElement("div");
     newElement.classList.add("grid-record");
     newElement.dataset.recordid = lastRecordIdAddOne;
@@ -75,7 +71,6 @@ const addRecord = (e) => {
             @endforeach
         </datalist>
     </div>`;
-
     previousSibling.append(newElement);
 }
 
@@ -89,6 +84,4 @@ const removeRecord = (e) => {
     let parentElement = record.parentElement;
     record.remove();
     const recordsCount = recordCounter([...parentElement.children]);
-    console.log(recordsCount, "recordsCount");
-
 }

@@ -112,25 +112,25 @@
                         </div>
                         <div class="grid-record">
                             <div class="grid-ritem">単体テスト</div>
-                            <div class="grid-ritem"><input type="checkbox" class="form-control" name="unit_testing_flag"
-                                    @if ($projectData->unit_testing_flag == 1) checked @endif>
+                            <div class="grid-ritem"><input type="checkbox" class="form-control" name="unit_test_flag"
+                                    @if ($projectData->unit_test_flag == 1) checked @endif>
                             </div>
                         </div>
                         <div class="grid-record">
                             <div class="grid-ritem">結合テスト</div>
                             <div class="grid-ritem"><input type="checkbox" class="form-control"
-                                    name="integration_testing_flag" @if ($projectData->integration_testing_flag == 1) checked @endif>
+                                    name="integration_test_flag" @if ($projectData->integration_test_flag == 1) checked @endif>
                             </div>
                         </div>
                         <div class="grid-record">
-                            <div class="grid-ritem">システムテスト</div>
+                            <div class="grid-ritem">総合テスト</div>
                             <div class="grid-ritem"><input type="checkbox" class="form-control"
-                                    name="system_testing_flag" @if ($projectData->system_testing_flag == 1) checked @endif></div>
+                                    name="system_test_flag" @if ($projectData->system_test_flag == 1) checked @endif></div>
                         </div>
                         <div class="grid-record">
                             <div class="grid-ritem">運用テスト</div>
                             <div class="grid-ritem"><input type="checkbox" class="form-control"
-                                    name="operation_testing_flag" @if ($projectData->operation_testing_flag == 1) checked @endif></div>
+                                    name="operation_test_flag" @if ($projectData->operation_test_flag == 1) checked @endif></div>
                         </div>
                         <div class="grid-record">
                             <div class="grid-ritem">システム移行</div>

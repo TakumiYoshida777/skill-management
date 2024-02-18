@@ -19,7 +19,6 @@
 @endif
 
 @section('auth_header', 'システム管理者用:'.__('adminlte::adminlte.login_message'))
-@dump($login_url )
 @section('auth_body')
     <form action="{{ $login_url }}" method="post">
         @csrf

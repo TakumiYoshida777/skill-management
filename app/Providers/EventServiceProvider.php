@@ -28,14 +28,17 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Event::listen(BuildingMenu::class, function (BuildingMenu $event) {
+            //システムオーナーのみ表示
             if (Auth::guard()->name != "owner"){
                 $event->menu->remove('owner_grant_permissions_owner_only');
             }
+            //ユーザー以外非表示
             if (Auth::guard()->name =="web"){
                 $event->menu->remove('admin_add_predictive_data_admin_only');
-                $event->menu->remove('admin_skill_sheet_management_admin_only');
                 $event->menu->remove('admin_dashboard_admin_only');
+                $event->menu->remove('admin_search_member_admin_only');
             }
+            //ユーザーのみ表示
             if (Auth::guard()->name !="web"){
                 $event->menu->remove('top_user_only');
                 $event->menu->remove('profile_user_only');

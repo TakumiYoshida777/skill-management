@@ -32,7 +32,7 @@ class RequestProfile extends FormRequest
             'industry_experience' => 'required|max:3',
             'project_manager_flag' => 'nullable',
             'project_leader_flag' => 'nullable',
-            'requirements_definition_flag' => 'nullable',
+            'requirement_definition_flag' => 'nullable',
             'basic_design_flag' => 'nullable',
             'detailed_design_flag' => 'nullable',
             'development_flag' => 'nullable',
@@ -53,13 +53,13 @@ class RequestProfile extends FormRequest
             'industry_experience' => '経験年数',
             'project_manager_flag' => 'プロジェクトマネージャーフラグ',
             'project_leader_flag' => 'プロジェクトリーダーフラグ',
-            'requirements_definition_flag' => '要件定義フラグ',
+            'requirement_definition_flag' => '要件定義フラグ',
             'basic_design_flag' => '基本設計フラグ',
             'detailed_design_flag' => '詳細設計フラグ',
             'development_flag' => '開発フラグ',
             'unit_test_flag' => '単体テストフラグ',
             'integration_test_flag' => '結合テストフラグ',
-            'system_test_flag' => 'システムテストフラグ',
+            'system_test_flag' => '総合テストフラグ',
         ];
     }
 }

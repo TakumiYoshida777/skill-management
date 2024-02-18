@@ -15,141 +15,140 @@
     <x-messages.flash_message />
     <input id="user-id" type="hidden" value="{{ $user_id }}">
     @foreach ($language_proficiencies as $data)
-    <form action="{{ url('/language_proficiency', $data->id) }}" method="POST">
-        @csrf
-        @method('PUT')
+        <form action="{{ url('/language_proficiency', $data->id) }}" method="POST">
+            @csrf
+            @method('PUT')
 
-        <input type="hidden" name="id" value="{{ $data->id }}">
+            <input type="hidden" name="id" value="{{ $data->id }}">
 
-        {{-- 編集用モーダル --}}
-        <div class="modal fade edit-modal" id="edit{{ $data->id }}Modal" tabindex="-1" role="dialog"
-            aria-labelledby="edit{{ $data->id }}ModalTitle" aria-hidden="true">
+            {{-- 編集用モーダル --}}
+            <div class="modal fade edit-modal" id="edit{{ $data->id }}Modal" tabindex="-1" role="dialog"
+                aria-labelledby="edit{{ $data->id }}ModalTitle" aria-hidden="true">
 
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header d-flex align-items-center">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header d-flex align-items-center">
 
-                        <i class="far fa-trash-alt delete-btn" data-toggle="modal"
-                            data-target="#delete{{ $data->id }}Modal" data-dismiss="modal"></i>
+                            <i class="far fa-trash-alt delete-btn" data-toggle="modal"
+                                data-target="#delete{{ $data->id }}Modal" data-dismiss="modal"></i>
 
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-record py-2 border-bottom">
-                            <div class="input-title">外国語種別</div>
-                            <div>
-                                <input class="form-control" type="text" name="name" id="name"
-                                    placeholder="英語" value="{{ $data->name }}">
-                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="input-record py-2 border-bottom">
-                            <div class="input-title">学習方法</div>
-                            <div>
-                                <input class="form-control" type="text" name="learning_method"
-                                    id="learning_method" placeholder="独学" value="{{ $data->learning_method }}">
+                        <div class="modal-body">
+                            <div class="input-record py-2 border-bottom">
+                                <div class="input-title">外国語種別</div>
+                                <div>
+                                    <input class="form-control" type="text" name="name" id="name"
+                                        placeholder="英語" value="{{ $data->name }}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="input-record py-2 border-bottom">
-                            <div class="input-title">通算年数</div>
-                            <div class="d-flex align-items-center">
-                                <input class="form-control w-75" type="number" name="total_date"
-                                    id="total_date" value="0.1" step="any" min="0.1"
-                                    value="{{ $data->total_date }}">
-                                <div class="ml-2 mb-0">年</div>
+                            <div class="input-record py-2 border-bottom">
+                                <div class="input-title">学習方法</div>
+                                <div>
+                                    <input class="form-control" type="text" name="learning_method" id="learning_method"
+                                        placeholder="独学" value="{{ $data->learning_method }}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="input-record py-2 border-bottom">
-                            <div class="input-title">読む<br>レベル：1～3</div>
-                            <div>
-                                <div class="form-group">
-                                    <select class="form-control" name="read_status" id="read">
-                                        <option value="1"
-                                            {{ $data->read_status == '1' ? 'selected' : '' }}>1</option>
-                                        <option value="2"
-                                            {{ $data->read_status == '2' ? 'selected' : '' }}>2</option>
-                                        <option value="3"
-                                            {{ $data->read_status == '3' ? 'selected' : '' }}>3</option>
-                                    </select>
+                            <div class="input-record py-2 border-bottom">
+                                <div class="input-title">通算年数</div>
+                                <div class="d-flex align-items-center">
+                                    <input class="form-control w-75" type="number" name="total_date" id="total_date"
+                                        value="0.1" step="any" min="0.1" value="{{ $data->total_date }}">
+                                    <div class="ml-2 mb-0">年</div>
+                                </div>
+                            </div>
+                            <div class="input-record py-2 border-bottom">
+                                <div class="input-title">読む<br>レベル：1～3</div>
+                                <div>
+                                    <div class="form-group">
+                                        <select class="form-control" name="read_status" id="read">
+                                            <option value="1" {{ $data->read_status == '1' ? 'selected' : '' }}>1
+                                            </option>
+                                            <option value="2" {{ $data->read_status == '2' ? 'selected' : '' }}>2
+                                            </option>
+                                            <option value="3" {{ $data->read_status == '3' ? 'selected' : '' }}>3
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-record py-2 border-bottom">
+                                <div class="input-title">書く<br>レベル：1～3</div>
+                                <div>
+                                    <div class="form-group">
+                                        <select class="form-control" name="write_status" id="write">
+                                            <option value="1" {{ $data->write_status == '1' ? 'selected' : '' }}>1
+                                            </option>
+                                            <option value="2" {{ $data->write_status == '2' ? 'selected' : '' }}>2
+                                            </option>
+                                            <option value="3" {{ $data->write_status == '3' ? 'selected' : '' }}>3
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-record py-2 border-bottom">
+                                <div class="input-title">会話<br>レベル：1～3</div>
+                                <div>
+                                    <div class="form-group">
+                                        <select class="form-control" name="conversation_status" id="conversation">
+                                            <option value="1"
+                                                {{ $data->conversation_status == '1' ? 'selected' : '' }}>1
+                                            </option>
+                                            <option value="2"
+                                                {{ $data->conversation_status == '2' ? 'selected' : '' }}>2
+                                            </option>
+                                            <option value="3"
+                                                {{ $data->conversation_status == '3' ? 'selected' : '' }}>3
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-record py-2 border-bottom">
+                                <div class="input-title">備考</div>
+                                <div>
+                                    <textarea class="form-control" name="memo" id="memo" placeholder="資格や経験、留学など">{{ $data->memo }}</textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="input-record py-2 border-bottom">
-                            <div class="input-title">書く<br>レベル：1～3</div>
-                            <div>
-                                <div class="form-group">
-                                    <select class="form-control" name="write_status" id="write">
-                                        <option value="1"
-                                            {{ $data->write_status == '1' ? 'selected' : '' }}>1</option>
-                                        <option value="2"
-                                            {{ $data->write_status == '2' ? 'selected' : '' }}>2</option>
-                                        <option value="3"
-                                            {{ $data->write_status == '3' ? 'selected' : '' }}>3</option>
-                                    </select>
-                                </div>
-                            </div>
+                        <div class="modal-footer d-flex justify-content-around">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                            <button type="submit" class="btn btn-primary">更新</button>
                         </div>
-                        <div class="input-record py-2 border-bottom">
-                            <div class="input-title">会話<br>レベル：1～3</div>
-                            <div>
-                                <div class="form-group">
-                                    <select class="form-control" name="conversation_status" id="conversation">
-                                        <option value="1"
-                                            {{ $data->conversation_status == '1' ? 'selected' : '' }}>1
-                                        </option>
-                                        <option value="2"
-                                            {{ $data->conversation_status == '2' ? 'selected' : '' }}>2
-                                        </option>
-                                        <option value="3"
-                                            {{ $data->conversation_status == '3' ? 'selected' : '' }}>3
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="input-record py-2 border-bottom">
-                            <div class="input-title">備考</div>
-                            <div>
-                                <textarea class="form-control" name="memo" id="memo" placeholder="資格や経験、留学など">{{ $data->memo }}</textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-around">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                        <button type="submit" class="btn btn-primary">更新</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
-    {{-- 外国語の削除 モーダル --}}
-    <div class="modal fade delete-modal" id="delete{{ $data->id }}Modal" tabindex="-1" role="dialog"
-        aria-labelledby="delete{{ $data->id }}ModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form action="{{ url('/language_proficiency', $data->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
+        </form>
+        {{-- 外国語の削除 モーダル --}}
+        <div class="modal fade delete-modal" id="delete{{ $data->id }}Modal" tabindex="-1" role="dialog"
+            aria-labelledby="delete{{ $data->id }}ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form action="{{ url('/language_proficiency', $data->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
 
-                    <div class="modal-header">
-                        {{-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> --}}
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body d-flex justify-content-center argin-items-center">
-                        外国語: <span class="mx-3 font-weight-bold">【{{ $data->id }}】</span>をリストから削除しますか？
-                    </div>
-                    <div class="modal-footer d-flex justify-content-around">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                        <button type="submit" class="btn btn-danger">削除</button>
-                    </div>
-                </form>
+                        <div class="modal-header">
+                            {{-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> --}}
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body d-flex justify-content-center argin-items-center">
+                            外国語: <span class="mx-3 font-weight-bold">【{{ $data->id }}】</span>をリストから削除しますか？
+                        </div>
+                        <div class="modal-footer d-flex justify-content-around">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                            <button type="submit" class="btn btn-danger">削除</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-@endforeach
+    @endforeach
 
     <table id="language-proficiency-list" class="display table table-striped responsive nowrap" style="width:100%">
         <thead>
@@ -280,7 +279,7 @@
                 scrollY: "65vh",
                 scrollCollapse: true,
                 responsive: true,
-                lengthChange:false,
+                lengthChange: false,
                 searching: false,
                 paging: false,
                 info: false,

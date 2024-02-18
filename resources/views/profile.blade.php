@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="table-row">
-                    <div class="table-cell table-title">経験年数</div>
+                    <div class="table-cell table-title">業界経験月数</div>
                     <div class="table-cell">
                         <input type="number" step="0.1" name="industry_experience"
                             class="form-control" value="{{ $profile->industry_experience }}" required>
@@ -88,8 +88,8 @@
                                 <li class="list-group-item">
                                     要件定義
                                     <label class="switch ">
-                                        <input name="requirements_definition_flag" type="checkbox" class="primary"
-                                            @if ($profile->requirements_definition_flag) checked @endif>
+                                        <input name="requirement_definition_flag" type="checkbox" class="primary"
+                                            @if ($profile->requirement_definition_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
@@ -145,8 +145,8 @@
                                 <li class="list-group-item">
                                     開発
                                     <label class="switch ">
-                                        <input name="development_flag" type="checkbox" class="primary"
-                                            @if ($profile->development_flag) checked @endif>
+                                        <input name="programming_flag" type="checkbox" class="primary"
+                                            @if ($profile->programming_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>
@@ -196,6 +196,14 @@
                                     <label class="switch ">
                                         <input name="system_test_flag" type="checkbox" class="primary"
                                             @if ($profile->system_test_flag) checked @endif>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </li>
+                                <li class="list-group-item">
+                                    運用テスト
+                                    <label class="switch ">
+                                        <input name="operation_test_flag" type="checkbox" class="primary"
+                                            @if ($profile->operation_test_flag) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </li>

@@ -35,10 +35,10 @@ class ProjectSeeder extends Seeder
                 'detailed_design_flag' => false,
                 'db_design_flag' => false,
                 'programming_flag' => false,
-                'unit_testing_flag' => false,
-                'integration_testing_flag' => false,
-                'system_testing_flag' => false,
-                'operation_testing_flag' => false,
+                'unit_test_flag' => false,
+                'integration_test_flag' => false,
+                'system_test_flag' => false,
+                'operation_test_flag' => false,
                 'system_migration_flag' => false,
                 'operation_maintenance_flag' => false,
                 'created_at' => now(),
@@ -47,5 +47,31 @@ class ProjectSeeder extends Seeder
         }
 
         DB::table('projects')->insert($projects);
+
+
+        $projects2[] = [
+            'user_id' => 1,
+            'name' => 'endNullProject',
+            'description' => '現在アサインされてます',
+            'start_date' => now(),
+            'end_date' => null, // Random end date within 1 to 12 months
+            'team_size' => random_int(5, 15),
+            'all_team_size' => random_int(10, 20),
+            'position' => 'Role ' . ($i + 1),
+            'requirement_definition_flag' => true,
+            'basic_design_flag' => true,
+            'detailed_design_flag' => false,
+            'db_design_flag' => false,
+            'programming_flag' => false,
+            'unit_test_flag' => false,
+            'integration_test_flag' => false,
+            'system_test_flag' => false,
+            'operation_test_flag' => false,
+            'system_migration_flag' => false,
+            'operation_maintenance_flag' => false,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+        DB::table('projects')->insert($projects2);
     }
 }

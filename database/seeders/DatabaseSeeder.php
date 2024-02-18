@@ -28,6 +28,14 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             AdminSeeder::class,
             OwnerSeeder::class,
+            EngineerSkillLanguageSeeder::class,
+            EngineerSkillFrameworkSeeder::class,
+            EngineerSkillDatabaseSeeder::class,
+            EngineerSkillMiddlewareSeeder::class,
+            EngineerSkillOsSeeder::class,
+            EngineerSkillServerSeeder::class,
+            EngineerSkillVirtualEnvironmentSeeder::class,
+            EngineerSkillVersionManagementSeeder::class,
         ]);
     }
 }
