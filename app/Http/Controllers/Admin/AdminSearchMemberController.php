@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\DB;
 class AdminSearchMemberController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //ログインされていなければアクセス拒否
+        $this->middleware('auth');
+    }
+
+    /**
      * スキルのマスタデータから名前のリスト取得する
      *
      * @param string $tableName　テーブル名

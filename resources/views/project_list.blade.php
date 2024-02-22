@@ -51,7 +51,6 @@
         @endforeach
     </div>
 
-    </div>
     <div class="table-container">
         <table id="project-list" class="display table table-striped responsive nowrap" style="width:100%">
             <thead>
@@ -103,7 +102,7 @@
                 scrollCollapse: true,
                 responsive: true,
                 info: false,
-                lengthChange:false,
+                lengthChange: false,
 
                 "dom": '<"row"<"col-sm-6"l><"col-sm-6"f>>' +
                     '<"row"<"col-sm-12"tr>>' +

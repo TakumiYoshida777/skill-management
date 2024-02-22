@@ -17,8 +17,8 @@ class ProjectSeeder extends Seeder
         $projects = [];
         $user_id = 1;
 
-        for ($i = 0; $i < 300; $i++) {
-            if ($i % 100 == 0 && $i != 0) {
+        for ($i = 0; $i < 30; $i++) {
+            if ($i == 10 || $i == 20) {
                 $user_id++;
             }
             $projects[] = [

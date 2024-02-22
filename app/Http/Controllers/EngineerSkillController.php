@@ -20,6 +20,17 @@ use Illuminate\Support\Facades\Log;
 class EngineerSkillController extends Controller
 {
 
+        /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //ログインされていなければアクセス拒否
+        $this->middleware('auth');
+    }
+
     public function getSkillNameList(string $tableName)
     {
         $result = DB::table($tableName)->select('name')->orderBy('name')->get();

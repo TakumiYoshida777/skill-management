@@ -13,10 +13,22 @@ use Illuminate\Support\Facades\Log;
 class QualificationController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //ログインされていなければアクセス拒否
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
+
         $user_id = Auth::user()->id;
         $qualification = Qualification::all();
         return view('qualification', compact("qualification", "user_id"));

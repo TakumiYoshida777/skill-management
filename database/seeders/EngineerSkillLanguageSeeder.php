@@ -73,7 +73,7 @@ class EngineerSkillLanguageSeeder extends Seeder
             [
                 'user_id' => 2,
                 'name' => 'Go',
-                'experience_months' => 0,
+                'experience_months' => 10,
                 'auto_renew_flag' => false,
                 'created_at' => now(),
                 'updated_at' => now(),

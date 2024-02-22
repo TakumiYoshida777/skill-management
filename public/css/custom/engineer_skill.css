@@ -58,4 +58,10 @@
     .inner-container {
         margin: 0 auto;
     }
+
+    .edit-record {
+        display: grid;
+        grid-template-columns: 10% 30% 20% 10% 30%;
+        place-items: center;
+    }
 }

@@ -14,10 +14,22 @@ use Illuminate\Support\Facades\Log;
 class LanguageProficiencyController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //ログインされていなければアクセス拒否
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
+
         $user_id = Auth::user()->id;
 
         $language_proficiencies = LanguageProficiency::all();

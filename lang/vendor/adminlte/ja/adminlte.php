@@ -2,8 +2,10 @@
 
 return [
 
-    'first_name'                  => '氏',
-    'last_name'                   => '名',
+    'first_name'                  => '名',
+    'first_name_kana'             => '名(カナ)',
+    'last_name'                   => '氏',
+    'last_name_kana'              => '氏(カナ)',
     'email'                       => 'メールアドレス',
     'password'                    => 'パスワード',
     'retype_password'             => 'もう一度入力',

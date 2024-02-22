@@ -16,26 +16,7 @@
 @section('auth_body')
     <form action="{{ $register_url }}" method="post">
         @csrf
-
         {{-- LastName field --}}
-        <div class="input-group mb-3">
-            <input type="text" name="first_name" class="form-control @error('last_name') is-invalid @enderror"
-                value="{{ old('first_name') }}" placeholder="{{ __('adminlte::adminlte.first_name') }}" autofocus>
-
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
-                </div>
-            </div>
-
-            @error('first_name')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-
-        {{-- FirstName field --}}
         <div class="input-group mb-3">
             <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror"
                 value="{{ old('last_name') }}" placeholder="{{ __('adminlte::adminlte.last_name') }}" autofocus>
@@ -52,6 +33,60 @@
                 </span>
             @enderror
         </div>
+        {{-- LastNameKana field --}}
+        <div class="input-group mb-3">
+            <input type="text" name="last_name_kana" class="form-control @error('last_name_kana') is-invalid @enderror"
+                value="{{ old('last_name_kana') }}" placeholder="{{ __('adminlte::adminlte.last_name_kana') }}" autofocus>
+
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+
+            @error('last_name_kana')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        {{-- FirstName field --}}
+
+        <div class="input-group mb-3">
+            <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror"
+                value="{{ old('first_name') }}" placeholder="{{ __('adminlte::adminlte.first_name') }}" autofocus>
+
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+
+            @error('first_name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        {{-- FirstNameKana field --}}
+
+        <div class="input-group mb-3">
+            <input type="text" name="first_name_kana" class="form-control @error('first_name_kana') is-invalid @enderror"
+                value="{{ old('first_name_kana') }}" placeholder="{{ __('adminlte::adminlte.first_name_kana') }}" autofocus>
+
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+
+            @error('first_name_kana')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
 
         {{-- Email field --}}
         <div class="input-group mb-3">

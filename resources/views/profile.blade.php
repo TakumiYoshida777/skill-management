@@ -68,7 +68,7 @@
                 <div class="table-row">
                     <div class="table-cell table-title">業界経験月数</div>
                     <div class="table-cell">
-                        <input type="number" step="0.1" name="industry_experience"
+                        <input type="number" name="industry_experience"
                             class="form-control" value="{{ $profile->industry_experience }}" required>
                     </div>
                 </div>

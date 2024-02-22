@@ -10,6 +10,17 @@ use Illuminate\Support\Facades\DB;
 class AdminSearchResultController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //ログインされていなければアクセス拒否
+        $this->middleware('auth');
+    }
+
+    /**
      * 検索結果
      *
      * @param Request $request
@@ -349,4 +360,6 @@ class AdminSearchResultController extends Controller
 
         return view('admin.search_result', compact('users'));
     }
+
+
 }

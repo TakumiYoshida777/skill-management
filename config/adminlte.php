@@ -312,15 +312,18 @@ return [
         ],
 
         // Sidebar items:
-        ['header' => 'account_settings'],
         [
-            'key'  =>  'top_user_only',
-            'text' => 'top',
-            'url'  => 'top',
+            'key'  =>  'user_skill_sheet',
+            'text' => 'skill_sheet',
+            'url'  => 'skill_sheet',
             'icon' => 'fas fa-home',
+            'classes' => 'mb-3 mt-3'
         ],
         [
-            'key'  =>  'profile_user_only',
+            'key'  =>  'edit_user_only',
+            'header' => 'edit'],
+        [
+            'key'  => 'profile_user_only',
             'text' => 'profile',
             'url'  => 'profile',
             'icon' => 'fas fa-fw fa-user',

@@ -14,12 +14,24 @@ use Illuminate\Support\Facades\Log;
 class ProfileController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //ログインされていなければアクセス拒否
+        $this->middleware('auth');
+    }
+
+    /**
      * プロフィールの初期表示
      *
      * @return void
      */
     public function index()
     {
+
         $user = Auth::user();
         $profile = Profile::query()
         ->where("user_id",$user->id)

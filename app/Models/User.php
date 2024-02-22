@@ -16,6 +16,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasUuids;
 
+
     /**
      * ユーザーの使用できるデータベースを取得
      *
@@ -116,7 +117,6 @@ class User extends Authenticatable
         return $this->hasMany(Portfolio::class);
     }
 
-
     /**
      * ユーザーのプロフィールを取得
      *
@@ -126,7 +126,6 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
-
     /**
      * ユーザーのプロジェクトを取得
      *
@@ -153,7 +152,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'first_name_kana',
+        'last_name',
+        'last_name_kana',
         'email',
         'password',
     ];

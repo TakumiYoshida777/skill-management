@@ -32,16 +32,18 @@ class EventServiceProvider extends ServiceProvider
             if (Auth::guard()->name != "owner"){
                 $event->menu->remove('owner_grant_permissions_owner_only');
             }
-            //ユーザー以外非表示
+            //ユーザー以外表示
             if (Auth::guard()->name =="web"){
                 $event->menu->remove('admin_add_predictive_data_admin_only');
                 $event->menu->remove('admin_dashboard_admin_only');
                 $event->menu->remove('admin_search_member_admin_only');
+
             }
             //ユーザーのみ表示
             if (Auth::guard()->name !="web"){
-                $event->menu->remove('top_user_only');
+                $event->menu->remove('edit_user_only');
                 $event->menu->remove('profile_user_only');
+                $event->menu->remove('user_skill_sheet');
                 $event->menu->remove('project_user_only');
                 $event->menu->remove('engineer_skills_user_only');
                 $event->menu->remove('language_proficiency_user_only');

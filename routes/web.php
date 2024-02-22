@@ -5,12 +5,12 @@ use App\Http\Controllers\Admin\AdminRegisterController;
 use App\Http\Controllers\Admin\AdminSearchMemberController;
 use App\Http\Controllers\Admin\AdminSearchResultController;
 use App\Http\Controllers\EngineerSkillController;
-use App\Http\Controllers\LanguageProficiency;
 use App\Http\Controllers\LanguageProficiencyController;
 use App\Http\Controllers\Owner\OwnerLoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\QualificationController;
+use App\Http\Controllers\SkillSheetController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,6 +32,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/skill_sheet', [SkillSheetController::class, 'index'])->name('skill_sheet');
+Route::get('user_skill_sheet/{id}',[SkillSheetController::class,'user_skill_sheet'])->name('user_skill_sheet')->middleware('auth:admin');
+
 
 // プロフィール
 Route::resource('/profile',ProfileController::class)->only([
