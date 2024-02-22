@@ -14,11 +14,29 @@
     <x-messages.flash_message />
     <form action="{{ route('search_result') }}" method="GET">
         @csrf
-        <div class="btns-wrap">
-            <div class="pc">
-                <button type="submit" class="btn btn-primary">検索</button>
+        <div class="search-container">
+            <div class="radio-wrap">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="searchType" id="orSearch" value="orSearch">
+                    <label class="form-check-label" for="orSearch">
+                        OR
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="searchType" id="andSearch" value="andSearch" checked>
+                    <label class="form-check-label" for="andSearch">
+                        AND
+                    </label>
+                </div>
+            </div>
+
+            <div class="btns-wrap">
+                <div class="pc">
+                    <button type="submit" class="btn btn-primary">検索</button>
+                </div>
             </div>
         </div>
+
         <div class="inner-heding mb-4 row">
             {{-- プロジェクト名 --}}
             <div class="project-title col-md-6">
@@ -26,7 +44,8 @@
             </div>
             <div class="col-md-3 d-flex row">
                 <label for="industry_experience" class="col-md-5">業界経験月数</label>
-                <input type="number" name="industry_experience" id="industry_experience" class="form-control col-md-3" min="0" value="0">
+                <input type="number" name="industry_experience" id="industry_experience" class="form-control col-md-3"
+                    min="0" value="0">
                 ヵ月以上
             </div>
         </div>
@@ -284,7 +303,7 @@
             </div>
         </div>
         <div class="sp text-center py-3">
-            <button type="submit" class="btn btn-primary">保存</button>
+            <button type="submit" class="btn btn-primary">検索</button>
         </div>
     </form>
 

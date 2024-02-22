@@ -55,7 +55,7 @@ Route::resource('/qualification',QualificationController::class)->middleware('au
 Route::resource('/project',ProjectController::class)->middleware('auth');
 
 
-
+//管理者
 Route::prefix('admin')->group(function () {
     Route::view('/login', 'admin/login');
     Route::post('/login', [AdminLoginController::class, 'login']);
@@ -66,7 +66,7 @@ Route::prefix('admin')->group(function () {
     // /search_memberへのアクセスに認証を要求
     Route::get('/search_member',[AdminSearchMemberController::class,'index'])->middleware('auth:admin');
     Route::get('/search_result',[AdminSearchResultController::class,'result'])->name('search_result')->middleware('auth:admin');
-
+    // Route::get('/search_result',[AdminSearchResultController::class,'or_serch_result'])->name('or_serch_result')->middleware('auth:admin');
 });
 
 // システムオーナー

@@ -1,10 +1,23 @@
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 3rem;
+    margin-bottom: 2rem;
+    padding-right: 5rem;
+}
+
+.radio-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
 /* ボタン */
-.btns-wrap {
+/* .btns-wrap {
     display: flex;
     justify-content: flex-end;
     margin-bottom: 2rem;
     padding-right: 5rem;
-}
+} */
 
 .plus-btn,
 .minus-btn {

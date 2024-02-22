@@ -28,7 +28,6 @@ class AdminSearchResultController extends Controller
      */
     public function result(Request $request)
     {
-
         $search_values = $request->all();
 
         $query = User::query()
@@ -51,7 +50,6 @@ class AdminSearchResultController extends Controller
                 'profiles.industry_experience',
             );
 
-
         $requirement_definition_flag = $search_values["requirement_definition_flag"] ?? null;
         $basic_design_flag = $search_values["basic_design_flag"] ?? null;
         $detailed_design_flag = $search_values["detailed_design_flag"] ?? null;
@@ -66,12 +64,12 @@ class AdminSearchResultController extends Controller
 
         // 検索キーワードの配列の全ての値を条件に加える
         //プロジェクト名
-        if($search_values["project_name"]) {
-            $query->where('projects.name','like','%'.$search_values["project_name"].'%');
+        if ($search_values["project_name"]) {
+            $query->where('projects.name', 'like', '%' . $search_values["project_name"] . '%');
         }
         //業界経験月数
-        if($search_values["industry_experience"]) {
-            $query->where('profiles.industry_experience','>=', intval($search_values["industry_experience"]));
+        if ($search_values["industry_experience"]) {
+            $query->where('profiles.industry_experience', '>=', intval($search_values["industry_experience"]));
         }
 
         // プロフィール
@@ -138,216 +136,429 @@ class AdminSearchResultController extends Controller
         /**
          * 検索キーワードからサブクエリで絞り込み
          */
-        $query->where(function ($q) use ($search_values) {
+        if ($request->searchType == "andSearch") {
+            //and検索
+            $query->where(function ($q) use ($search_values) {
+                //プロジェクト名
+                if ($search_values["project_name"] ?? null) {
+                    $q->whereExists(function ($subQuery) use ($search_values) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('projects')
+                            ->whereColumn('projects.user_id', 'users.id')
+                            ->where('projects.name', 'like', '%' . $search_values["project_name"] . '%');
+                    });
+                }
+                //業界経験月数
+                if ($search_values["project_name"] ?? null) {
+                    $q->whereExists(function ($subQuery) use ($search_values) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('projects')
+                            ->whereColumn('projects.user_id', 'users.id')
+                            ->where('profiles.industry_experience', '>=', intval($search_values["industry_experience"]));
+                    });
+                }
 
-            //プロジェクト名
-            if ($search_values["project_name"] ?? null) {
-                $q->whereExists(function ($subQuery) use ($search_values) {
-                    $subQuery->select(DB::raw(1))
-                        ->from('projects')
-                        ->whereColumn('projects.user_id', 'users.id')
-                        ->where('projects.name','like','%'.$search_values["project_name"].'%');
-                });
-            }
-            //業界経験月数
-            if ($search_values["project_name"] ?? null) {
-                $q->whereExists(function ($subQuery) use ($search_values) {
-                    $subQuery->select(DB::raw(1))
-                        ->from('projects')
-                        ->whereColumn('projects.user_id', 'users.id')
-                        ->where('profiles.industry_experience','>=', intval($search_values["industry_experience"]));
-                });
-            }
+                //要件定義
+                if ($search_values["requirement_definition_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->where('profiles.requirement_definition_flag', true);
+                    });
+                }
+                //基本設計
+                if ($search_values["basic_design_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->where('profiles.basic_design_flag', true);
+                    });
+                }
+                //詳細設計
+                if ($search_values["detailed_design_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->where('profiles.detailed_design_flag', true);
+                    });
+                }
+                //DB設計
+                if ($search_values["db_design_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->where('profiles.db_design_flag', true);
+                    });
+                }
+                //開発
+                if ($search_values["programming_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->where('profiles.programming_flag', true);
+                    });
+                }
+                //単体テスト
+                if ($search_values["unit_test_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->where('profiles.unit_test_flag', true);
+                    });
+                }
+                //結合テスト
+                if ($search_values["integration_test_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->where('profiles.integration_test_flag', true);
+                    });
+                }
+                //総合テスト
+                if ($search_values["system_test_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->where('profiles.system_test_flag', true);
+                    });
+                }
+                //運用テスト
+                if ($search_values["operation_test_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->where('profiles.operation_test_flag', true);
+                    });
+                }
+                //システム移行
+                if ($search_values["system_migration_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->where('profiles.system_migration_flag', true);
+                    });
+                }
+                //運用・保守
+                if ($search_values["operation_maintenance_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->where('profiles.operation_maintenance_flag', true);
+                    });
+                }
 
-            //要件定義
-            if ($search_values["requirement_definition_flag"] ?? null) {
-                $q->whereExists(function ($subQuery) {
-                    $subQuery->select(DB::raw(1))
-                        ->from('profiles')
-                        ->whereColumn('profiles.user_id', 'users.id')
-                        ->where('profiles.requirement_definition_flag', true);
-                });
-            }
-            //基本設計
-            if ($search_values["basic_design_flag"] ?? null) {
-                $q->whereExists(function ($subQuery) {
-                    $subQuery->select(DB::raw(1))
-                        ->from('profiles')
-                        ->whereColumn('profiles.user_id', 'users.id')
-                        ->where('profiles.basic_design_flag', true);
-                });
-            }
-            //詳細設計
-            if ($search_values["detailed_design_flag"] ?? null) {
-                $q->whereExists(function ($subQuery) {
-                    $subQuery->select(DB::raw(1))
-                        ->from('profiles')
-                        ->whereColumn('profiles.user_id', 'users.id')
-                        ->where('profiles.detailed_design_flag', true);
-                });
-            }
-            //DB設計
-            if ($search_values["db_design_flag"] ?? null) {
-                $q->whereExists(function ($subQuery) {
-                    $subQuery->select(DB::raw(1))
-                        ->from('profiles')
-                        ->whereColumn('profiles.user_id', 'users.id')
-                        ->where('profiles.db_design_flag', true);
-                });
-            }
-            //開発
-            if ($search_values["programming_flag"] ?? null) {
-                $q->whereExists(function ($subQuery) {
-                    $subQuery->select(DB::raw(1))
-                        ->from('profiles')
-                        ->whereColumn('profiles.user_id', 'users.id')
-                        ->where('profiles.programming_flag', true);
-                });
-            }
-            //単体テスト
-            if ($search_values["unit_test_flag"] ?? null) {
-                $q->whereExists(function ($subQuery) {
-                    $subQuery->select(DB::raw(1))
-                        ->from('profiles')
-                        ->whereColumn('profiles.user_id', 'users.id')
-                        ->where('profiles.unit_test_flag', true);
-                });
-            }
-            //結合テスト
-            if ($search_values["integration_test_flag"] ?? null) {
-                $q->whereExists(function ($subQuery) {
-                    $subQuery->select(DB::raw(1))
-                        ->from('profiles')
-                        ->whereColumn('profiles.user_id', 'users.id')
-                        ->where('profiles.integration_test_flag', true);
-                });
-            }
-            //総合テスト
-            if ($search_values["system_test_flag"] ?? null) {
-                $q->whereExists(function ($subQuery) {
-                    $subQuery->select(DB::raw(1))
-                        ->from('profiles')
-                        ->whereColumn('profiles.user_id', 'users.id')
-                        ->where('profiles.system_test_flag', true);
-                });
-            }
-            //運用テスト
-            if ($search_values["operation_test_flag"] ?? null) {
-                $q->whereExists(function ($subQuery) {
-                    $subQuery->select(DB::raw(1))
-                        ->from('profiles')
-                        ->whereColumn('profiles.user_id', 'users.id')
-                        ->where('profiles.operation_test_flag', true);
-                });
-            }
-            //システム移行
-            if ($search_values["system_migration_flag"] ?? null) {
-                $q->whereExists(function ($subQuery) {
-                    $subQuery->select(DB::raw(1))
-                        ->from('profiles')
-                        ->whereColumn('profiles.user_id', 'users.id')
-                        ->where('profiles.system_migration_flag', true);
-                });
-            }
-            //運用・保守
-            if ($search_values["operation_maintenance_flag"] ?? null) {
-                $q->whereExists(function ($subQuery) {
-                    $subQuery->select(DB::raw(1))
-                        ->from('profiles')
-                        ->whereColumn('profiles.user_id', 'users.id')
-                        ->where('profiles.operation_maintenance_flag', true);
-                });
-            }
+                //言語
+                if (!empty($search_values["used_language"])) {
+                    foreach ($search_values["used_language"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_languages')
+                                ->whereColumn('engineer_skill_languages.user_id', 'users.id')
+                                ->where('engineer_skill_languages.name', $value);
+                        });
+                    }
+                }
+                //フレームワーク
+                if (!empty($search_values["used_framework"])) {
+                    foreach ($search_values["used_framework"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_frameworks')
+                                ->whereColumn('engineer_skill_frameworks.user_id', 'users.id')
+                                ->where('engineer_skill_frameworks.name', $value);
+                        });
+                    }
+                }
+                //DB
+                if (!empty($search_values["used_database"])) {
+                    foreach ($search_values["used_database"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_databases')
+                                ->whereColumn('engineer_skill_databases.user_id', 'users.id')
+                                ->where('engineer_skill_databases.name', $value);
+                        });
+                    }
+                }
+                //OS
+                if (!empty($search_values["used_os"])) {
+                    foreach ($search_values["used_os"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_os')
+                                ->whereColumn('engineer_skill_os.user_id', 'users.id')
+                                ->where('engineer_skill_os.name', $value);
+                        });
+                    }
+                }
+                //サーバー
+                if (!empty($search_values["used_server"])) {
+                    foreach ($search_values["used_server"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_servers')
+                                ->whereColumn('engineer_skill_servers.user_id', 'users.id')
+                                ->where('engineer_skill_servers.name', $value);
+                        });
+                    }
+                }
+                //ミドルウェア
+                if (!empty($search_values["used_middleware"])) {
+                    foreach ($search_values["used_middleware"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_middleware')
+                                ->whereColumn('engineer_skill_middleware.user_id', 'users.id')
+                                ->where('engineer_skill_middleware.name', $value);
+                        });
+                    }
+                }
+                //仮想環境
+                if (!empty($search_values["used_virtual_environment"])) {
+                    foreach ($search_values["used_virtual_environment"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_virtual_environments')
+                                ->whereColumn('engineer_skill_virtual_environments.user_id', 'users.id')
+                                ->where('engineer_skill_virtual_environments.name', $value);
+                        });
+                    }
+                }
+                //バージョン管理
+                if (!empty($search_values["used_version_management"])) {
+                    foreach ($search_values["used_version_management"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_version_management')
+                                ->whereColumn('engineer_skill_version_management.user_id', 'users.id')
+                                ->where('engineer_skill_version_management.name', $value);
+                        });
+                    }
+                }
+            });
+        } else {
+            //or検索
+            $query->where(function ($q) use ($search_values) {
+                //プロジェクト名
+                if ($search_values["project_name"] ?? null) {
+                    $q->whereExists(function ($subQuery) use ($search_values) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('projects')
+                            ->whereColumn('projects.user_id', 'users.id')
+                            ->orWhere('projects.name', 'like', '%' . $search_values["project_name"] . '%');
+                    });
+                }
+                //業界経験月数
+                if ($search_values["project_name"] ?? null) {
+                    $q->whereExists(function ($subQuery) use ($search_values) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('projects')
+                            ->whereColumn('projects.user_id', 'users.id')
+                            ->orWhere('profiles.industry_experience', '>=', intval($search_values["industry_experience"]));
+                    });
+                }
 
-            //言語
-            if (!empty($search_values["used_language"])) {
-                foreach ($search_values["used_language"] as  $value) {
-                    $q->whereExists(function ($subQuery) use ($value) {
+                //要件定義
+                if ($search_values["requirement_definition_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
                         $subQuery->select(DB::raw(1))
-                            ->from('engineer_skill_languages')
-                            ->whereColumn('engineer_skill_languages.user_id', 'users.id')
-                            ->where('engineer_skill_languages.name', $value);
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->orWhere('profiles.requirement_definition_flag', true);
                     });
                 }
-            }
-            //フレームワーク
-            if (!empty($search_values["used_framework"])) {
-                foreach ($search_values["used_framework"] as  $value) {
-                    $q->whereExists(function ($subQuery) use ($value) {
+                //基本設計
+                if ($search_values["basic_design_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
                         $subQuery->select(DB::raw(1))
-                            ->from('engineer_skill_frameworks')
-                            ->whereColumn('engineer_skill_frameworks.user_id', 'users.id')
-                            ->where('engineer_skill_frameworks.name', $value);
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->orWhere('profiles.basic_design_flag', true);
                     });
                 }
-            }
-            //DB
-            if (!empty($search_values["used_database"])) {
-                foreach ($search_values["used_database"] as  $value) {
-                    $q->whereExists(function ($subQuery) use ($value) {
+                //詳細設計
+                if ($search_values["detailed_design_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
                         $subQuery->select(DB::raw(1))
-                            ->from('engineer_skill_databases')
-                            ->whereColumn('engineer_skill_databases.user_id', 'users.id')
-                            ->where('engineer_skill_databases.name', $value);
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->orWhere('profiles.detailed_design_flag', true);
                     });
                 }
-            }
-            //OS
-            if (!empty($search_values["used_os"])) {
-                foreach ($search_values["used_os"] as  $value) {
-                    $q->whereExists(function ($subQuery) use ($value) {
+                //DB設計
+                if ($search_values["db_design_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
                         $subQuery->select(DB::raw(1))
-                            ->from('engineer_skill_os')
-                            ->whereColumn('engineer_skill_os.user_id', 'users.id')
-                            ->where('engineer_skill_os.name', $value);
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->orWhere('profiles.db_design_flag', true);
                     });
                 }
-            }
-            //サーバー
-            if (!empty($search_values["used_server"])) {
-                foreach ($search_values["used_server"] as  $value) {
-                    $q->whereExists(function ($subQuery) use ($value) {
+                //開発
+                if ($search_values["programming_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
                         $subQuery->select(DB::raw(1))
-                            ->from('engineer_skill_servers')
-                            ->whereColumn('engineer_skill_servers.user_id', 'users.id')
-                            ->where('engineer_skill_servers.name', $value);
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->orWhere('profiles.programming_flag', true);
                     });
                 }
-            }
-            //ミドルウェア
-            if (!empty($search_values["used_middleware"])) {
-                foreach ($search_values["used_middleware"] as  $value) {
-                    $q->whereExists(function ($subQuery) use ($value) {
+                //単体テスト
+                if ($search_values["unit_test_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
                         $subQuery->select(DB::raw(1))
-                            ->from('engineer_skill_middleware')
-                            ->whereColumn('engineer_skill_middleware.user_id', 'users.id')
-                            ->where('engineer_skill_middleware.name', $value);
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->orWhere('profiles.unit_test_flag', true);
                     });
                 }
-            }
-            //仮想環境
-            if (!empty($search_values["used_virtual_environment"])) {
-                foreach ($search_values["used_virtual_environment"] as  $value) {
-                    $q->whereExists(function ($subQuery) use ($value) {
+                //結合テスト
+                if ($search_values["integration_test_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
                         $subQuery->select(DB::raw(1))
-                            ->from('engineer_skill_virtual_environments')
-                            ->whereColumn('engineer_skill_virtual_environments.user_id', 'users.id')
-                            ->where('engineer_skill_virtual_environments.name', $value);
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->orWhere('profiles.integration_test_flag', true);
                     });
                 }
-            }
-            //バージョン管理
-            if (!empty($search_values["used_version_management"])) {
-                foreach ($search_values["used_version_management"] as  $value) {
-                    $q->whereExists(function ($subQuery) use ($value) {
+                //総合テスト
+                if ($search_values["system_test_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
                         $subQuery->select(DB::raw(1))
-                            ->from('engineer_skill_version_management')
-                            ->whereColumn('engineer_skill_version_management.user_id', 'users.id')
-                            ->where('engineer_skill_version_management.name', $value);
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->orWhere('profiles.system_test_flag', true);
                     });
                 }
-            }
-        });
+                //運用テスト
+                if ($search_values["operation_test_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->orWhere('profiles.operation_test_flag', true);
+                    });
+                }
+                //システム移行
+                if ($search_values["system_migration_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->orWhere('profiles.system_migration_flag', true);
+                    });
+                }
+                //運用・保守
+                if ($search_values["operation_maintenance_flag"] ?? null) {
+                    $q->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('profiles')
+                            ->whereColumn('profiles.user_id', 'users.id')
+                            ->orWhere('profiles.operation_maintenance_flag', true);
+                    });
+                }
+
+                //言語
+                if (!empty($search_values["used_language"])) {
+                    foreach ($search_values["used_language"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_languages')
+                                ->whereColumn('engineer_skill_languages.user_id', 'users.id')
+                                ->orWhere('engineer_skill_languages.name', $value);
+                        });
+                    }
+                }
+                //フレームワーク
+                if (!empty($search_values["used_framework"])) {
+                    foreach ($search_values["used_framework"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_frameworks')
+                                ->whereColumn('engineer_skill_frameworks.user_id', 'users.id')
+                                ->orWhere('engineer_skill_frameworks.name', $value);
+                        });
+                    }
+                }
+                //DB
+                if (!empty($search_values["used_database"])) {
+                    foreach ($search_values["used_database"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_databases')
+                                ->whereColumn('engineer_skill_databases.user_id', 'users.id')
+                                ->orWhere('engineer_skill_databases.name', $value);
+                        });
+                    }
+                }
+                //OS
+                if (!empty($search_values["used_os"])) {
+                    foreach ($search_values["used_os"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_os')
+                                ->whereColumn('engineer_skill_os.user_id', 'users.id')
+                                ->orWhere('engineer_skill_os.name', $value);
+                        });
+                    }
+                }
+                //サーバー
+                if (!empty($search_values["used_server"])) {
+                    foreach ($search_values["used_server"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_servers')
+                                ->whereColumn('engineer_skill_servers.user_id', 'users.id')
+                                ->orWhere('engineer_skill_servers.name', $value);
+                        });
+                    }
+                }
+                //ミドルウェア
+                if (!empty($search_values["used_middleware"])) {
+                    foreach ($search_values["used_middleware"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_middleware')
+                                ->whereColumn('engineer_skill_middleware.user_id', 'users.id')
+                                ->orWhere('engineer_skill_middleware.name', $value);
+                        });
+                    }
+                }
+                //仮想環境
+                if (!empty($search_values["used_virtual_environment"])) {
+                    foreach ($search_values["used_virtual_environment"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_virtual_environments')
+                                ->whereColumn('engineer_skill_virtual_environments.user_id', 'users.id')
+                                ->orWhere('engineer_skill_virtual_environments.name', $value);
+                        });
+                    }
+                }
+                //バージョン管理
+                if (!empty($search_values["used_version_management"])) {
+                    foreach ($search_values["used_version_management"] as  $value) {
+                        $q->whereExists(function ($subQuery) use ($value) {
+                            $subQuery->select(DB::raw(1))
+                                ->from('engineer_skill_version_management')
+                                ->whereColumn('engineer_skill_version_management.user_id', 'users.id')
+                                ->orWhere('engineer_skill_version_management.name', $value);
+                        });
+                    }
+                }
+            });
+        }
 
         $users = $query->groupBy(
             'users.id',
@@ -360,6 +571,4 @@ class AdminSearchResultController extends Controller
 
         return view('admin.search_result', compact('users'));
     }
-
-
 }
