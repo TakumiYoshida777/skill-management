@@ -34,7 +34,8 @@
                     <td></td>
                     <td>
                         {{-- <a href="" type="button" class="btn btn-warning">詳細</a> --}}
-                        <a href="{{ route('user_skill_sheet',['id' => $data->id]) }}" type="button" class="btn btn-warning">詳細</a>
+                        <a href="{{ route('user_skill_sheet', ['id' => $data->id]) }}" type="button"
+                            class="btn btn-warning">詳細</a>
                     </td>
                     <td>{{ $data->last_name }}</td>
                     <td>{{ $data->first_name }}</td>
@@ -65,6 +66,8 @@
                 info: false,
                 lengthChange: false,
                 searching: false,
+
+  
 
 
                 "dom": '<"row"<"col-sm-6"l><"col-sm-6"f>>' +

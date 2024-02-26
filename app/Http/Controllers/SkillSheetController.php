@@ -15,6 +15,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use PDF;
 
 class SkillSheetController extends Controller
 {
@@ -108,7 +109,6 @@ class SkillSheetController extends Controller
      */
     public function index()
     {
-
         $user_id = Auth::user()->id;
         $skill_data = User::query()
             ->where('id', $user_id)
@@ -127,7 +127,7 @@ class SkillSheetController extends Controller
                 'language_proficiency',
             ])
             ->first();
-        // dd($skill_data);
+        // dd($skill_data->os);
         $skill_project_data = Project::query()
             ->where('user_id', $user_id)
             ->with([
@@ -146,61 +146,11 @@ class SkillSheetController extends Controller
 
         $user_age = $this->calculateAge($skill_data->profile->birthdate);
 
-        //言語のデータを取得
-        $engineerSkillLanguages = EngineerSkillLanguage::query()->where('user_id', $user_id)
-            ->orderBy('name')
-            ->get();
-
-        //フレームワークのデータを取得
-        $engineerSkillFrameworks = EngineerSkillFramework::query()->where('user_id', $user_id)
-            ->orderBy('name')
-            ->get();
-
-        //データベースのデータを取得
-        $engineerSkillDatabases = EngineerSkillDatabase::query()->where('user_id', $user_id)
-            ->orderBy('name')
-            ->get();
-
-        //ミドルウェアのデータを取得
-        $engineerSkillMiddlewares = EngineerSkillMiddleware::query()->where('user_id', $user_id)
-            ->orderBy('name')
-            ->get();
-
-        //OSのデータを取得
-        $engineerSkillOses = EngineerSkillOs::query()->where('user_id', $user_id)
-            ->orderBy('name')
-            ->get();
-
-        //サーバーのデータを取得
-        $engineerSkillServers = EngineerSkillServer::query()->where('user_id', $user_id)
-            ->orderBy('name')
-            ->get();
-
-        //仮想環境のデータを取得
-        $engineerSkillVirtualEnvironments = EngineerSkillVirtualEnvironment::query()->where('user_id', $user_id)
-            ->orderBy('name')
-            ->get();
-
-        //バージョン管理システムのデータを取得
-        $engineerSkillVersionManagement = EngineerSkillVersionManagement::query()->where('user_id', $user_id)
-            ->orderBy('name')
-            ->get();
-
-        $variablesToCompact = [
-            'engineerSkillLanguages',
-            'engineerSkillFrameworks',
-            'engineerSkillDatabases',
-            'engineerSkillMiddlewares',
-            'engineerSkillOses',
-            'engineerSkillServers',
-            'engineerSkillVirtualEnvironments',
-            'engineerSkillVersionManagement',
-        ];
-
-        return view('skill_sheet', compact('skill_data', 'user_age', 'initial_user_name', $variablesToCompact, 'skill_project_data'));
+        return view('skill_sheet', compact('skill_data', 'user_age', 'initial_user_name', 'skill_project_data'));
     }
 
-    public function user_skill_sheet($id) {
+    public function user_skill_sheet($id)
+    {
 
         $skill_data = User::query()
             ->where('id', $id)
@@ -238,58 +188,70 @@ class SkillSheetController extends Controller
 
         $user_age = $this->calculateAge($skill_data->profile->birthdate);
 
-        //言語のデータを取得
-        $engineerSkillLanguages = EngineerSkillLanguage::query()->where('user_id', $id)
-            ->orderBy('name')
-            ->get();
+        return view('skill_sheet', compact('skill_data', 'user_age', 'initial_user_name', 'skill_project_data'));
+    }
 
-        //フレームワークのデータを取得
-        $engineerSkillFrameworks = EngineerSkillFramework::query()->where('user_id', $id)
-            ->orderBy('name')
-            ->get();
 
-        //データベースのデータを取得
-        $engineerSkillDatabases = EngineerSkillDatabase::query()->where('user_id', $id)
-            ->orderBy('name')
-            ->get();
 
-        //ミドルウェアのデータを取得
-        $engineerSkillMiddlewares = EngineerSkillMiddleware::query()->where('user_id', $id)
-            ->orderBy('name')
-            ->get();
+    public function viewPdf(Request $request)
+    {
+        $data = $request->all();
+        //ここでviewに$dataを送っているけど、
+        //今回$dataはviewで使わない
+        // dd($data);
+        $pdf = PDF::loadView('pdf.document', $data);
 
-        //OSのデータを取得
-        $engineerSkillOses = EngineerSkillOs::query()->where('user_id', $id)
-            ->orderBy('name')
-            ->get();
+        return $pdf->stream('document.pdf'); //生成されるファイル名
+        // return $pdf->download('document.pdf'); //生成されるファイル名
+    }
 
-        //サーバーのデータを取得
-        $engineerSkillServers = EngineerSkillServer::query()->where('user_id', $id)
-            ->orderBy('name')
-            ->get();
+    public function dlPdf($id)
+    {
+        $skill_data = User::query()
+            ->where('id', $id)
+            ->with([
+                'profile',
+                'language',
+                'database',
+                'framework',
+                'middleware',
+                'os',
+                'server',
+                'virtual_environment',
+                'version_management',
+                'portfolio',
+                'qualification',
+                'language_proficiency',
+            ])
+            ->first();
 
-        //仮想環境のデータを取得
-        $engineerSkillVirtualEnvironments = EngineerSkillVirtualEnvironment::query()->where('user_id', $id)
-            ->orderBy('name')
+        $skill_project_data = Project::query()
+            ->where('user_id', $id)
+            ->with([
+                'middleware',
+                'language',
+                'database',
+                'framework',
+                'os',
+                'server',
+                'version_management',
+                'virtual_environment',
+            ])
+            ->orderByRaw('ISNULL(end_date) DESC, end_date DESC')
             ->get();
+        $initial_user_name = $this->create_initial($skill_data->first_name_kana,  $skill_data->last_name_kana);
 
-        //バージョン管理システムのデータを取得
-        $engineerSkillVersionManagement = EngineerSkillVersionManagement::query()->where('user_id', $id)
-            ->orderBy('name')
-            ->get();
+        $user_age = $this->calculateAge($skill_data->profile->birthdate);
 
-        $variablesToCompact = [
-            'engineerSkillLanguages',
-            'engineerSkillFrameworks',
-            'engineerSkillDatabases',
-            'engineerSkillMiddlewares',
-            'engineerSkillOses',
-            'engineerSkillServers',
-            'engineerSkillVirtualEnvironments',
-            'engineerSkillVersionManagement',
+        $data = [
+            "skill_data"=>$skill_data,
+            "skill_project_data"=>$skill_project_data,
+            "initial_user_name"=>$initial_user_name,
+            "user_age"=>$user_age,
         ];
-
-        return view('skill_sheet', compact('skill_data', 'user_age', 'initial_user_name', $variablesToCompact, 'skill_project_data'));
+        $pdf = PDF::loadView('pdf.document', $data);
+        return $pdf->stream('document.pdf'); //生成されるファイル名
+        // return $pdf->download('document.pdf'); //生成されるファイル名
     }
 
     /**
@@ -323,6 +285,6 @@ class SkillSheetController extends Controller
         $first = self::INITIAL_ALPHABET_TABLE[$user_first_name_initial];
         $last = self::INITIAL_ALPHABET_TABLE[$user_last_name_initial];
 
-        return $first . '・' . $last;
+        return $first . ' ' . $last;
     }
 }

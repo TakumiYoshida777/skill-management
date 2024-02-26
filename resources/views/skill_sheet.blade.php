@@ -19,7 +19,7 @@
 
 @section('content')
     <x-messages.flash_message />
-
+        <a href="{{ route('dlPdf',$skill_data->id) }}">PDF</a>
     {{-- プロフィール --}}
     <div class="sheet-section">
         {{-- 自己PR --}}
@@ -68,56 +68,56 @@
     <div class="sheet-section">
         <p class="h4">スキル</p>
         <div class="skill-card-container">
-            @if (!$engineerSkillLanguages->isEmpty())
+            @if (!$skill_data->language->isEmpty())
                 @php
                     $keyword = 'Language';
                 @endphp
-                <x-engineer_skill.skill_show_container :engineerSkills="$engineerSkillLanguages" :keyword="$keyword" :title="$keyword" />
+                <x-engineer_skill.skill_show_container :engineerSkills="$skill_data->language" :keyword="$keyword" :title="$keyword" />
             @endif
 
-            @if (!$engineerSkillFrameworks->isEmpty())
+            @if (!$skill_data->framework->isEmpty())
                 @php
                     $keyword = 'Framework';
                 @endphp
-                <x-engineer_skill.skill_show_container :engineerSkills="$engineerSkillFrameworks" :keyword="$keyword" :title="$keyword" />
+                <x-engineer_skill.skill_show_container :engineerSkills="$skill_data->framework" :keyword="$keyword" :title="$keyword" />
             @endif
 
-            @if (!$engineerSkillDatabases->isEmpty())
+            @if (!$skill_data->database->isEmpty())
                 @php
                     $keyword = 'Database';
                 @endphp
-                <x-engineer_skill.skill_show_container :engineerSkills="$engineerSkillDatabases" :keyword="$keyword" :title="$keyword" />
+                <x-engineer_skill.skill_show_container :engineerSkills="$skill_data->database" :keyword="$keyword" :title="$keyword" />
             @endif
 
-            @if (!$engineerSkillMiddlewares->isEmpty())
+            @if (!$skill_data->middleware->isEmpty())
                 @php
                     $keyword = 'Middleware';
                 @endphp
-                <x-engineer_skill.skill_show_container :engineerSkills="$engineerSkillMiddlewares" :keyword="$keyword" :title="$keyword" />
+                <x-engineer_skill.skill_show_container :engineerSkills="$skill_data->middleware" :keyword="$keyword" :title="$keyword" />
             @endif
-            @if (!$engineerSkillOses->isEmpty())
+            @if (!$skill_data->os->isEmpty())
                 @php
                     $keyword = 'OS';
                 @endphp
-                <x-engineer_skill.skill_show_container :engineerSkills="$engineerSkillOses" :keyword="$keyword" :title="$keyword" />
+                <x-engineer_skill.skill_show_container :engineerSkills="$skill_data->os" :keyword="$keyword" :title="$keyword" />
             @endif
-            @if (!$engineerSkillServers->isEmpty())
+            @if (!$skill_data->server->isEmpty())
                 @php
                     $keyword = 'Server';
                 @endphp
-                <x-engineer_skill.skill_show_container :engineerSkills="$engineerSkillServers" :keyword="$keyword" :title="$keyword" />
+                <x-engineer_skill.skill_show_container :engineerSkills="$skill_data->server" :keyword="$keyword" :title="$keyword" />
             @endif
-            @if (!$engineerSkillVirtualEnvironments->isEmpty())
+            @if (!$skill_data->virtual_environment->isEmpty())
                 @php
                     $keyword = 'VirtualEnvironment';
                 @endphp
-                <x-engineer_skill.skill_show_container :engineerSkills="$engineerSkillVirtualEnvironments" :keyword="$keyword" :title="$keyword" />
+                <x-engineer_skill.skill_show_container :engineerSkills="$skill_data->virtual_environment" :keyword="$keyword" :title="$keyword" />
             @endif
-            @if (!$engineerSkillVirtualEnvironments->isEmpty())
+            @if (!$skill_data->version_management->isEmpty())
                 @php
                     $keyword = 'engineerSkillVersionManagement';
                 @endphp
-                <x-engineer_skill.skill_show_container :engineerSkills="$engineerSkillVersionManagement" :keyword="$keyword" :title="$keyword" />
+                <x-engineer_skill.skill_show_container :engineerSkills="$skill_data->version_management" :keyword="$keyword" :title="$keyword" />
             @endif
 
         </div>
@@ -366,6 +366,9 @@
                 searching: false,
                 paging: false,
                 info: false,
+
+
+
                 "dom": '<"row"<"col-sm-6"l><"col-sm-6"f>>' +
                     '<"row"<"col-sm-6"i><"col-sm-6"p>>' +
                     '<"row"<"col-sm-12"tr>>',
@@ -416,13 +419,6 @@
         "use strict";
 
         $(document).ready(function() {
-            const userId = $("#user-id").val();
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
 
             const table = $('#language-proficiency-show-list').DataTable({
                 language: {

@@ -4,9 +4,11 @@ use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminRegisterController;
 use App\Http\Controllers\Admin\AdminSearchMemberController;
 use App\Http\Controllers\Admin\AdminSearchResultController;
+use App\Http\Controllers\CreatePdfSkillSheetController;
 use App\Http\Controllers\EngineerSkillController;
 use App\Http\Controllers\LanguageProficiencyController;
 use App\Http\Controllers\Owner\OwnerLoginController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\QualificationController;
@@ -34,7 +36,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/skill_sheet', [SkillSheetController::class, 'index'])->name('skill_sheet');
+// スキルシート
 Route::get('user_skill_sheet/{id}',[SkillSheetController::class,'user_skill_sheet'])->name('user_skill_sheet')->middleware('auth:admin');
+// Route::get('/pdf',[PdfController::class,'viewPdf'])->name('viewPdf');
+Route::post('/pdf',[SkillSheetController::class,'viewPdf'])->name('viewPdf');
+Route::get('/pdf/{id}',[SkillSheetController::class,'dlPdf'])->name('dlPdf');
 
 
 // プロフィール
@@ -66,7 +72,6 @@ Route::prefix('admin')->group(function () {
     // /search_memberへのアクセスに認証を要求
     Route::get('/search_member',[AdminSearchMemberController::class,'index'])->middleware('auth:admin');
     Route::get('/search_result',[AdminSearchResultController::class,'result'])->name('search_result')->middleware('auth:admin');
-    // Route::get('/search_result',[AdminSearchResultController::class,'or_serch_result'])->name('or_serch_result')->middleware('auth:admin');
 });
 
 // システムオーナー
