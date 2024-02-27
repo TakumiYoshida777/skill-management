@@ -60,6 +60,9 @@
             width: 70%;
         }
 
+        .white-space-pre-wrap {
+            white-space: pre-wrap;
+        }
 
         .category-accent {
             background-color: #ffff00;
@@ -104,7 +107,7 @@
 
 <body>
     <h2 class="sheet-title">スキルシート</h2>
-    <div class="date">作成日:2024/02/24</div>
+    <div class="date">{{ \Carbon\Carbon::now()->format('Y年m月d日') }}</div>
     <table border="1" class="pr-table">
         <tr>
             <th class="skill-left-head">ふりがな</th>
@@ -117,7 +120,7 @@
             <td>{{ $initial_user_name }}</td>
         </tr>
         <tr>
-            <th class="skill-left-head lg-height">自己PR</th>
+            <th class="skill-left-head lg-height white-space-pre-wrap">自己PR</th>
             <td colspan="4" class="category-accent">
                 {{ $skill_data->profile->pr }}ストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
             </td>
@@ -146,6 +149,9 @@
                             @if ($index < $item_length)
                                 <td class="skills-name">{{ $datas[$index]['name'] }}</td>
                                 <td class="skills-month">{{ $datas[$index]['experience_months'] }}ヵ月</td>
+                            @else
+                                <td class="skills-name"></td>
+                                <td class="skills-month"></td>
                             @endif
                         @endfor
                     </tr>
@@ -170,6 +176,9 @@
                             @if ($index < $item_length)
                                 <td class="skills-name">{{ $datas[$index]['name'] }}</td>
                                 <td class="skills-month">{{ $datas[$index]['experience_months'] }}ヵ月</td>
+                            @else
+                                <td class="skills-name"></td>
+                                <td class="skills-month"></td>
                             @endif
                         @endfor
                     </tr>
@@ -193,6 +202,9 @@
                             @if ($index < $item_length)
                                 <td class="skills-name">{{ $datas[$index]['name'] }}</td>
                                 <td class="skills-month">{{ $datas[$index]['experience_months'] }}ヵ月</td>
+                            @else
+                                <td class="skills-name"></td>
+                                <td class="skills-month"></td>
                             @endif
                         @endfor
                     </tr>
@@ -217,11 +229,15 @@
                             @if ($index < $item_length)
                                 <td class="skills-name">{{ $datas[$index]['name'] }}</td>
                                 <td class="skills-month">{{ $datas[$index]['experience_months'] }}ヵ月</td>
+                            @else
+                                <td class="skills-name"></td>
+                                <td class="skills-month"></td>
                             @endif
                         @endfor
                     </tr>
                 @endfor
             @endif
+        </tbody>
     </table>
 
 
@@ -382,7 +398,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td height="100" class="project-description">
+                    <td height="100" class="project-description white-space-pre-wrap">
                         {{ $data->description }}
                     </td>
                     <td>

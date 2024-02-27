@@ -1,3 +1,7 @@
+.white-space-pre-wrap {
+    white-space: pre-wrap;
+}
+
 .mx-1rem-container {
     margin-left: 1rem;
     margin-right: 1rem;
@@ -14,6 +18,7 @@
 .pc {
     display: inline-block;
 }
+
 .sp {
     display: none;
 }
@@ -109,11 +114,10 @@
 
 /* SE */
 @media screen and (max-width: 375px) {
+
     .grid-hitem,
     .grid-ritem {
         padding-left: 0.5rem;
         padding-right: 0.5rem;
     }
 }
-
-

@@ -19,13 +19,13 @@
 
 @section('content')
     <x-messages.flash_message />
-        <a href="{{ route('dlPdf',$skill_data->id) }}">PDF</a>
+        <a class="btn btn-primary mb-3" href="{{ route('dlPdf',$skill_data->id) }}">PDF</a>
     {{-- プロフィール --}}
     <div class="sheet-section">
         {{-- 自己PR --}}
         <div class="my-pr mx-3 mb-5">
             <div>
-                <div class="my-pr-wrap card ">
+                <div class="my-pr-wrap card">
                     <div class="flex-yx-center">
                         <div class="pr-head">
                             <div class="pr-title">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class="w-100 h-100 p-3 rounded" required>{{ $skill_data->profile->pr }}</div>
+                    <div class="w-100 h-100 p-3 rounded white-space-pre-wrap" required>{{ $skill_data->profile->pr }}</div>
                 </div>
             </div>
         </div>
@@ -239,7 +239,7 @@
                                 </td>
                                 <td>
                                     <div class="border-bottom">{{ $data->name }}</div>
-                                    <div>{{ $data->description }}</div>
+                                    <div class="white-space-pre-wrap">{{ $data->description }}</div>
                                 </td>
                                 <td>
                                     <div class="border-bottom">

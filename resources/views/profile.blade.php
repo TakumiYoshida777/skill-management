@@ -20,22 +20,7 @@
         {{-- 自己PR --}}
         <div class="my-pr mx-3 mb-5">
             <input type="hidden" value="{{ $profile->pr }}" id="prOriginalState">
-            <div class="my-pr-wrap card">
-                <div class="flex-yx-center">
-                    <div class="pr-head">
-                        <div class="pr-title">
-                            自己PR
-                        </div>
-                        <div class="flex-yx-center">
-                            <button type="button" id="quoteButton" class="btn btn-primary"
-                                onclick="quote(event)">元に戻す</button>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <textarea name="pr" id="prTextArea" cols="255" class="w-100 h-100 p-3 rounded" required>{{ $profile->pr }}</textarea>
-                </div>
-            </div>
+
             <div class="h-100">
                 <div class="table-row">
                     <div class="table-cell table-title">生年月日</div>
@@ -73,7 +58,22 @@
                     </div>
                 </div>
             </div>
-
+            <div class="my-pr-wrap card">
+                <div class="flex-yx-center">
+                    <div class="pr-head">
+                        <div class="pr-title">
+                            自己PR
+                        </div>
+                        <div class="flex-yx-center">
+                            <button type="button" id="quoteButton" class="btn btn-primary"
+                                onclick="quote(event)">元に戻す</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <textarea name="pr" id="prTextArea" cols="255" class="w-100 h-100 p-3 rounded" required>{{ $profile->pr }}</textarea>
+                </div>
+            </div>
         </div>
 
         {{-- 経験 --}}

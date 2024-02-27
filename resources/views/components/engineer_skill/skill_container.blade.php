@@ -4,7 +4,6 @@
             {{ $title }}
         </div>
         <div id="recordContainer">
-
             @foreach ($engineerSkills as $data)
                 <form action="{{ url('/skills', $data->id) }}" method="POST" class="record border-bottom py-2">
                     @csrf

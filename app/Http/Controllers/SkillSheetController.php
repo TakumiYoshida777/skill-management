@@ -75,7 +75,34 @@ class SkillSheetController extends Controller
         'ジャ' => 'J', 'ジュ' => 'J', 'ジョ' => 'J',
         'ビャ' => 'B', 'ビュ' => 'B', 'ビョ' => 'B',
         'ピャ' => 'P', 'ピュ' => 'P', 'ピョ' => 'P',
+        'ｱ' => 'A', 'ｲ' => 'I', 'ｳ' => 'U', 'ｴ' => 'E', 'ｵ' => 'O',
+        'ｶ' => 'K', 'ｷ' => 'K', 'ｸ' => 'K', 'ｹ' => 'K', 'ｺ' => 'K',
+        'ｻ' => 'S', 'ｼ' => 'S', 'ｽ' => 'S', 'ｾ' => 'S', 'ｿ' => 'S',
+        'ﾀ' => 'T', 'ﾁ' => 'C', 'ﾂ' => 'TS', 'ﾃ' => 'T', 'ﾄ' => 'T',
+        'ﾅ' => 'N', 'ﾆ' => 'N', 'ﾇ' => 'N', 'ﾈ' => 'N', 'ﾉ' => 'N',
+        'ﾊ' => 'H', 'ﾋ' => 'H', 'ﾌ' => 'H', 'ﾍ' => 'H', 'ﾎ' => 'H',
+        'ﾏ' => 'M', 'ﾐ' => 'M', 'ﾑ' => 'M', 'ﾒ' => 'M', 'ﾓ' => 'M',
+        'ﾔ' => 'Y', 'ﾕ' => 'Y', 'ﾖ' => 'Y',
+        'ﾗ' => 'R', 'ﾘ' => 'R', 'ﾙ' => 'R', 'ﾚ' => 'R', 'ﾛ' => 'R',
+        'ﾜ' => 'W', 'ｲ' => 'I', 'ｴ' => 'E', 'ｦ' => 'O',
+        'ｶﾞ' => 'G', 'ｷﾞ' => 'G', 'ｸﾞ' => 'G', 'ｹﾞ' => 'G', 'ｺﾞ' => 'G',
+        'ｻﾞ' => 'Z', 'ｼﾞ' => 'J', 'ｽﾞ' => 'Z', 'ｾﾞ' => 'Z', 'ｿﾞ' => 'Z',
+        'ﾀﾞ' => 'D', 'ﾁﾞ' => 'J', 'ﾂﾞ' => 'Z', 'ﾃﾞ' => 'D', 'ﾄﾞ' => 'D',
+        'ﾊﾞ' => 'B', 'ﾋﾞ' => 'B', 'ﾌﾞ' => 'B', 'ﾍﾞ' => 'B', 'ﾎﾞ' => 'B',
+        'ﾊﾟ' => 'P', 'ﾋﾟ' => 'P', 'ﾌﾟ' => 'P', 'ﾍﾟ' => 'P', 'ﾎﾟ' => 'P',
+        'ｷｬ' => 'K', 'ｷｭ' => 'K', 'ｷｮ' => 'K',
+        'ｼｬ' => 'S', 'ｼｭ' => 'S', 'ｼｮ' => 'S',
+        'ﾁｬ' => 'C', 'ﾁｭ' => 'C', 'ﾁｮ' => 'C',
+        'ﾆｬ' => 'N', 'ﾆｭ' => 'N', 'ﾆｮ' => 'N',
+        'ﾋｬ' => 'H', 'ﾋｭ' => 'H', 'ﾋｮ' => 'H',
+        'ﾐｬ' => 'M', 'ﾐｭ' => 'M', 'ﾐｮ' => 'M',
+        'ﾘｬ' => 'R', 'ﾘｭ' => 'R', 'ﾘｮ' => 'R',
+        'ｷﾞｬ' => 'G', 'ｷﾞｭ' => 'G', 'ｷﾞｮ' => 'G',
+        'ｼﾞｬ' => 'J', 'ｼﾞｭ' => 'J', 'ｼﾞｮ' => 'J',
+        'ﾋﾞｬ' => 'B', 'ﾋﾞｭ' => 'B', 'ﾋﾞｮ' => 'B',
+        'ﾋﾟｬ' => 'P', 'ﾋﾟｭ' => 'P', 'ﾋﾟｮ' => 'P',
     ];
+
 
     public const ASSIGNED_PROCESS = [
         'requirement_definition_flag' => '要件定義',
@@ -244,10 +271,10 @@ class SkillSheetController extends Controller
         $user_age = $this->calculateAge($skill_data->profile->birthdate);
 
         $data = [
-            "skill_data"=>$skill_data,
-            "skill_project_data"=>$skill_project_data,
-            "initial_user_name"=>$initial_user_name,
-            "user_age"=>$user_age,
+            "skill_data" => $skill_data,
+            "skill_project_data" => $skill_project_data,
+            "initial_user_name" => $initial_user_name,
+            "user_age" => $user_age,
         ];
         $pdf = PDF::loadView('pdf.document', $data);
         return $pdf->stream('document.pdf'); //生成されるファイル名
@@ -268,12 +295,16 @@ class SkillSheetController extends Controller
         return $age;
     }
 
-
+    //ローマ字を判定する
+    function isRomaji($string)
+    {
+        return preg_match('/^[a-zA-Z]+$/', $string);
+    }
 
     /**
      * 名前のイニシャルをローマ字で作成
      *
-     * @param [type] $first_name　名（ひらがなorカタカナ）
+     * @param [type] $first_name　名（ひらがなorカタカナorローマ字全角orローマ字半角）
      * @param [type] $last_name　氏（ひらがなorカタカナ）
      * @return void
      */
@@ -281,9 +312,17 @@ class SkillSheetController extends Controller
     {
         $user_first_name_initial = mb_substr($first_name, 0, 1);
         $user_last_name_initial = mb_substr($last_name, 0, 1);
+        if ($this->isRomaji($first_name) && $this->isRomaji($first_name)) {
+            $first = strtoupper($user_first_name_initial);
+            $last = strtoupper($user_last_name_initial);
+        } elseif (self::INITIAL_ALPHABET_TABLE[$user_first_name_initial] && self::INITIAL_ALPHABET_TABLE[$user_last_name_initial]) {
+            $first = self::INITIAL_ALPHABET_TABLE[$user_first_name_initial];
+            $last = self::INITIAL_ALPHABET_TABLE[$user_last_name_initial];
+        } else {
+            $first = "";
+            $last = "";
+        }
 
-        $first = self::INITIAL_ALPHABET_TABLE[$user_first_name_initial];
-        $last = self::INITIAL_ALPHABET_TABLE[$user_last_name_initial];
 
         return $first . ' ' . $last;
     }
