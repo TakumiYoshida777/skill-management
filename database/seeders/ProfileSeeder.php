@@ -42,5 +42,14 @@ class ProfileSeeder extends Seeder
             'birthdate' => '1995-12-31',
             'pr' => '人事業務を通じて、社員の成長を支援しています。'
         ]);
+        DB::table('profiles')->insert([
+            'user_id' => 4,
+            'division' => null,
+            'position' => '一般',
+            'section' => null,
+            'industry_experience' =>null,
+            'birthdate' => null,
+            'pr' => null
+        ]);
     }
 }
