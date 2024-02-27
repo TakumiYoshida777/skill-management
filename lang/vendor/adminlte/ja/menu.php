@@ -26,8 +26,10 @@ return [
     'portfolio'                             => 'ポートフォリオ',
     'inexperienced_skills'                  => '実務未経験スキル',
     'admin'                                 => '管理者用',
-    'admin_dashboard'                       => '管理者TOP',
-    'admin_search_member'                   => '検索',
+    'admin_dashboard'                       => '管理者ホーム',
+    'admin_search_member'                   => 'ユーザー検索',
     'admin_add_predictive_data'             => '予測データ追加',
+    'owner_dashboard'                       => 'システム管理者ホーム',
     'owner_grant_permissions'               => '権限付与',
+    'owner_add_admin'                       => '管理者登録',
 ];
