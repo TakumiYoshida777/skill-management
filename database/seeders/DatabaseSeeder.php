@@ -27,7 +27,6 @@ class DatabaseSeeder extends Seeder
             MstVirtualEnvironmentSeeder::class,
             ProjectSeeder::class,
             AdminSeeder::class,
-            OwnerSeeder::class,
             EngineerSkillLanguageSeeder::class,
             EngineerSkillFrameworkSeeder::class,
             EngineerSkillDatabaseSeeder::class,

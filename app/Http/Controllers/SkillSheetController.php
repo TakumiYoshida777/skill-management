@@ -19,6 +19,20 @@ use PDF;
 
 class SkillSheetController extends Controller
 {
+
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //ログインされていなければアクセス拒否
+        $this->middleware('auth');
+    }
+
+
     /**
      * 頭文字定数
      */
@@ -118,16 +132,6 @@ class SkillSheetController extends Controller
         'operation_maintenance_flag' => '運用・保守'
     ];
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //ログインされていなければアクセス拒否
-        $this->middleware('auth');
-    }
 
     /**
      * スキルシート初期表示

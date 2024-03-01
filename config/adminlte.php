@@ -383,12 +383,12 @@ return [
         //     'url'  => 'admin_add_predictive_data',
         //     'icon' => 'fas fa-list-alt',
         // ],
-        [
-            'key'  =>  'owner_dashboard_owner_only',
-            'text' => 'owner_dashboard',
-            'url'  => 'owner/home',
-            'icon' => 'fas fa-user-shield',
-        ],
+        // [
+        //     'key'  =>  'owner_dashboard_owner_only',
+        //     'text' => 'owner_dashboard',
+        //     'url'  => 'owner/home',
+        //     'icon' => 'fas fa-user-shield',
+        // ],
         // [
         //     'key'  => 'owner_grant_permissions_owner_only',
         //     'text' => 'owner_grant_permissions',

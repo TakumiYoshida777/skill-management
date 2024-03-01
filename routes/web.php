@@ -74,12 +74,4 @@ Route::prefix('admin')->group(function () {
     Route::get('/search_result',[AdminSearchResultController::class,'result'])->name('search_result')->middleware('auth:admin');
 });
 
-// システムオーナー
-Route::prefix('owner')->group(function () {
-    Route::view('/login', 'owner/login');
-    Route::post('/login', [OwnerLoginController::class, 'login']);
-    Route::post('/logout', [OwnerLoginController::class,'logout']);
-    Route::view('/register', 'owner/register');
-    // Route::post('/register', [App\Http\Controllers\admin\RegisterController::class, 'register']);
-    Route::view('/home', 'owner/home')->middleware('auth:owner');
-});
+
