@@ -23,6 +23,13 @@
 
             <div class="h-100">
                 <div class="table-row">
+                    <div class="table-cell table-title">氏名</div>
+                    <div class="table-cell">
+                        {{ $user->last_name }}
+                        {{ $user->first_name }}
+                    </div>
+                </div>
+                <div class="table-row">
                     <div class="table-cell table-title">生年月日</div>
                     <div class="table-cell">
                         <input type="date" name="birthdate" class="form-control"

@@ -110,19 +110,22 @@
     <div class="date">{{ \Carbon\Carbon::now()->format('Y年m月d日') }}</div>
     <table border="1" class="pr-table">
         <tr>
-            <th class="skill-left-head">ふりがな</th>
-            <td class="">sdfsdfsdf</td>
+            <th class="skill-left-head">フリガナ</th>
+            <td class="">{{ $skill_data->last_name_kana }}&nbsp;{{ $skill_data->first_name_kana }}</td>
             <th rowspan="2" class="age-head">年齢</th>
             <td rowspan="2">{{ $user_age }}</td>
         </tr>
         <tr>
-            <th class="skill-left-head md-height">イニシャル</th>
-            <td>{{ $initial_user_name }}</td>
+            <th class="skill-left-head md-height">氏名</th>
+            <td class="">{{ $skill_data->last_name }}&nbsp;{{ $skill_data->first_name }}</td>
+
+            {{-- <th class="skill-left-head md-height">イニシャル</th>
+            <td>{{ $initial_user_name }}</td> --}}
         </tr>
         <tr>
             <th class="skill-left-head lg-height white-space-pre-wrap">自己PR</th>
             <td colspan="4" class="category-accent">
-                {{ $skill_data->profile->pr }}ストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                {{ $skill_data->profile->pr }}
             </td>
         </tr>
     </table>

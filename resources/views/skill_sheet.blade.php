@@ -19,7 +19,8 @@
 
 @section('content')
     <x-messages.flash_message />
-        <a class="btn btn-primary mb-3" href="{{ route('dlPdf',$skill_data->id) }}">PDF</a>
+
+    <a class="btn btn-primary mb-3" href="{{ route('dlPdf', $skill_data->id) }}">PDF</a>
     {{-- プロフィール --}}
     <div class="sheet-section">
         {{-- 自己PR --}}
@@ -29,12 +30,17 @@
                     <div class="flex-yx-center">
                         <div class="pr-head">
                             <div class="pr-title">
-                                イニシャル
+                                氏名
                             </div>
+                            {{-- <div class="pr-title">
+                                イニシャル
+                            </div> --}}
                         </div>
                     </div>
                     <div>
-                        <div class="w-100 h-100 p-3 text-center rounded" required>{{ $initial_user_name }}</div>
+                        <div class="w-100 h-100 p-3 text-center rounded">
+                            {{ $skill_data->last_name }}&nbsp;{{ $skill_data->first_name }}</div>
+                        {{-- <div class="w-100 h-100 p-3 text-center rounded" required>{{ $initial_user_name }}</div> --}}
                     </div>
                 </div>
                 <div class="my-pr-wrap card ">
@@ -64,9 +70,9 @@
             </div>
         </div>
     </div>
-    {{-- スキル --}}
+    {{-- 技術体験 --}}
     <div class="sheet-section">
-        <p class="h4">スキル</p>
+        <p class="h4">技術体験</p>
         <div class="skill-card-container">
             @if (!$skill_data->language->isEmpty())
                 @php
@@ -123,9 +129,9 @@
         </div>
     </div>
     {{-- 資格 --}}
-    @if (!$skill_data->qualification->isEmpty())
-        <div class="sheet-section">
-            <p class="h4">資格</p>
+    <div class="sheet-section">
+        <p class="h4">資格</p>
+        @if (!$skill_data->qualification->isEmpty())
             <table id="qualification-show-list" class="display table table-striped responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
@@ -150,12 +156,12 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
-    @endif
+        @endif
+    </div>
     {{-- 語学力 --}}
-    @if (!$skill_data->language_proficiency->isEmpty())
-        <div class="sheet-section">
-            <p class="h4">語学力</p>
+    <div class="sheet-section">
+        <p class="h4">語学力</p>
+        @if (!$skill_data->language_proficiency->isEmpty())
             <table id="language-proficiency-show-list" class="display table table-striped responsive nowrap"
                 style="width:100%">
                 <thead>
@@ -187,12 +193,12 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
-    @endif
+        @endif
+    </div>
     {{-- 職務経歴 --}}
-    @if (!$skill_project_data->isEmpty())
-        <div class="sheet-section">
-            <p class="h4">職務経歴</p>
+    <div class="sheet-section">
+        <p class="h4">職務経歴</p>
+        @if (!$skill_project_data->isEmpty())
 
             <div class="table-container">
                 <table id="project-show-list" class="display table table-striped responsive nowrap" style="width:100%">
@@ -334,9 +340,8 @@
                     </tbody>
                 </table>
             </div>
-
-        </div>
-    @endif
+        @endif
+    </div>
 
 @stop
 
