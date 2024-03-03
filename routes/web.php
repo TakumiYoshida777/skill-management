@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminRegisterController;
 use App\Http\Controllers\Admin\AdminSearchMemberController;
 use App\Http\Controllers\Admin\AdminSearchResultController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CreatePdfSkillSheetController;
 use App\Http\Controllers\EngineerSkillController;
 use App\Http\Controllers\LanguageProficiencyController;
@@ -66,8 +67,11 @@ Route::prefix('admin')->group(function () {
     Route::view('/login', 'admin/login');
     Route::post('/login', [AdminLoginController::class, 'login']);
     Route::post('/logout', [AdminLoginController::class,'logout']);
-    Route::view('/register', 'admin/register');
-    Route::post('/register', [AdminRegisterController::class, 'register']);
+    // Route::view('/register', 'admin/register');
+    // Route::post('/register', [AdminRegisterController::class, 'register']);
+
+    Route::get('register', [RegisterController::class, 'showAdminRegistrationForm'])->name('admin.register');
+    Route::post('register', [RegisterController::class, 'registerAdmin']);
     Route::view('/home', 'admin/home')->middleware('auth:admin');
     // /search_memberへのアクセスに認証を要求
     Route::get('/search_member',[AdminSearchMemberController::class,'index'])->middleware('auth:admin');

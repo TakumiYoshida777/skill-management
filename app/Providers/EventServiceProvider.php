@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Admin;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -28,26 +29,31 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Event::listen(BuildingMenu::class, function (BuildingMenu $event) {
+
+
+            $user = Auth::user();
+            $role_name = $user->role->name ?? null;
+            // dump($user->id);
+            // dump($user->role->name);
+
             //システムオーナーのみ表示
-            // if (Auth::guard()->name != "owner"){
-            //     $event->menu->remove('owner_grant_permissions_owner_only');
-            //     $event->menu->remove('owner_dashboard_owner_only');
-            //     $event->menu->remove('owner_add_admin_owner_only');
-            // }
+            if ($role_name != "owner") {
+                $event->menu->remove('owner_add_admin_owner_only');
+            }
+
             //管理者のみ表示
-            if (Auth::guard()->name != "admin"){
+            if (Auth::guard()->name != "admin") {
                 $event->menu->remove('admin_dashboard_admin_only');
                 $event->menu->remove('admin_search_member_admin_only');
                 $event->menu->remove('owner_grant_permissions_owner_only');
                 $event->menu->remove('owner_add_admin_owner_only');
             }
             //ユーザー以外表示
-            if (Auth::guard()->name =="web"){
+            if (Auth::guard()->name == "web") {
                 $event->menu->remove('admin_add_predictive_data_admin_only');
-
             }
             //ユーザーのみ表示
-            if (Auth::guard()->name !="web"){
+            if (Auth::guard()->name != "web") {
                 $event->menu->remove('edit_user_only');
                 $event->menu->remove('profile_user_only');
                 $event->menu->remove('user_skill_sheet');

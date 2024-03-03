@@ -19,7 +19,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/skill_sheet';
     public const ADMIN = 'admin/home';
-    public const OWNER = 'owner/home';
 
     /**
      * ルートモデルのバインディング、パターンフィルタ、その他のルート構成を定義します。

@@ -53,4 +53,5 @@ class AdminLoginController extends Controller
         $this->performLogout($request);                     //追記
         return redirect('admin/login');                     //追記
     }
+    
 }

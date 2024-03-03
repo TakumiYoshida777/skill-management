@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Ramsey\Uuid\Type\Integer;
 
 class AdminRegisterController extends Controller
 {
@@ -68,21 +69,21 @@ class AdminRegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\Models\User
+     * @return \App\Models\Admin
      */
     protected function create(array $data)
     {
-
-       $user = Admin::create([
+        $user = Admin::create([
             'first_name' => $data['first_name'],
+            'first_name_kana' => $data['first_name_kana'],
             'last_name' => $data['last_name'],
+            'last_name_kana' => $data['last_name_kana'],
+            'role_id' => $data['role_id'] ?? 1, // 正しい値を取得し、デフォルト値を設定
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        Profile::create([
-            'user_id' => $user->id,
-        ]);
-
         return $user;
     }
+
+
 }

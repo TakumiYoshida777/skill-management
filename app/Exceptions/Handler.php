@@ -41,9 +41,6 @@ class Handler extends ExceptionHandler
         if ($request->expectsJson()) {
             return response()->json(['message' => $exception->getMessage()], 401);
         }
-        if ($request->is('owner') || $request->is('owner/*')) {
-            return redirect()->guest('/owner/login');
-        }
         if ($request->is('admin') || $request->is('admin/*')) {
             return redirect()->guest('/admin/login');
         }

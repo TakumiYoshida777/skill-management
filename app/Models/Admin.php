@@ -14,13 +14,22 @@ class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasUuids ;
 
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
      /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'first_name_kana',
+        'last_name',
+        'last_name_kana',
+        'role_id',
         'email',
         'password',
     ];

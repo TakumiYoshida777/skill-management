@@ -4,12 +4,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Authentication Defaults
+    | 認証デフォルト
     |--------------------------------------------------------------------------
     |
-    | This option controls the default authentication "guard" and password
-    | reset options for your application. You may change these defaults
-    | as required, but they're a perfect start for most applications.
+    | このオプションは、アプリケーションのデフォルトの認証「ガード」とパスワード
+    | リセットオプションを制御します。必要に応じてこれらのデフォルトを変更できます
+    | が、ほとんどのアプリケーションには最適な開始点です。
     |
     */
 
@@ -20,18 +20,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Authentication Guards
+    | 認証ガード
     |--------------------------------------------------------------------------
     |
-    | Next, you may define every authentication guard for your application.
-    | Of course, a great default configuration has been defined for you
-    | here which uses session storage and the Eloquent user provider.
+    | 次に、アプリケーションの各認証ガードを定義できます。
+    | もちろん、ここにはセッションストレージとEloquentユーザープロバイダーを使用する
+    | 素晴らしいデフォルト構成が定義されています。
     |
-    | All authentication drivers have a user provider. This defines how the
-    | users are actually retrieved out of your database or other storage
-    | mechanisms used by this application to persist your user's data.
+    | すべての認証ドライバーにはユーザープロバイダーがあります。これにより、
+    | ユーザーが実際にデータベースやその他のストレージから取得される方法が定義されます
+    | このアプリケーションでユーザーのデータを永続化するために使用されるメカニズム。
     |
-    | Supported: "session"
+    | サポートされている: "session"
     |
     */
 
@@ -44,26 +44,24 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        'owner' => [
-            'driver' => 'session',
-            'provider' => 'owners',
-        ],
+        // 'owner' => [
+        //     'driver' => 'session',
+        //     'provider' => 'owners',
+        // ],
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | User Providers
+    | ユーザープロバイダー
     |--------------------------------------------------------------------------
     |
-    | All authentication drivers have a user provider. This defines how the
-    | users are actually retrieved out of your database or other storage
-    | mechanisms used by this application to persist your user's data.
+    | すべての認証ドライバーにはユーザープロバイダーがあります。これにより、
+    | ユーザーが実際にデータベースやその他のストレージから取得される方法が定義されます。
     |
-    | If you have multiple user tables or models you may configure multiple
-    | sources which represent each model / table. These sources may then
-    | be assigned to any extra authentication guards you have defined.
+    | 複数のユーザーテーブルやモデルがある場合は、複数の構成を行うことができます
+    | 各モデル/テーブルを表すソース。これらのソースは、定義した追加の認証ガードに割り当てることができます。
     |
-    | Supported: "database", "eloquent"
+    | サポートされている: "database", "eloquent"
     |
     */
     'providers' => [
@@ -77,28 +75,27 @@ return [
             'model' => App\Models\Admin::class,
 
         ],
-        'owners' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Owner::class,
-        ],
+        // 'owners' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Owner::class,
+        // ],
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Resetting Passwords
+    | パスワードリセット
     |--------------------------------------------------------------------------
     |
-    | You may specify multiple password reset configurations if you have more
-    | than one user table or model in the application and you want to have
-    | separate password reset settings based on the specific user types.
+    | アプリケーションに複数のユーザーテーブルやモデルがある場合、複数の
+    | 特定のユーザータイプに基づいた別々のパスワードリセット設定を持ちたい場合があります。
     |
-    | The expiry time is the number of minutes that each reset token will be
-    | considered valid. This security feature keeps tokens short-lived so
-    | they have less time to be guessed. You may change this as needed.
+    | 有効期限は、各リセットトークンが考慮される分数です
+    | 有効です。このセキュリティ機能により、トークンは短命に保たれるため
+    | 推測される時間が少なくなります。必要に応じてこれを変更できます。
     |
-    | The throttle setting is the number of seconds a user must wait before
-    | generating more password reset tokens. This prevents the user from
-    | quickly generating a very large amount of password reset tokens.
+    | スロットル設定は、ユーザーが待機する必要がある秒数です
+    | より多くのパスワードリセットトークンを生成します。これにより、ユーザーが
+    | 非常に多くのパスワードリセットトークンを迅速に生成するのを防ぎます。
     |
     */
 
@@ -115,22 +112,21 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'owners' => [
-            'provider' => 'owners',
-            'table' => 'owner_password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
+        // 'owners' => [
+        //     'provider' => 'owners',
+        //     'table' => 'owner_password_resets',
+        //     'expire' => 60,
+        //     'throttle' => 60,
+        // ],
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Password Confirmation Timeout
+    | パスワード確認タイムアウト
     |--------------------------------------------------------------------------
     |
-    | Here you may define the amount of seconds before a password confirmation
-    | times out and the user is prompted to re-enter their password via the
-    | confirmation screen. By default, the timeout lasts for three hours.
+    | ここでは、パスワード確認がタイムアウトし、ユーザーが
+    | 確認画面を介してパスワードを再入力するまでの秒数を定義できます。デフォルトでは、タイムアウトは3時間です。
     |
     */
 
