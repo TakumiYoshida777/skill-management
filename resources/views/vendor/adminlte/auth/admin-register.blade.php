@@ -14,10 +14,7 @@
 @section('auth_header', __('adminlte::adminlte.register_message'))
 
 @section('auth_body')
-@dump( $register_url)
-@dump(config('adminlte.admin_register_url', 'register'))
-    {{-- <form action="{{ $register_url }}" method="post"> --}}
-    <form action="{{ url('/admin/register') }}" method="post">
+    <form action="{{ $register_url }}" method="post">
         @csrf
         {{-- LastName field --}}
         <div class="input-group mb-3">
@@ -75,7 +72,8 @@
 
         <div class="input-group mb-3">
             <input type="text" name="first_name_kana" class="form-control @error('first_name_kana') is-invalid @enderror"
-                value="{{ old('first_name_kana') }}" placeholder="{{ __('adminlte::adminlte.first_name_kana') }}" autofocus>
+                value="{{ old('first_name_kana') }}" placeholder="{{ __('adminlte::adminlte.first_name_kana') }}"
+                autofocus>
 
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -157,7 +155,7 @@
 
 @section('auth_footer')
     <p class="my-0">
-        <a href="{{ url('admin/home') }}" class="btn btn-warning">
+        <a href="{{ url('admin/home') }}" class="btn btn-secondary">
             戻る
         </a>
     </p>

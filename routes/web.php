@@ -14,8 +14,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\SkillSheetController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +66,10 @@ Route::resource('/project',ProjectController::class)->middleware('auth');
 
 //管理者
 Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
     Route::view('/login', 'admin/login');
     Route::post('/login', [AdminLoginController::class, 'login']);
     Route::post('/logout', [AdminLoginController::class,'logout']);

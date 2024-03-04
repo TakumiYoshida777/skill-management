@@ -14,8 +14,6 @@
 @section('auth_header', __('adminlte::adminlte.register_message'))
 
 @section('auth_body')
-@dump( $register_url)
-
     <form action="{{ $register_url }}" method="post">
         @csrf
         {{-- LastName field --}}
