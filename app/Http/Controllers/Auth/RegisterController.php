@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Admin;
 use App\Models\Admin as ModelsAdmin;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -129,13 +130,18 @@ class RegisterController extends Controller
     {
         $this->adminValidator($request->all())->validate();
 
-        $admin = $this->createAdmin($request->all());
+        $this->adminValidator($request->all())->validate();
 
-        event(new Registered($admin));
+        event(new Registered($user = $this->createAdmin($request->all())));
 
-        $this->guard()->login($admin);
+        $this->guard()->login($user);
 
-        return $this->registered($request, $admin)
-            ?: redirect($this->redirectPath());
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath());
     }
 }

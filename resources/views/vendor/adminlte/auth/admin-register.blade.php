@@ -157,8 +157,8 @@
 
 @section('auth_footer')
     <p class="my-0">
-        <a href="{{ $login_url }}">
-            {{ __('adminlte::adminlte.i_already_have_a_membership') }}
+        <a href="{{ url('admin/home') }}" class="btn btn-warning">
+            戻る
         </a>
     </p>
 @stop
