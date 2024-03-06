@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SkillManagement')
+@section('title', 'SkillSheetCreator')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/custom/project_create.css') }}">
@@ -67,7 +67,7 @@
                 lengthChange: false,
                 searching: false,
 
-  
+
 
 
                 "dom": '<"row"<"col-sm-6"l><"col-sm-6"f>>' +
