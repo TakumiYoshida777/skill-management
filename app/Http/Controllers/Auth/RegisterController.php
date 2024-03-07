@@ -96,7 +96,7 @@ class RegisterController extends Controller
             'first_name_kana' => ['required', 'string', 'max:255', 'custom_kana'],
             'last_name' => ['required', 'string', 'max:255'],
             'last_name_kana' => ['required', 'string', 'max:255', 'custom_kana'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }

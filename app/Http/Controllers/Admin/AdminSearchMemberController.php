@@ -33,7 +33,9 @@ class AdminSearchMemberController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * オートコンプリート用のデータを返す
+     *
+     * @return void
      */
     public function index()
     {
@@ -58,7 +60,6 @@ class AdminSearchMemberController extends Controller
         ];
         return view('admin.search_member', compact($variablesToCompact));
     }
-
 
     /**
      * Show the form for creating a new resource.

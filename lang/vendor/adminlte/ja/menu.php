@@ -30,6 +30,6 @@ return [
     'admin_search_member'                   => 'ユーザー検索',
     'admin_add_predictive_data'             => '予測データ追加',
     'owner_dashboard'                       => 'システム管理者ホーム',
-    'owner_grant_permissions'               => '権限付与',
+    'grant_permissions'                     => '権限付与',
     'owner_add_admin'                       => '管理者登録',
 ];

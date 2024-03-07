@@ -24,7 +24,7 @@ class RequestProfile extends FormRequest
     public function rules(): array
     {
         return [
-            'pr' => 'required|max:600',
+            'pr' => 'required|string|max:590',
             'birthdate' => 'date|required',
             'division' => 'required|max:50',
             'position' => 'required|max:50',

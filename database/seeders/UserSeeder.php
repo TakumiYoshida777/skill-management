@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
         ->insert([
             [
                 'id' => '1',
+                'role_id' => 1,
                 'first_name' => '太郎',
                 'first_name_kana' => 'タロウ',
                 'last_name' => 'テスト',
@@ -31,6 +32,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => '2',
+                'role_id' => 1,
                 'first_name' => '健太',
                 'first_name_kana' => 'ケンタ',
                 'last_name' => '佐藤',
@@ -44,6 +46,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => '3',
+                'role_id' => 2,
                 'first_name' => '美咲',
                 'first_name_kana' => 'ミサ',
                 'last_name' => '鈴木',
@@ -57,6 +60,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => '4',
+                'role_id' => 3,
                 'first_name' => '巧',
                 'first_name_kana' => 'タクミ',
                 'last_name' => '吉田',

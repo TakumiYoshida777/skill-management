@@ -14,6 +14,11 @@ class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasUuids ;
 
+    /**
+     * ロール情報の取得
+     *
+     * @return void
+     */
     public function role()
     {
         return $this->belongsTo(Role::class);

@@ -21,8 +21,8 @@ class AdminLoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers {                                //追記
-        logout as performLogout;                            //追記
+    use AuthenticatesUsers {
+        logout as performLogout;
     }
 
     /**
@@ -42,16 +42,14 @@ class AdminLoginController extends Controller
         $this->middleware('guest:admin')->except('logout');
     }
 
-    protected function guard()                              //追記
-    {                                                       //追記
-        return Auth::guard('admin');                        //追記
-    }                                                       //追記
-
-
-    public function logout(Request $request)                //追記
-    {                                                       //追記
-        $this->performLogout($request);                     //追記
-        return redirect('admin/login');                     //追記
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
-    
+
+    public function admin_logout(Request $request)
+    {
+        $this->performLogout($request);
+        return redirect('admin/login');
+    }
 }

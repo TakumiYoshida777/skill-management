@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'SkillSheetCreator',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -255,9 +255,9 @@ return [
     'use_route_url' => false,
     'dashboard_url' => 'home',
     'logout_url' => 'logout',
+    'admin_logout_url' => 'admin/logout',
     'login_url' => 'login',
     'admin_login_url' => 'admin/login',
-    'owner_login_url' => 'owner/login',
     'register_url' => 'register',
     'admin_register_url' => 'admin/register',
     'password_reset_url' => 'password/reset',
@@ -309,6 +309,43 @@ return [
         ],
 
         // Sidebar items:
+
+        [
+            'key'  =>  'admin_dashboard_admin',
+            'text' => 'admin_dashboard',
+            'url'  => 'admin/home',
+            'icon' => 'fas fa-user-shield',
+        ],
+        [
+            'key'  =>  'admin_search_member_admin',
+            'text' => 'admin_search_member',
+            'url'  => 'admin/search_member',
+            'icon' => 'fas fa-search',
+        ],
+        // [
+        //     'key'  =>  'admin_add_predictive_data_admin',
+        //     'text' => 'admin_add_predictive_data',
+        //     'url'  => 'admin_add_predictive_data',
+        //     'icon' => 'fas fa-list-alt',
+        // ],
+        // [
+        //     'key'  =>  'owner_dashboard_owner',
+        //     'text' => 'owner_dashboard',
+        //     'url'  => 'owner/home',
+        //     'icon' => 'fas fa-user-shield',
+        // ],
+        [
+            'key'  => 'grant_permissions_owner',
+            'text' => 'grant_permissions',
+            'url'  => 'admin/grant_permissions',
+            'icon' => 'fas fa-users',
+        ],
+        // [
+        //     'key'  => 'owner_add_admin_owner',
+        //     'text' => 'owner_add_admin',
+        //     'url'  => 'admin/register',
+        //     'icon' => 'fas fa-users',
+        // ],
         [
             'key'  =>  'user_skill_sheet',
             'text' => 'skill_sheet',
@@ -317,87 +354,52 @@ return [
             'classes' => 'mb-3 mt-3'
         ],
         [
-            'key'  =>  'edit_user_only',
+            'key'  =>  'edit_user',
             'header' => 'edit'],
         [
-            'key'  => 'profile_user_only',
+            'key'  => 'profile_user',
             'text' => 'profile',
             'url'  => 'profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'key'  =>  'project_user_only',
+            'key'  =>  'project_user',
             'text' => 'project',
             'url'  => 'project',
             'icon' => 'fas fa-history',
         ],
         [
-            'key'  =>  'engineer_skills_user_only',
+            'key'  =>  'engineer_skills_user',
             'text' => 'engineer_skills',
             'url'  => 'skills',
             'icon' => 'fas fa-drafting-compass',
         ],
         [
-            'key'  =>  'language_proficiency_user_only',
+            'key'  =>  'language_proficiency_user',
             'text' => 'language_proficiency',
             'url'  => 'language_proficiency',
             'icon' => 'fas fa-language',
         ],
         [
-            'key'  =>  'qualification_user_only',
+            'key'  =>  'qualification_user',
             'text' => 'qualification',
             'url'  => 'qualification',
             'icon' => 'fas fa-book-open',
         ],
 
         // [
-        //     'key'  =>  'portfolio_user_only',
+        //     'key'  =>  'portfolio_user',
         //     'text' => 'portfolio',
         //     'url'  => 'portfolio',
         //     'icon' => 'fas fa-star',
         // ],
         // [
-        //     'key'  =>  'inexperienced_skills_user_only',
+        //     'key'  =>  'inexperienced_skills_user',
         //     'text' => 'inexperienced_skills',
         //     'url'  => 'inexperienced_skills',
         //     'icon' => 'fas fa-exclamation-triangle',
         // ],
-        [
-            'key'  =>  'admin_dashboard_admin_only',
-            'text' => 'admin_dashboard',
-            'url'  => 'admin/home',
-            'icon' => 'fas fa-user-shield',
-        ],
-        [
-            'key'  =>  'admin_search_member_admin_only',
-            'text' => 'admin_search_member',
-            'url'  => 'admin/search_member',
-            'icon' => 'fas fa-search',
-        ],
-        // [
-        //     'key'  =>  'admin_add_predictive_data_admin_only',
-        //     'text' => 'admin_add_predictive_data',
-        //     'url'  => 'admin_add_predictive_data',
-        //     'icon' => 'fas fa-list-alt',
-        // ],
-        // [
-        //     'key'  =>  'owner_dashboard_owner_only',
-        //     'text' => 'owner_dashboard',
-        //     'url'  => 'owner/home',
-        //     'icon' => 'fas fa-user-shield',
-        // ],
-        // [
-        //     'key'  => 'owner_grant_permissions_owner_only',
-        //     'text' => 'owner_grant_permissions',
-        //     'url'  => 'owner_grant_permissions',
-        //     'icon' => 'fas fa-users',
-        // ],
-        [
-            'key'  => 'owner_add_admin_owner_only',
-            'text' => 'owner_add_admin',
-            'url'  => 'admin/register',
-            'icon' => 'fas fa-users',
-        ],
+
     ],
 
     /*

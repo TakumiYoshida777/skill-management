@@ -1,0 +1,5 @@
+.grid-head,
+.grid-record,
+.grid-foot {
+    grid-template-columns: 1fr 1fr;
+}

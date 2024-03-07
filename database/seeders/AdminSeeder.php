@@ -17,7 +17,7 @@ class AdminSeeder extends Seeder
         DB::table('admins')
         ->insert([
             [
-                'id' => '1',
+                'id' => '2',
                 'first_name' => '太郎',
                 'first_name_kana' => 'タロウ',
                 'last_name' => '管理者',
@@ -34,7 +34,7 @@ class AdminSeeder extends Seeder
         DB::table('admins')
         ->insert([
             [
-                'id' => '2',
+                'id' => '3',
                 'first_name' => '次郎',
                 'first_name_kana' => 'ジロウ',
                 'last_name' => '管理者',

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminGrantPermissions;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminRegisterController;
 use App\Http\Controllers\Admin\AdminSearchMemberController;
@@ -31,17 +30,17 @@ use Illuminate\Support\Facades\Password;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/skill_sheet', [SkillSheetController::class, 'index'])->name('skill_sheet');
 // スキルシート
-Route::get('user_skill_sheet/{id}',[SkillSheetController::class,'user_skill_sheet'])->name('user_skill_sheet');
+Route::get('user_skill_sheet/{id}',[SkillSheetController::class,'user_skill_sheet'])->name('user_skill_sheet')->middleware('auth:admin');
 // Route::get('/pdf',[PdfController::class,'viewPdf'])->name('viewPdf');
 Route::post('/pdf',[SkillSheetController::class,'viewPdf'])->name('viewPdf');
 Route::get('/pdf/{id}',[SkillSheetController::class,'dlPdf'])->name('dlPdf');
@@ -79,16 +78,10 @@ Route::prefix('admin')->group(function () {
 
     Route::get('register', [RegisterController::class, 'showAdminRegistrationForm'])->name('admin.register');
     Route::post('register', [RegisterController::class, 'registerAdmin']);
-    Route::view('/home', 'admin/home');
+    Route::view('/home', 'admin/home')->middleware('auth:admin');
     // /search_memberへのアクセスに認証を要求
-    Route::get('/search_member',[AdminSearchMemberController::class,'index']);
-    Route::get('/search_result',[AdminSearchResultController::class,'result'])->name('search_result');
-
-    //権限付与
-    Route::get('/grant_permissions',[AdminGrantPermissions::class,'index']);
-    Route::get('/grant_permissions/target_user',[AdminGrantPermissions::class,'get_grant_target_user'])->name('grant_target_user');
-    Route::post('/grant_permissions/target_user',[AdminGrantPermissions::class,'get_grant_target_user'])->name('grant_target_user');
-    Route::post('/grant_permissions/{id}',[AdminGrantPermissions::class,'update_grant'])->name('update_grant');
+    Route::get('/search_member',[AdminSearchMemberController::class,'index'])->middleware('auth:admin');
+    Route::get('/search_result',[AdminSearchResultController::class,'result'])->name('search_result')->middleware('auth:admin');
 });
 
 

@@ -16,6 +16,15 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasUuids;
 
+    /**
+     * ロール情報の取得
+     *
+     * @return void
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 
     /**
      * ユーザーの使用できるデータベースを取得

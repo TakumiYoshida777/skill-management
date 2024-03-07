@@ -15,8 +15,9 @@ class RoleSeeder extends Seeder
     {
                 // ロールを追加する
                 DB::table('roles')->insert([
-                    ['name' => 'admin', 'display_name' => '管理者', 'description' => 'システムの管理者'],
-                    ['name' => 'owner', 'display_name' => 'システムオーナー', 'description' => 'システムのオーナー'],
+                    ['id' => 1,'name' => 'user', 'display_name' => 'ユーザー', 'description' => 'スキルシート作成機能の利用者（一般ユーザー）'],
+                    ['id' => 2,'name' => 'admin', 'display_name' => '管理者', 'description' => 'システムの管理者'],
+                    ['id' => 3,'name' => 'owner', 'display_name' => 'システムオーナー', 'description' => 'システムのオーナー'],
                 ]);
     }
 }

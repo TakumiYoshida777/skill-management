@@ -35,15 +35,14 @@ class Handler extends ExceptionHandler
      * @param Throwable $exception
      * @return void
      */
-    // TODO::owner/loginからログインして、メニューをクリックすると/loginに飛ばされる　RedirectIfAuthenticatedで認証状態OKの分岐に入れていない。渡す値が悪いのか引数の置き方が悪いのか、ほかの原因なのか調査中
     protected function unauthenticated($request, Throwable $exception)
     {
         if ($request->expectsJson()) {
             return response()->json(['message' => $exception->getMessage()], 401);
         }
-        if ($request->is('admin') || $request->is('admin/*')) {
-            return redirect()->guest('/admin/login');
-        }
+        // if ($request->is('admin') || $request->is('admin/*')) {
+        //     return redirect()->guest('/admin/login');
+        // }
 
         return redirect()->guest($exception->redirectTo ?? route('login'));
     }
