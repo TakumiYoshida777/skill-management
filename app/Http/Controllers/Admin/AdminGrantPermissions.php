@@ -47,6 +47,13 @@ class AdminGrantPermissions extends Controller
         return view('admin/grant_target_user',compact('target_user'));
     }
 
+    /**
+     * 権限の更新
+     *
+     * @param Request $request
+     * @param [type] $id
+     * @return void
+     */
     public function update_grant(Request $request, $id) {
         try{
             $target_user = User::where('id', $id)->first();
@@ -58,7 +65,7 @@ class AdminGrantPermissions extends Controller
         } catch (Exception $e) {
             Log::debug($e);
             DB::rollback();
-            return redirect('project')->withErrors("更新に失敗しました。予期せぬエラー")
+            return redirect('admin/grant_permissions')->withErrors("更新に失敗しました。予期せぬエラー")
                 ->withInput();
         }
 
