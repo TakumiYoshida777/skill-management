@@ -71,18 +71,18 @@ Route::prefix('admin')->group(function () {
         return view('welcome');
     });
 
-    Route::view('/login', 'admin/login');
-    Route::post('/login', [AdminLoginController::class, 'login']);
-    Route::post('/logout', [AdminLoginController::class,'admin_logout']);
+    // Route::view('/login', 'admin/login');
+    // Route::post('/login', [AdminLoginController::class, 'login']);
+    // Route::post('/logout', [AdminLoginController::class,'admin_logout']);
     // Route::view('/register', 'admin/register');
     // Route::post('/register', [AdminRegisterController::class, 'register']);
 
     Route::get('register', [RegisterController::class, 'showAdminRegistrationForm'])->name('admin.register');
     Route::post('register', [RegisterController::class, 'registerAdmin']);
-    Route::view('/home', 'admin/home');
-    // /search_memberへのアクセスに認証を要求
+    // Route::view('/home', 'admin/home');
+    Route::view('/home', 'admin/home');    // /search_memberへのアクセスに認証を要求
     Route::get('/search_member',[AdminSearchMemberController::class,'index']);
-    Route::get('/search_result',[AdminSearchResultController::class,'result'])->name('search_result');
+    Route::post('/search_result',[AdminSearchMemberController::class,'result'])->name('search_result');
 
     //権限付与
     Route::get('/grant_permissions',[AdminGrantPermissions::class,'index']);

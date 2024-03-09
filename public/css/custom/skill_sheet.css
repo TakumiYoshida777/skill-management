@@ -2,6 +2,10 @@
     margin-bottom: 5rem;
 }
 
+.my-pr {
+    word-break: break-word;
+}
+
 @media screen and (max-width: 768px) {
     .sheet-section {
         margin-bottom: 3rem;

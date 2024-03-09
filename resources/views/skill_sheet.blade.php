@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="w-100 h-100 p-3 text-center rounded" required>{{ $user_age }}</div>
+                        <div class="w-100 h-100 p-3 text-center rounded">{{ $user_age }}</div>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class="w-100 h-100 p-3 rounded white-space-pre-wrap" required>{{ $skill_data->profile->pr }}</div>
+                    <div class="w-100 h-100 p-3 rounded white-space-pre-wrap">{{ $skill_data->profile->pr }}</div>
                 </div>
             </div>
         </div>

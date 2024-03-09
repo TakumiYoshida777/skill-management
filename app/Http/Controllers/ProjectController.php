@@ -200,7 +200,7 @@ class ProjectController extends Controller
         } catch (Exception $e) {
             Log::debug($e);
             DB::rollback();
-            return redirect('project')->withErrors("登録に失敗しました。※運営にお問い合わせください。")
+            return redirect('project')->withErrors("登録に失敗しました。")
                 ->withInput();;
         }
     }
@@ -552,7 +552,7 @@ class ProjectController extends Controller
         } catch (Exception $e) {
             Log::debug($e);
             DB::rollback();
-            return redirect('project')->withErrors("登録に失敗しました。※運営にお問い合わせください。")
+            return redirect('project')->withErrors("登録に失敗しました。")
                 ->withInput();
         }
     }
@@ -574,7 +574,7 @@ class ProjectController extends Controller
         } catch (Exception $e) {
             Log::debug($e);
             DB::rollback();
-            return redirect('project')->withErrors("登録に失敗しました。※運営にお問い合わせください。")
+            return redirect('project')->withErrors("登録に失敗しました。")
                 ->withInput();
         }
     }

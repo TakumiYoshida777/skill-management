@@ -68,7 +68,7 @@ class LanguageProficiencyController extends Controller
         } catch (Exception $e) {
             Log::debug($e);
             DB::rollBack();
-            return redirect('language_proficiency')->withErrors("登録に失敗しました。※運営にお問い合わせください。")
+            return redirect('language_proficiency')->withErrors("登録に失敗しました。")
                 ->withInput();;
         }
     }
@@ -116,7 +116,7 @@ class LanguageProficiencyController extends Controller
         } catch (Exception $e) {
             Log::debug($e);
             DB::rollBack();
-            return redirect('language_proficiency')->withErrors("更新に失敗しました。※運営にお問い合わせください。")
+            return redirect('language_proficiency')->withErrors("更新に失敗しました。")
                 ->withInput();;
         }
     }
@@ -139,7 +139,7 @@ class LanguageProficiencyController extends Controller
         } catch (Exception $e) {
             Log::debug($e);
             DB::rollBack();
-            return redirect('language_proficiency')->withErrors("削除に失敗しました。※運営にお問い合わせください。")
+            return redirect('language_proficiency')->withErrors("削除に失敗しました。")
                 ->withInput();;
         }
     }

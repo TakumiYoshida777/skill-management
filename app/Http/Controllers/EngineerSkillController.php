@@ -190,7 +190,7 @@ class EngineerSkillController extends Controller
         } catch(Exception $e) {
             Log::debug($e);
             DB::rollBack();
-            return redirect('skills')->withErrors("登録に失敗しました。※運営にお問い合わせください。")
+            return redirect('skills')->withErrors("登録に失敗しました。")
             ->withInput();;
         }
     }
@@ -309,7 +309,7 @@ class EngineerSkillController extends Controller
         } catch (Exception $e) {
             Log::debug($e);
             DB::rollBack();
-            return redirect('qualification')->withErrors("更新に失敗しました。※運営にお問い合わせください。")
+            return redirect('qualification')->withErrors("更新に失敗しました。")
                 ->withInput();;
         }
     }
@@ -404,7 +404,7 @@ class EngineerSkillController extends Controller
         } catch (Exception $e) {
             Log::debug($e);
             DB::rollBack();
-            return redirect('qualification')->withErrors("削除に失敗しました。※運営にお問い合わせください。")
+            return redirect('qualification')->withErrors("削除に失敗しました。")
                 ->withInput();;
         }
     }

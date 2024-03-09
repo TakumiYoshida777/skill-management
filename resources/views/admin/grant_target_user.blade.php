@@ -35,7 +35,6 @@
             </div>
         </div>
     </div>
-@dump($target_user->role_id)
         <form action="{{ route('update_grant', $target_user->id) }}" method="POST">
             @csrf
             <div class="card w-50">
@@ -64,6 +63,7 @@
                         <label class="switch">
                             <input name="role_id" type="radio" class="primary" value="3"
                             @if ($target_user->role_id == 3) checked @endif
+                            @disabled(true)
                                 >
                             <span class="slider round"></span>
                         </label>

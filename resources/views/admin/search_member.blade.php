@@ -12,7 +12,7 @@
 
 @section('content')
     <x-messages.flash_message />
-    <form action="{{ route('search_result') }}" method="GET">
+    <form action="{{ route('search_result') }}" method="POST">
         @csrf
         <div class="search-container">
             <div class="radio-wrap">

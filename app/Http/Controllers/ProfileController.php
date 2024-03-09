@@ -84,7 +84,7 @@ class ProfileController extends Controller
         }catch(Exception $e){
             Log::debug($e);
             DB::rollback();
-            return redirect('profile')->withErrors("登録に失敗しました。※運営にお問い合わせください。")
+            return redirect('profile')->withErrors("登録に失敗しました。")
             ->withInput();;
         }
 
