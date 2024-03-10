@@ -16,12 +16,4 @@ class Role extends Model
     {
         return $this->hasMany(User::class);
     }
-
-    /**
-     * このロールに属する管理者を取得
-     */
-    public function admins()
-    {
-        return $this->hasMany(Admin::class);
-    }
 }

@@ -106,18 +106,6 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        // 'admins' => [
-        //     'provider' => 'admins',
-        //     'table' => 'admin_password_resets',
-        //     'expire' => 60,
-        //     'throttle' => 60,
-        // ],
-        // 'owners' => [
-        //     'provider' => 'owners',
-        //     'table' => 'owner_password_resets',
-        //     'expire' => 60,
-        //     'throttle' => 60,
-        // ],
     ],
 
     /*

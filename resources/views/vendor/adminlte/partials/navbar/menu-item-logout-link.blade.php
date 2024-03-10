@@ -1,8 +1,4 @@
 @php($logout_url = View::getSection('logout_url') ?? config('adminlte.logout_url', 'logout'))
-{{-- @php( $logout_url =Str::contains(Request::url(), 'admin')
-? View::getSection('logout_url') ?? config('adminlte.admin_logout_url', 'logout')
-: View::getSection('logout_url') ?? config('adminlte.logout_url', 'logout')
- ) --}}
 
 @if (config('adminlte.use_route_url', false))
     @php($logout_url = $logout_url ? route($logout_url) : '')
