@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Profile;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -29,7 +28,6 @@ class DatabaseSeeder extends Seeder
             ProfileSeeder::class,
             MstVirtualEnvironmentSeeder::class,
             ProjectSeeder::class,
-            AdminSeeder::class,
             EngineerSkillLanguageSeeder::class,
             EngineerSkillFrameworkSeeder::class,
             EngineerSkillDatabaseSeeder::class,
