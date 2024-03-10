@@ -27,5 +27,5 @@ class LanguageProficiency extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','name','learning_method','total_date','read_status','write_status','conversation_status','memo'];
+    protected $fillable = ['user_id','name','learning_method','total_months','read_status','write_status','conversation_status','memo'];
 }

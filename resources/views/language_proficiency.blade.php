@@ -52,11 +52,11 @@
                                 </div>
                             </div>
                             <div class="input-record py-2 border-bottom">
-                                <div class="input-title">通算年数</div>
+                                <div class="input-title">通算月数</div>
                                 <div class="d-flex align-items-center">
-                                    <input class="form-control w-75" type="number" name="total_date" id="total_date"
-                                        value="0.1" step="any" min="0.1" value="{{ $data->total_date }}">
-                                    <div class="ml-2 mb-0">年</div>
+                                    <input class="form-control w-75" type="number" name="total_months" id="total_months"
+                                        value="1" min="1" value="{{ $data->total_months }}">
+                                    <div class="ml-2 mb-0">ヵ月</div>
                                 </div>
                             </div>
                             <div class="input-record py-2 border-bottom">
@@ -157,7 +157,7 @@
                 <th>編集/削除</th>
                 <th>外国語種別</th>
                 <th>学習方法</th>
-                <th>通算年数</th>
+                <th>通算月数</th>
                 <th>読む<br>レベル：1～3</th>
                 <th>書く<br>レベル：1～3</th>
                 <th>会話<br>レベル：1～3</th>
@@ -197,11 +197,11 @@
                         </div>
                     </div>
                     <div class="input-record py-2 border-bottom">
-                        <div class="input-title">通算年数</div>
+                        <div class="input-title">通算月数</div>
                         <div class="d-flex align-items-center">
-                            <input class="form-control w-75" type="number" name="total_date" id="total_date"
-                                value="0.1" step="any" min="0.1">
-                            <div class="ml-2 mb-0">年</div>
+                            <input class="form-control w-75" type="number" name="total_months" id="total_months"
+                                value="1" step="any" min="1">
+                            <div class="ml-2 mb-0">ヵ月</div>
                         </div>
                     </div>
                     <div class="input-record py-2 border-bottom">
@@ -324,7 +324,7 @@
                         width: "10%"
                     },
                     {
-                        data: "total_date",
+                        data: "total_months",
                         width: "10%"
                     },
                     {

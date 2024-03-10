@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
             $table->string('name')->unique()->comment('対象の言語');
             $table->text('learning_method')->nullable();
-            $table->float('total_date')->nullable();
+            $table->float('total_months')->nullable();
             $table->unsignedTinyInteger('read_status')->comment('読む->unique()(0:初級 1:中級 2:上級)');
             $table->unsignedTinyInteger('write_status')->comment('書く->unique()(0:初級 1:中級 2:上級)');
             $table->unsignedTinyInteger('conversation_status')->comment('会話->unique()(0:初級 1:中級 2:上級)');

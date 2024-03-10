@@ -183,7 +183,7 @@
                             <td></td>
                             <td>{{ $data->name }}</td>
                             <td>{{ $data->learning_method }}</td>
-                            <td>{{ $data->total_date }}</td>
+                            <td>{{ $data->total_months }}</td>
                             <td>{{ $data->read_status }}</td>
                             <td>{{ $data->write_status }}</td>
                             <td>{{ $data->conversation_status }}</td>
