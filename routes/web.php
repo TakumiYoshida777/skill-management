@@ -37,7 +37,9 @@ use Illuminate\Support\Facades\Password;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return redirect('/skill_sheet');
+})->name('home');
 
 Route::get('/skill_sheet', [SkillSheetController::class, 'index'])->name('skill_sheet');
 // スキルシート
@@ -71,16 +73,9 @@ Route::prefix('admin')->group(function () {
         return view('welcome');
     });
 
-    // Route::view('/login', 'admin/login');
-    // Route::post('/login', [AdminLoginController::class, 'login']);
-    // Route::post('/logout', [AdminLoginController::class,'admin_logout']);
-    // Route::view('/register', 'admin/register');
-    // Route::post('/register', [AdminRegisterController::class, 'register']);
-
     Route::get('register', [RegisterController::class, 'showAdminRegistrationForm'])->name('admin.register');
     Route::post('register', [RegisterController::class, 'registerAdmin']);
-    // Route::view('/home', 'admin/home');
-    Route::view('/home', 'admin/home');    // /search_memberへのアクセスに認証を要求
+    Route::view('/home', 'admin/home');
     Route::get('/search_member',[AdminSearchMemberController::class,'index']);
     Route::post('/search_result',[AdminSearchMemberController::class,'result'])->name('search_result');
 

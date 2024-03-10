@@ -63,8 +63,8 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Skillsheet</b>Creator',
+    'logo_img' => 'vendor/adminlte/dist/img/logo_3.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/logo_3.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -107,9 +107,9 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/logo_3.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -253,20 +253,13 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/',
     'logout_url' => 'logout',
-    'admin_logout_url' => 'admin/logout',
     'login_url' => 'login',
-    'admin_login_url' => 'admin/login',
     'register_url' => 'register',
-    'admin_register_url' => 'admin/register',
     'password_reset_url' => 'password/reset',
-    'admin_password_reset_url' => 'admin/password/reset',
     'password_email_url' => 'password/email',
-    'admin_password_email_url' => 'admin/password/email',
     'profile_url' => false,
-    'admin_profile_url' => false,
-    'owner_profile_url' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -322,30 +315,12 @@ return [
             'url'  => 'admin/search_member',
             'icon' => 'fas fa-search',
         ],
-        // [
-        //     'key'  =>  'admin_add_predictive_data_admin',
-        //     'text' => 'admin_add_predictive_data',
-        //     'url'  => 'admin_add_predictive_data',
-        //     'icon' => 'fas fa-list-alt',
-        // ],
-        // [
-        //     'key'  =>  'owner_dashboard_owner',
-        //     'text' => 'owner_dashboard',
-        //     'url'  => 'owner/home',
-        //     'icon' => 'fas fa-user-shield',
-        // ],
         [
             'key'  => 'grant_permissions_owner',
             'text' => 'grant_permissions',
             'url'  => 'admin/grant_permissions',
             'icon' => 'fas fa-users',
         ],
-        // [
-        //     'key'  => 'owner_add_admin_owner',
-        //     'text' => 'owner_add_admin',
-        //     'url'  => 'admin/register',
-        //     'icon' => 'fas fa-users',
-        // ],
         [
             'key'  =>  'user_skill_sheet',
             'text' => 'skill_sheet',
