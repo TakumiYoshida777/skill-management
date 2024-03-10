@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->uuid('id',36)->primary()->comment('ID');
+            $table->integer('login_count')->default(0)->comment('ログイン総数');
             $table->string('first_name',50)->comment('名');
             $table->string('first_name_kana',50)->comment('名_カナ');
             $table->string('last_name',50)->comment('姓');

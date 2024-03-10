@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -36,6 +37,19 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        // $this->middleware('guest:admin')->except('logout');
+    }
+
+    /**
+     * ログインに成功したら、ログイン数を１プラスする
+     *
+     * @param [type] $user
+     * @return void
+     */
+    protected function authenticated($user)
+    {
+        User::where('id', $user->id)
+            ->update([
+                'login_count' => $user->login_count + 1
+            ]);
     }
 }
