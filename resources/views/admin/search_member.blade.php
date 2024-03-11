@@ -130,7 +130,7 @@
                                 class="skill-input form-control" placeholder="言語を入力"> --}}
                                 <datalist id="used_language">
                                     @foreach ($langs as $data)
-                                        <option value="{{ $data->name }}">
+                                        <option value="{{ $data }}">
                                     @endforeach
                                 </datalist>
                             </div>
@@ -152,7 +152,7 @@
                                 class="skill-input form-control" placeholder="フレームワークを入力"> --}}
                                 <datalist id="used_framework">
                                     @foreach ($frameworks as $data)
-                                        <option value="{{ $data->name }}">
+                                        <option value="{{ $data }}">
                                     @endforeach
                                 </datalist>
                             </div>
@@ -174,7 +174,7 @@
                                 class="skill-input form-control" placeholder="データベースを入力"> --}}
                                 <datalist id="used_database">
                                     @foreach ($databases as $data)
-                                        <option value="{{ $data->name }}">
+                                        <option value="{{ $data }}">
                                     @endforeach
                                 </datalist>
                             </div>
@@ -201,7 +201,7 @@
                                 class="skill-input form-control" placeholder="ミドルウェアを入力"> --}}
                                 <datalist id="used_middleware">
                                     @foreach ($middlewares as $data)
-                                        <option value="{{ $data->name }}">
+                                        <option value="{{ $data }}">
                                     @endforeach
                                 </datalist>
                             </div>
@@ -223,7 +223,7 @@
                                 placeholder="OSを入力"> --}}
                                 <datalist id="used_os">
                                     @foreach ($oses as $data)
-                                        <option value="{{ $data->name }}">
+                                        <option value="{{ $data }}">
                                     @endforeach
                                 </datalist>
                             </div>
@@ -245,7 +245,7 @@
                                 class="skill-input form-control" placeholder="サーバーを入力"> --}}
                                 <datalist id="used_server">
                                     @foreach ($servers as $data)
-                                        <option value="{{ $data->name }}">
+                                        <option value="{{ $data }}">
                                     @endforeach
                                 </datalist>
                             </div>
@@ -270,7 +270,7 @@
                                                 class="skill-input form-control" placeholder="仮想環境を入力"> --}}
                                 <datalist id="used_virtual_environment">
                                     @foreach ($virtual_environments as $data)
-                                        <option value="{{ $data->name }}">
+                                        <option value="{{ $data }}">
                                     @endforeach
                                 </datalist>
                             </div>
@@ -292,7 +292,7 @@
                                 class="skill-input form-control" placeholder="バージョン管理を入力"> --}}
                                 <datalist id="used_version_management">
                                     @foreach ($version_management as $data)
-                                        <option value="{{ $data->name }}">
+                                        <option value="{{ $data }}">
                                     @endforeach
                                 </datalist>
                             </div>

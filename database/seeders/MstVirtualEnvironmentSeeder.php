@@ -14,26 +14,26 @@ class MstVirtualEnvironmentSeeder extends Seeder
     public function run(): void
     {
         $data = [
+            "AWS EC2 (Amazon Elastic Compute Cloud)",
+            "Docker",
+            "Google Cloud Compute Engine",
+            "HashiCorp Nomad",
+            "Hyper-V",
+            "KVM (Kernel-based Virtual Machine)",
+            "LXC (Linux Containers)",
+            "LXD (Linux Container Daemon)",
+            "Microsoft Azure Virtual Machines",
+            "Minikube",
+            "OpenVZ",
+            "Oracle VM VirtualBox",
+            "Parallels",
+            "Proxmox Virtual Environment",
+            "QEMU",
+            "Rancher",
+            "Vagrant",
             "VirtualBox",
             "VMware",
-            "Docker",
-            "Vagrant",
-            "KVM (Kernel-based Virtual Machine)",
-            "Hyper-V",
-            "Parallels",
-            "QEMU",
-            "Xen",
-            "Proxmox Virtual Environment",
-            "LXC (Linux Containers)",
-            "OpenVZ",
-            "LXD (Linux Container Daemon)",
-            "AWS EC2 (Amazon Elastic Compute Cloud)",
-            "Google Cloud Compute Engine",
-            "Microsoft Azure Virtual Machines",
-            "Oracle VM VirtualBox",
-            "HashiCorp Nomad",
-            "Rancher",
-            "Minikube"
+            "Xen"
         ];
 
         $seed_data_ary = [];

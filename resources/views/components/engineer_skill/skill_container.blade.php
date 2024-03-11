@@ -21,9 +21,9 @@
                     </div>
                     <!-- Modal -->
                     {{-- 編集用モーダル --}}
-                    <div class="modal fade edit-modal" id="edit{{ $keyword }}Modal{{ $data->id }}" tabindex="-1"
-                        role="dialog" aria-labelledby="edit{{ $keyword }}Modal{{ $data->id }}Title"
-                        aria-hidden="true">
+                    <div class="modal fade edit-modal" id="edit{{ $keyword }}Modal{{ $data->id }}"
+                        tabindex="-1" role="dialog"
+                        aria-labelledby="edit{{ $keyword }}Modal{{ $data->id }}Title" aria-hidden="true">
 
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
@@ -57,9 +57,9 @@
                     </div>
                 </form>
                 {{-- 削除用モーダル --}}
-                <div class="modal fade delete-modal" id="delete{{ $keyword }}Modal{{ $data->id }}" tabindex="-1"
-                    role="dialog" aria-labelledby="delete{{ $keyword }}Modal{{ $data->id }}Label"
-                    aria-hidden="true">
+                <div class="modal fade delete-modal" id="delete{{ $keyword }}Modal{{ $data->id }}"
+                    tabindex="-1" role="dialog"
+                    aria-labelledby="delete{{ $keyword }}Modal{{ $data->id }}Label" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <form action="{{ url('/skills', $data->id) }}" method="POST">
@@ -106,6 +106,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+
                         <div class="modal-body">
                             <div class="record">
                                 <div class="item">
@@ -113,12 +114,22 @@
                                         class="skill-input" required placeholder="{{ $title }}を入力してください">
                                     <datalist id="{{ $keyword }}">
                                         @foreach ($listData as $data)
-                                            <option value="{{ $data->name }}">
+                                            @php
+                                                // Objectが渡ってきているのでstringに変換
+                                                $data = is_object($data) ? $data->name : $data;
+                                            @endphp
+                                            <option value="{{ $data }}">
                                         @endforeach
+
+                                        {{-- @for ($i = 0; $i < count($listData); $i++)
+
+                                        <option value="{{ $listData[$i]}}">
+                                        @endfor --}}
                                     </datalist>
                                 </div>
                                 <div class="item">
-                                    <input type="number" name="month" class="month-input" value="1" min="1" required>ヵ月
+                                    <input type="number" name="month" class="month-input" value="1"
+                                        min="1" required>ヵ月
                                 </div>
                             </div>
                         </div>

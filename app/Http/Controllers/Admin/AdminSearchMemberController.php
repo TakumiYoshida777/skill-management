@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Consts\AutoCompleteConst;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -22,17 +23,6 @@ class AdminSearchMemberController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * スキルのマスタデータから名前のリスト取得する
-     *
-     * @param string $tableName　テーブル名
-     * @return $result
-     */
-    public function getSkillNameList(string $tableName)
-    {
-        $result = DB::table($tableName)->select('name')->orderBy('name')->get();
-        return $result;
-    }
 
     /**
      * 検索画面の初期表示
@@ -49,14 +39,14 @@ class AdminSearchMemberController extends Controller
         //管理者権限以上のみアクセス可能
         Gate::authorize('grant_admin', $user);
 
-        $langs =  $this->getSkillNameList('mst_langs');
-        $frameworks = $this->getSkillNameList('mst_frameworks');
-        $databases = $this->getSkillNameList('mst_databases');
-        $middlewares = $this->getSkillNameList('mst_middlewares');
-        $oses = $this->getSkillNameList('mst_oses');
-        $servers = $this->getSkillNameList('mst_servers');
-        $virtual_environments = $this->getSkillNameList('mst_virtual_environments');
-        $version_management = $this->getSkillNameList('mst_version_managements');
+        $langs =  AutoCompleteConst::LANGUAGE;
+        $frameworks = AutoCompleteConst::FRAMEWORK;
+        $databases = AutoCompleteConst::DATABASE;
+        $middlewares = AutoCompleteConst::MIDDLWARE;
+        $oses = AutoCompleteConst::OS;
+        $servers = AutoCompleteConst::SERVER;
+        $virtual_environments = AutoCompleteConst::VIRTUAL_ENVIRONMENT;
+        $version_management = AutoCompleteConst::VERSION_MANAGEMENT;
         // オートコンプリート用のデータを返す
         $variablesToCompact = [
             'langs',

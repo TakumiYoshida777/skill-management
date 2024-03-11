@@ -14,26 +14,25 @@ class MstDatabaseSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            "XMLデータベース",
-            "MySQL",
-            "MariaDB",
-            "PostgreSQL",
-            "Microsoft SQL Server",
-            "db4o",
-            "ObjectDB",
-            "Redis",
             "Amazon DynamoDB",
-            "Apache Cassandra",
-            "MongoDB",
-            "CouchDB",
-            "Neo4j",
             "Amazon Neptune",
-            "InfluxDB",
-            "Prometheus",
+            "Apache Cassandra",
             "Apache Hadoop",
+            "CouchDB",
+            "db4o",
             "Google Bigtable",
+            "InfluxDB",
+            "MariaDB",
+            "Memcached",
+            "Microsoft SQL Server",
+            "MongoDB",
+            "MySQL",
+            "Neo4j",
+            "ObjectDB",
+            "PostgreSQL",
+            "Prometheus",
             "Redis",
-            "Memcached"
+            "XML DB"
         ];
 
 
