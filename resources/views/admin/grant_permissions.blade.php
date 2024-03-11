@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SkillSheetCreator')
+@section('title', 'SkillsheetCreator')
 
 @section('css')
 

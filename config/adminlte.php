@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'SkillSheetCreator',
+    'title' => 'SkillsheetCreator',
     'title_prefix' => '',
     'title_postfix' => '',
 
