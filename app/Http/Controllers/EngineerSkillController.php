@@ -129,7 +129,7 @@ class EngineerSkillController extends Controller
      * Store a newly created resource in storage.
      */
     // public function store(RequestEngineerSkill $request)
-    public function store(Request $request)
+    public function store(RequestEngineerSkill $request)
     {
         $user_id = Auth::user()->id;
         $target = $request->target;

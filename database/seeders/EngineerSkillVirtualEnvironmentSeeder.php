@@ -52,7 +52,7 @@ class EngineerSkillVirtualEnvironmentSeeder extends Seeder
         ]);
         DB::table("engineer_skill_virtual_environments")->insert([
             'user_id' => 2,
-            'name' => 'VirtualBox',
+            'name' => 'VMware',
             'experience_months' => 24,
             'auto_renew_flag' => false,
             'created_at' => now(),
