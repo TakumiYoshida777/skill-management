@@ -56,7 +56,7 @@ class RequestEngineerSkill extends FormRequest
                     return $query->where('user_id', $user_id);
                 }),
             ],
-            'VersionManagement' =>  [
+            'version_management' =>  [
                 Rule::unique('engineer_skill_version_management', 'name')->where(function ($query) use ($user_id) {
                     return $query->where('user_id', $user_id);
                 }),
@@ -83,7 +83,7 @@ class RequestEngineerSkill extends FormRequest
             'Middleware' => 'ミドルウェア',
             'OS' => 'OS',
             'Server' => 'サーバー',
-            'VersionManagement' => 'バージョン管理システム',
+            'version_management' => 'バージョン管理システム',
             'VirtualEnvironment' => '仮想環境',
         ];
     }

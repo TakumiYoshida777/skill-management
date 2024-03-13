@@ -38,15 +38,26 @@ class AdminSearchMemberController extends Controller
         // }
         //管理者権限以上のみアクセス可能
         Gate::authorize('grant_admin', $user);
-
+        /**
+         * オートコンプリート用リストの取得
+         */
+        // 言語
         $langs =  AutoCompleteConst::LANGUAGE;
+        // フレームワーク
         $frameworks = AutoCompleteConst::FRAMEWORK;
+        //データベース
         $databases = AutoCompleteConst::DATABASE;
+        // ミドルウェア
         $middlewares = AutoCompleteConst::MIDDLWARE;
+        // OS
         $oses = AutoCompleteConst::OS;
+        // サーバー
         $servers = AutoCompleteConst::SERVER;
+        // 仮想環境
         $virtual_environments = AutoCompleteConst::VIRTUAL_ENVIRONMENT;
+        // バージョン管理システム
         $version_management = AutoCompleteConst::VERSION_MANAGEMENT;
+
         // オートコンプリート用のデータを返す
         $variablesToCompact = [
             'langs',

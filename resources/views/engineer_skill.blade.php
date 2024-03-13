@@ -42,11 +42,11 @@
         @php
             $keyword = 'VirtualEnvironment';
         @endphp
-        <x-engineer_skill.skill_container :engineerSkills="$engineerSkillVirtualEnvironments" :listData="$virtualEnvironments" :keyword="$keyword" :title="$keyword" />
+        <x-engineer_skill.skill_container :engineerSkills="$engineerSkillVirtualEnvironments" :listData="$virtual_environments" :keyword="$keyword" :title="$keyword" />
         @php
-            $keyword = 'VersionManagement';
+            $keyword = 'version_management';
         @endphp
-        <x-engineer_skill.skill_container :engineerSkills="$engineerSkillVersionManagement" :listData="$versionManagement" :keyword="$keyword" :title="$keyword" />
+        <x-engineer_skill.skill_container :engineerSkills="$engineerSkillVersionManagement" :listData="$version_management" :keyword="$keyword" :title="$keyword" />
     </div>
 @stop
 

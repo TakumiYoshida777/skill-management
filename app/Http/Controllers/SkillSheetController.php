@@ -175,7 +175,8 @@ class SkillSheetController extends Controller
 
         $initial_user_name = $this->create_initial($skill_data->first_name_kana,  $skill_data->last_name_kana);
 
-        $user_age = $this->calculateAge($skill_data->profile->birthdate);
+        $birthdate = $skill_data->profile->birthdate ?? "";
+        $user_age = $this->calculateAge($birthdate);
 
         return view('skill_sheet', compact('skill_data', 'user_age', 'initial_user_name', 'skill_project_data'));
     }
@@ -271,8 +272,8 @@ class SkillSheetController extends Controller
             ->orderByRaw('ISNULL(end_date) DESC, end_date DESC')
             ->get();
         $initial_user_name = $this->create_initial($skill_data->first_name_kana,  $skill_data->last_name_kana);
-
-        $user_age = $this->calculateAge($skill_data->profile->birthdate);
+       $birthdate = $skill_data->profile->birthdate ?? "";
+        $user_age = $this->calculateAge($birthdate);
 
         $data = [
             "skill_data" => $skill_data,

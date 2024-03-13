@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class="w-100 h-100 p-3 rounded white-space-pre-wrap">{{ $skill_data->profile->pr }}</div>
+                    <div class="w-100 h-100 p-3 rounded white-space-pre-wrap">{{ $skill_data->profile->pr??"" }}</div>
                 </div>
             </div>
         </div>

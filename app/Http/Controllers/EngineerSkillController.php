@@ -99,9 +99,9 @@ class EngineerSkillController extends Controller
         // サーバー
         $servers = AutoCompleteConst::SERVER;
         // 仮想環境
-        $virtualEnvironments = AutoCompleteConst::VIRTUAL_ENVIRONMENT;
+        $virtual_environments = AutoCompleteConst::VIRTUAL_ENVIRONMENT;
         // バージョン管理システム
-        $versionManagement = AutoCompleteConst::VERSION_MANAGEMENT;
+        $version_management = AutoCompleteConst::VERSION_MANAGEMENT;
 
         $variablesToCompact = [
             'user',
@@ -111,8 +111,8 @@ class EngineerSkillController extends Controller
             'engineerSkillMiddlewares', 'middlewares',
             'engineerSkillOses', 'oses',
             'engineerSkillServers', 'servers',
-            'engineerSkillVirtualEnvironments', 'virtualEnvironments',
-            'engineerSkillVersionManagement', 'versionManagement',
+            'engineerSkillVirtualEnvironments', 'virtual_environments',
+            'engineerSkillVersionManagement', 'version_management',
         ];
         return view('engineer_skill', compact($variablesToCompact));
     }
@@ -189,7 +189,7 @@ class EngineerSkillController extends Controller
                         'experience_months' => $request->month,
                     ]);
                     break;
-                case 'VersionManagement':
+                case 'version_management':
                     EngineerSkillVersionManagement::firstOrCreate([
                         'user_id' => $user_id,
                         'name' => $request->VersionManagement,
@@ -304,7 +304,7 @@ class EngineerSkillController extends Controller
                     $message_title = $data->name;
                     Log::info($target . '::' . 'success create!!');
                     break;
-                case 'VersionManagement':
+                case 'version_management':
                     $data = EngineerSkillVersionManagement::query()->where([
                         ['user_id', $user->id],
                         ['id', $id]
@@ -399,7 +399,7 @@ class EngineerSkillController extends Controller
                     $message_title = $data->name;
                     Log::info($target . '::' . 'success create!!');
                     break;
-                case 'VersionManagement':
+                case 'version_management':
                     $data = EngineerSkillVersionManagement::query()->where([
                         ['user_id', $user->id],
                         ['id', $id]

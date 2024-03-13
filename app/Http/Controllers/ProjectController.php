@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Consts\AutoCompleteConst;
 use App\Http\Requests\RequestProject;
 use App\Models\Project;
 use App\Models\ProjectUsedDatabase;
@@ -32,18 +33,6 @@ class ProjectController extends Controller
     }
 
     /**
-     * スキルのマスタデータから名前のリスト取得する
-     *
-     * @param string $tableName　テーブル名
-     * @return $result
-     */
-    public function getSkillNameList(string $tableName)
-    {
-        $result = DB::table($tableName)->select('name')->orderBy('name')->get();
-        return $result;
-    }
-
-    /**
      * Display a listing of the resource.
      */
     public function index()
@@ -62,16 +51,25 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $langs =  $this->getSkillNameList('mst_langs');
-        $frameworks = $this->getSkillNameList('mst_frameworks');
-        $databases = $this->getSkillNameList('mst_databases');
-        $middlewares = $this->getSkillNameList('mst_middlewares');
-        $oses = $this->getSkillNameList('mst_oses');
-        $servers = $this->getSkillNameList('mst_servers');
-        $virtual_environments = $this->getSkillNameList('mst_virtual_environments');
-        $version_management = $this->getSkillNameList('mst_version_managements');
-
-        // dd($virtual_environments);
+        /**
+         * オートコンプリート用リストの取得
+         */
+        // 言語
+        $langs =  AutoCompleteConst::LANGUAGE;
+        // フレームワーク
+        $frameworks = AutoCompleteConst::FRAMEWORK;
+        //データベース
+        $databases = AutoCompleteConst::DATABASE;
+        // ミドルウェア
+        $middlewares = AutoCompleteConst::MIDDLWARE;
+        // OS
+        $oses = AutoCompleteConst::OS;
+        // サーバー
+        $servers = AutoCompleteConst::SERVER;
+        // 仮想環境
+        $virtual_environments = AutoCompleteConst::VIRTUAL_ENVIRONMENT;
+        // バージョン管理システム
+        $version_management = AutoCompleteConst::VERSION_MANAGEMENT;
 
         $variablesToCompact = [
             'langs',
@@ -222,16 +220,25 @@ class ProjectController extends Controller
         // dd($id);
 
         /**
-         * オートコンプリート用取得リスト
+         * オートコンプリート用リストの取得
          */
-        $langs =  $this->getSkillNameList('mst_langs');
-        $frameworks = $this->getSkillNameList('mst_frameworks');
-        $databases = $this->getSkillNameList('mst_databases');
-        $middlewares = $this->getSkillNameList('mst_middlewares');
-        $oses = $this->getSkillNameList('mst_oses');
-        $servers = $this->getSkillNameList('mst_servers');
-        $virtual_environments = $this->getSkillNameList('mst_virtual_environments');
-        $versionManagement = $this->getSkillNameList('mst_version_managements');
+        // 言語
+        $langs =  AutoCompleteConst::LANGUAGE;
+        // フレームワーク
+        $frameworks = AutoCompleteConst::FRAMEWORK;
+        //データベース
+        $databases = AutoCompleteConst::DATABASE;
+        // ミドルウェア
+        $middlewares = AutoCompleteConst::MIDDLWARE;
+        // OS
+        $oses = AutoCompleteConst::OS;
+        // サーバー
+        $servers = AutoCompleteConst::SERVER;
+        // 仮想環境
+        $virtual_environments = AutoCompleteConst::VIRTUAL_ENVIRONMENT;
+        // バージョン管理システム
+        $version_management = AutoCompleteConst::VERSION_MANAGEMENT;
+
 
         /**
          * 更新対象のプロジェクトを取得
@@ -306,7 +313,7 @@ class ProjectController extends Controller
             'oses',
             'servers',
             'virtual_environments',
-            'versionManagement',
+            'version_management',
             'used_languages',
             'used_frameworks',
             'used_databases',
