@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'SkillSheetCreator'),
+    'name' => env('APP_NAME', 'SkillsheetCreator'),
 
     /*
     |--------------------------------------------------------------------------

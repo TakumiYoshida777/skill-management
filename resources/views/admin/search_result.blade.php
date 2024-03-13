@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SkillSheetCreator')
+@section('title', 'SkillsheetCreator')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/custom/project_create.css') }}">
