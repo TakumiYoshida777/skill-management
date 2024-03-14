@@ -25,8 +25,16 @@ return [
     'watermark_image_alpha'    => 0.2,
     'watermark_image_size'     => 'D',
     'watermark_image_position' => 'P',
-    'custom_font_dir'          => '',
-    'custom_font_data'         => [],
+    'custom_font_dir'          => base_path('resources/fonts/'),
+    'custom_font_data' => [
+        'notosansjp' => [
+            'R'  => 'NotoSansJP-Regular.ttf',    // 通常のフォント
+            'B'  => 'NotoSansJP-Bold.ttf',       // オプション: 太字フォント
+            'I'  => 'NotoSansJP-Italic.ttf',     // オプション: イタリックフォント
+            'BI' => 'NotoSansJP-Bold-Italic.ttf' // オプション: 太字イタリックフォント
+        ]
+    ],
+    'default_font' => 'notosansjp',
     'auto_language_detection'  => true,
     'temp_dir'                 => storage_path('app'),
     'pdfa'                     => false,

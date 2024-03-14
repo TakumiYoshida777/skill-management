@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <style>
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    white-space: pre-wrap;
+}
         .ml-1rem {
             margin-left: 16px;
         }
